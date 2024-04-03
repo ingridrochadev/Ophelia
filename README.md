@@ -1,10 +1,8 @@
-Empresa: PagEasy
-
-Descrição:
+# PagEasy
 
 PagEasy é uma instituição de pagamentos fictícia que oferece serviços de processamento de transações financeiras para empresas de diversos setores. Eles lidam com uma grande quantidade de documentos relacionados a transações, contratos, faturas, comprovantes de pagamento e relatórios financeiros. A empresa está procurando aprimorar sua eficiência no gerenciamento desses documentos e garantir conformidade com regulamentações financeiras.
 
-Desafio:
+**Desafio:**
 A PagEasy enfrenta desafios no gerenciamento eficiente de sua vasta documentação, que inclui documentos em papel e formatos digitais. A necessidade de lidar com volumes crescentes de documentos, além de garantir acesso rápido e preciso às informações contidas nesses documentos, é essencial para o seu negócio.
 
 Solução Proposta:
