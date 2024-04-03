@@ -1,13 +1,13 @@
-# TigerPay
+# Ophelia
 
 Somos uma instituição de pagamentos que oferece serviços de processamento de transações financeiras para empresas de diversos setores. Lidamos com uma grande quantidade de documentos relacionados a transações, contratos, faturas, comprovantes de pagamento e relatórios financeiros. Estamos procurando aprimorar nossa eficiência no gerenciamento desses documentos e garantir conformidade com regulamentações financeiras.
 
 **Desafio:**
-A TigerPay enfrenta desafios no gerenciamento eficiente de sua vasta documentação, que inclui documentos em papel e formatos digitais. A necessidade de lidar com volumes crescentes de documentos, além de garantir acesso rápido e preciso às informações contidas nesses documentos, é essencial para o seu negócio.
+A Ophelia enfrenta desafios no gerenciamento eficiente de sua vasta documentação, que inclui documentos em papel e formatos digitais. A necessidade de lidar com volumes crescentes de documentos, além de garantir acesso rápido e preciso às informações contidas nesses documentos, é essencial para o seu negócio.
 
 **Solução Proposta:**
 
-Para lidar com esses desafios, a TigerPay propõe a implementação de um sistema de Gerenciamento Eletrônico de Documentos (GED) com Reconhecimento Óptico de Caracteres (OCR). A solução inclui:
+Para lidar com esses desafios, a Ophelia propõe a implementação de um sistema de Gerenciamento Eletrônico de Documentos (GED) com Reconhecimento Óptico de Caracteres (OCR). A solução inclui:
 
 -   Digitalização de Documentos: Todos os documentos físicos, como contratos, faturas e recibos, serão digitalizados e armazenados eletronicamente no sistema GED.
 
