@@ -1,6 +1,6 @@
 # Ophelia
 
-Este é um sistema de Gerenciamento Eletrônico de Documentos (GED) com Reconhecimento Óptico de Caracteres (OCR) desenvolvido para automatizar a verificação de documentos de viagem, especialmente vistos, no contexto de viagens aos Estados Unidos. O sistema é projetado para melhorar a eficiência e precisão da verificação de documentos, reduzindo o tempo e os recursos necessários para processar passageiros em aeroportos e pontos de entrada nos EUA.
+Este é um sistema de Gerenciamento Eletrônico de Documentos (GED) com Reconhecimento Óptico de Caracteres (OCR) desenvolvido para automatizar a verificação de documentos de viagem, especialmente vistos, no contexto de viagens aos Estados Unidos. O sistema é projetado para melhorar a eficiência e precisão da verificação de documentos, reduzindo o tempo e os recursos necessários para processar passageiros em aeroportos.
 
 **Funcionalidades Principais**
 
