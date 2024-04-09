@@ -146,7 +146,6 @@ def verificar_embarque(tipo_de_visto, validade_visto, proposito_viagem, document
         print("Não é permitido embarcar. Verifique seu tipo de visto.")
 
 
-#Exemplo de uso
 tipo_de_visto_passageiro = "B-1"
 validade_visto_passageiro = "válido"
 proposito_viagem_passageiro = "empregado domestico"
