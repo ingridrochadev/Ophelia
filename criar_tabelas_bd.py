@@ -1,19 +1,21 @@
 from dotenv import load_dotenv
-from os import getenv
+import os
 import psycopg2
 
 load_dotenv()
 
-def estabelecer_conexao():
+def conectar_db():
     try:
-        conn = psycopg2.connect(
-            dbname=getenv("DATABASE_NAME"),
-            user=getenv("DATABASE_USER"),
-            password=getenv("DATABASE_PASSWORD"),
-            host=getenv("DATABASE_HOST")
-        )
-        conn.autocommit = False  # Desativa o modo de autocommit para fazer commits manuais
-        return conn
+        conexao = psycopg2.connect(
+            dbname=os.getenv('dbname'),
+            user=os.getenv('user'),
+            password=os.getenv('password'),
+            host=os.getenv('host'),
+            port=os.getenv('port')
+        )  
+        print('Conexão estabelecida com sucesso!')
+        return conexao
+
     except Exception as e:
         print(f'\nOcorreu um erro: {e}')
     return None
@@ -118,7 +120,7 @@ def criar_tabela_historico_embarque(cursor):
 
 
 if __name__ == '__main__':
-    conexao = estabelecer_conexao()
+    conexao = conectar_db()
     cursor = conexao.cursor()
     apagar_tabelas(cursor)
     criar_tabela_passageiros(cursor)

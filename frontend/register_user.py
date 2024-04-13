@@ -1,7 +1,6 @@
 import streamlit as st
 
 def tela_register():
-
     # Tela de cadastro de usuário
     st.markdown("<h1 style='text-align: center; color: purple;'>Cadastro de Usuário</h1>", unsafe_allow_html=True)
     st.markdown('----')
