@@ -1,4 +1,3 @@
 .env
-.myenv
-.venv
+.my_new_venv
 testes.py
