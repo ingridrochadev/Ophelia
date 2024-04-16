@@ -11,7 +11,7 @@ import math
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
-#from PIL import Image
+from PIL import Image
 
 """class created"""
 from filter import Filter
