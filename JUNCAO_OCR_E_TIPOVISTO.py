@@ -1,4 +1,4 @@
-import dependencies as d
+from src.image_processing import dependencies as d
 
 def leitura_do_passaporte(image_path):
     # Carrega a imagem
