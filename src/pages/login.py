@@ -28,4 +28,6 @@ def tela_login():
         sistema.fazer_login(email_recebido, senha_recebida)
 
     # Adicionando o link para registrar-se
-    st.markdown("Não tem uma conta? Clique [aqui]({tela_register})")
+    if st.button("Não tem uma conta? Clique aqui"):
+        st.empty()  # Limpa a tela de login
+        tela_register() 
