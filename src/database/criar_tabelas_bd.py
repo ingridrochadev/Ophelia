@@ -1,0 +1,193 @@
+from dotenv import load_dotenv
+import psycopg2
+from os import getenv
+
+load_dotenv()
+
+def conectar_db():
+    try:
+        conexao = psycopg2.connect(
+            dbname=getenv("DATABASE_NAME"),
+            user=getenv("DATABASE_USER"),
+            password=getenv("DATABASE_PASSWORD"),
+            host=getenv("DATABASE_HOST")
+        )  
+        print('Conexão estabelecida com sucesso!')
+        return conexao
+
+    except Exception as e:
+        print(f'\nOcorreu um erro: {e}')
+    return None
+
+
+def apagar_tabelas(cursor):
+    cursor.execute('''DROP TABLE IF EXISTS 
+                   passageiros, vistos, usuarios, tipos_vistos, voos, historico_embarque''')
+    print('Tabelas anteriores excluídas.')
+
+def criar_tabela_passageiros(cursor):
+    cursor.execute('''CREATE TABLE IF NOT EXISTS public.passageiros
+(
+    passaporte character varying(15) NOT NULL,
+    nome character varying(150) NOT NULL,
+    nacionalidade character varying(5) NOT NULL,
+    data_nascimento date NOT NULL,
+    PRIMARY KEY (passaporte)
+);  ''')
+    print('Tabela de passageiros criada.')
+
+
+def criar_tabela_vistos(cursor):
+    cursor.execute('''CREATE TABLE IF NOT EXISTS public.vistos
+(
+    numero_visto character varying(15) NOT NULL,
+    passaporte character varying(15) NOT NULL,
+    tipo_visto character varying(10) NOT NULL,
+    local_emissor character varying(15) NOT NULL,
+    data_validade date NOT NULL,
+    PRIMARY KEY (numero_visto),
+    CONSTRAINT fk_passageiro FOREIGN KEY (passaporte)
+        REFERENCES public.passageiros (passaporte)                 
+);  ''')
+    
+    print('Tabela de vistos criada.')
+
+
+def criar_tabela_usuarios(cursor):
+    cursor.execute('''CREATE TABLE IF NOT EXISTS public.usuarios
+(
+    matricula character varying(15) NOT NULL,
+    nome character varying(150) NOT NULL,
+    email character varying(150) NOT NULL,
+    senha character varying(30) NOT NULL,
+    cpf character varying(15) NOT NULL,
+    PRIMARY KEY (matricula)
+); ''')
+
+    print('Tabela de usuários criada.')
+
+
+def criar_tabela_tipos_vistos(cursor):
+    cursor.execute('''CREATE TABLE IF NOT EXISTS public.tipos_vistos
+(
+    tipo character varying(10) NOT NULL,
+    regras text NOT NULL,
+    PRIMARY KEY (tipo)
+); ''')
+    
+    print('Tabela de tipos de vistos criada.')
+
+
+def criar_tabela_voos(cursor):
+    cursor.execute('''CREATE TABLE IF NOT EXISTS public.voos
+(
+    numero_voo character varying(15) NOT NULL,
+    origem character varying(150) NOT NULL,
+    destino character varying(150) NOT NULL,
+    data date NOT NULL,    
+    horario_previsto time NOT NULL,
+    PRIMARY KEY (numero_voo)
+); ''')
+    
+    print('Tabela de voos criada.')
+
+
+def criar_tabela_historico_embarque(cursor):
+    cursor.execute('''CREATE TABLE IF NOT EXISTS public.historico_embarque
+(   id serial NOT NULL,
+    matricula_funcionario character varying(15) NOT NULL,
+    passaporte character varying(15) NOT NULL,
+    numero_visto character varying(15) NOT NULL,
+    numero_voo character varying(15) NOT NULL,
+    status character varying(150) NOT NULL,
+    data_hora_criacao timestamp with time zone NOT NULL,
+    PRIMARY KEY (id),
+    CONSTRAINT matricula_funcionario FOREIGN KEY (matricula_funcionario)
+        REFERENCES public.usuarios (matricula),
+    CONSTRAINT passaporte FOREIGN KEY (passaporte)
+        REFERENCES public.passageiros (passaporte),
+    CONSTRAINT numero_visto FOREIGN KEY (numero_visto)
+        REFERENCES public.vistos (numero_visto),
+    CONSTRAINT numero_voo FOREIGN KEY (numero_voo)
+        REFERENCES public.voos (numero_voo)
+);
+ ''')
+    
+    print('Tabela de histórico de embarque criada.')
+
+
+def inserir_dados_passageiros(cursor):
+    cursor.execute('''INSERT INTO public.passageiros (passaporte, nome, nacionalidade, data_nascimento)
+VALUES 
+('ABC123456', 'John Smith', 'USA', '1981-06-10'),
+('DEF234567', 'Emma Johnson', 'CAN', '1979-03-22'),
+('GHI345678', 'Michael Williams', 'GBR', '1992-09-05'),
+('JKL456789', 'Sophia Brown', 'AUS', '1987-11-18'),
+('MNO567890', 'Daniel Jones', 'GER', '1980-02-27'),
+('PQR678901', 'Olivia Davis', 'FRA', '1975-07-15'),
+('STU789012', 'William Miller', 'BRA', '1990-04-30'),
+('VWX890123', 'Emily Wilson', 'IND', '1985-12-12'),
+('YZA901234', 'Matthew Moore', 'CHN', '1968-08-25'),
+('BCD012345', 'Isabella Taylor', 'JPN', '1983-10-03'),
+('EFG123456', 'David Brown', 'USA', '1995-02-28'),
+('HIJ234567', 'Sophie Martinez', 'ESP', '1988-05-17'),
+('KLM345678', 'Andrew Johnson', 'CAN', '1991-09-11'),
+('NOP456789', 'Jessica Lee', 'KOR', '1977-12-09'),
+('QRS567890', 'Ryan Chen', 'TWN', '1984-03-24');
+''')
+    print('Dados de passageiros inseridos')
+    
+def inserir_dados_vistos(cursor):
+    cursor.execute('''INSERT INTO public.vistos (numero_visto, passaporte, tipo_visto, local_emissor, data_validade)
+VALUES 
+('V1B123456', 'ABC123456', 'B1', 'USA', '2034-01-23'),
+('V2B234567', 'DEF234567', 'B2', 'CAN','2033-12-15'),
+('V3C345678', 'GHI345678', 'C1', 'GBR', '2033-11-20'),
+('V4D456789', 'JKL456789', 'D', 'AUS','2033-10-05'),
+('V5F567890', 'MNO567890', 'F1', 'GER', '2033-09-10'),
+('V6H678901', 'PQR678901', 'H1B', 'FRA', '2033-08-25'),
+('V7K789012', 'STU789012', 'K1', 'BRA', '2033-07-30'),
+('V8J890123', 'VWX890123', 'J1', 'IND', '2033-06-15'),
+('V9L901234', 'YZA901234', 'L1', 'CHN', '2033-05-20'),
+('V10M012345', 'BCD012345', 'M', 'JPN', '2033-04-05'),
+('V11O123456', 'EFG123456', 'O1', 'USA', '2034-01-23'),
+('V12P234567', 'HIJ234567', 'P1', 'ESP', '2033-12-15'),
+('V13R345678', 'KLM345678', 'R1', 'CAN', '2033-11-20'),
+('V14TN456789', 'NOP456789', 'TN', 'KOR', '2033-10-05'),
+('V15B567890', 'QRS567890', 'B1', 'TWN', '2033-09-10');
+''')
+    print('Dados de passageiros inseridos')
+
+def listar_vistos(cursor, filtro=None):
+    select = 'SELECT * FROM passageiros'
+    join = ' JOIN vistos ON passageiros.passaporte = vistos.passaporte ORDER BY passageiros.nome'
+
+    if filtro:
+         sql = select + filtro + join
+    else:
+         sql = select + join    
+
+    cursor.execute(sql)
+    
+    resultados = cursor.fetchall()
+
+    if resultados:
+        for visto in resultados:
+            print(visto)
+
+if __name__ == '__main__':
+    conexao = conectar_db()
+    cursor = conexao.cursor()
+    '''apagar_tabelas(cursor)
+    criar_tabela_passageiros(cursor)
+    criar_tabela_vistos(cursor)
+    criar_tabela_usuarios(cursor)
+    criar_tabela_tipos_vistos(cursor)
+    criar_tabela_voos(cursor)
+    criar_tabela_historico_embarque(cursor)
+    inserir_dados_passageiros(cursor)
+    inserir_dados_vistos(cursor)'''
+    listar_vistos(cursor)
+    conexao.commit()
+    cursor.close()
+    conexao.close()
