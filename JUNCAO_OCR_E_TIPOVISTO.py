@@ -46,14 +46,13 @@ def leitura_do_passaporte(image_path):
     mrz = [line for line in mrz.split('\n') if len(line) > 10]
 
     if mrz:  # Verifica se a lista mrz não está vazia
-        if mrz[0][0:2] == 'P<':
-            parts = mrz[0].split('<')
-            lastname = mrz[0].split('<')[0][5:]  # Extrai o sobrenome
-            firstname = mrz[0].split('<')[1][0:10].replace('<', ' ').strip()  # Extrai o primeiro nome
+        if mrz[0].startswith('VNUSA'):  # Verifica se o MRZ começa com 'VNUSA'
+            parts = mrz[0][5:25].split('<')
+            name =' '.join(parts)
+            name = name.replace('VNUSA', ' ').replace('<', ' ')
         else:
-            lastname = mrz[0][5:12].replace('<', ' ').strip()  # Extrai o sobrenome
-            firstname_part = mrz[0][11:].replace('<', ' ').strip() if len(mrz[0]) >= 36 else None  # Extrai o primeiro nome
-            firstname = firstname_part if firstname_part and not firstname_part.isspace() else None
+            name = (mrz[0][4:20] + " " + mrz[0][20:30]).replace('<', ' ').strip()
+            name = name.replace('VNUSA', ' ').replace('<', ' ')
 
     if len(mrz) > 1:  # Se houver uma segunda linha MRZ
         passport_number = mrz[1][0:8]  # Extrai o número do passaporte
@@ -90,19 +89,18 @@ def leitura_do_passaporte(image_path):
 
     # Salva as informações extraídas em um arquivo TXT
     with open('informacoes.txt', 'w') as file:
-        file.write(f"Sobrenome: {lastname}\n")
-        file.write(f"Primeiro Nome: {firstname}\n")
+        file.write(f"Nome: {name}\n")
         file.write(f"Numero de passaporte: {passport_number}\n")
         file.write(f"Nacionalidade: {nationality}\n")
-        file.write(f"Data de aniversario: {dob}\n")
+        file.write(f"Data de aniversario: {dob.strftime('%Y-%m-%d')}\n")
         file.write(f"Sexo: {sex}\n")
-        file.write(f"Data de Validade: {expiry_date}\n")
+        file.write(f"Data de Validade: {expiry_date.strftime('%Y-%m-%d')}\n")
         file.write(f"Tipo de passaporte: {passport_type}\n")
-        file.write(f"Pais Emitente: {issuing_country}\n")
+        file.write(f"Cidade Emitente: {issuing_country}\n")
         file.write(f"Numero do visto: {visa_number}\n")
 
 #Uso:
-image_path = 'imagem\\visto6.jpg'
+image_path = 'imagem\\visto1.jpg'
 leitura_do_passaporte(image_path)
 
 
