@@ -59,7 +59,7 @@ def criar_tabela_usuarios(cursor):
     matricula character varying(15) NOT NULL,
     nome character varying(150) NOT NULL,
     email character varying(150) NOT NULL,
-    senha character varying(30) NOT NULL,
+    senha character varying(150) NOT NULL,
     cpf character varying(15) NOT NULL,
     PRIMARY KEY (matricula)
 ); ''')
@@ -71,7 +71,8 @@ def criar_tabela_tipos_vistos(cursor):
     cursor.execute('''CREATE TABLE IF NOT EXISTS public.tipos_vistos
 (
     tipo character varying(10) NOT NULL,
-    regras text NOT NULL,
+    descricao text NOT NULL,
+    regras text,
     PRIMARY KEY (tipo)
 ); ''')
     
@@ -158,14 +159,52 @@ VALUES
 ''')
     print('Dados de passageiros inseridos')
 
-def listar_vistos(cursor, filtro=None):
-    select = 'SELECT * FROM passageiros'
-    join = ' JOIN vistos ON passageiros.passaporte = vistos.passaporte ORDER BY passageiros.nome'
 
+def inserir_tipos_vistos(cursor):
+    cursor.execute('''INSERT INTO public.tipos_vistos (tipo, descricao, regras) VALUES
+('b1', 'Visto de embarque para turismo, visitas a amigos ou parentes, tratamento médico, etc.', 'Para o tipo B1, verificar se o empregado doméstico está acompanhado do seu empregador.'),
+('b2', 'Visto de embarque para turismo, visitas a amigos ou parentes, tratamento médico, etc.', NULL),
+('b3', 'Visto de embarque para turismo, visitas a amigos ou parentes, tratamento médico, etc.', NULL),
+('c1', 'Visto de trânsito.', 'Verificar se o destino final do passageiro é fora dos EUA.'),
+('f1', 'Visto de embarque para estudantes matriculados em instituições acadêmicas ou estudantes não acadêmicos. Limitado a instituições educacionais específicas.', 'Verificar o documento de Formulário I-20 da instituição educacional.'),
+('m1', 'Visto de embarque para estudantes matriculados em instituições acadêmicas ou estudantes não acadêmicos. Limitado a instituições educacionais específicas.', 'Verificar o documento de Formulário I-20 da instituição educacional.'),
+('m', 'Visto de embarque para estudantes matriculados em instituições acadêmicas ou estudantes não acadêmicos. Limitado a instituições educacionais específicas.', 'Verificar o documento de Formulário I-20 da instituição educacional.'),
+('j1', 'Visto de embarque para participantes de programas de intercâmbio.', 'Verificar o documento: carta do programa de intercâmbio.'),
+('h1b', 'Visto de embarque para profissionais estrangeiros em ocupações especializadas.', 'Verificar o documento de contrato de trabalho ou oferta de emprego válida.'),
+('l1', 'Visto de embarque para funcionários de empresas multinacionais transferidos.', 'Verificar o documento: carta de transferência da empresa multinacional.'),
+('o1', 'Visto de embarque para pessoas com habilidades extraordinárias ou realizações notáveis.', 'Verificar o documento de comprovante de habilidades extraordinárias.'),
+('e1', 'Visto de embarque para comerciantes de países com tratados de comércio.', 'Verificar o documento: provas de comércio.'),
+('e2', 'Visto de embarque para investidores de países com tratados de comércio.', 'Verificar o documento: provas de investimento.'),
+('k1', 'Visto de embarque para noivos ou noivas de cidadãos americanos para casar em 90 dias.', 'Verificar o documento: processo de casamento.'),
+('a1', 'Visto de embarque para diplomatas e funcionários de governos estrangeiros.', 'Verificar o documento: diploma diplomático.'),
+('a2', 'Visto de embarque para diplomatas e funcionários de governos estrangeiros.', 'Verificar o documento: diploma diplomático.'),
+('g1', 'Visto de embarque para funcionários de organizações internacionais.', 'Verificar o documento: carta da organização internacional.'),
+('g2', 'Visto de embarque para funcionários de organizações internacionais.', 'Verificar o documento: carta da organização internacional.'),
+('g3', 'Visto de embarque para funcionários de organizações internacionais.', 'Verificar o documento: carta da organização internacional.'),
+('g4', 'Visto de embarque para funcionários de organizações internacionais.', 'Verificar o documento: carta da organização internacional.'),
+('g5', 'Visto de embarque para funcionários de organizações internacionais.', 'Verificar o documento: carta da organização internacional.'),
+('r1', 'Visto de embarque para trabalhadores religiosos.', 'Verificar o documento: provas de afiliação religiosa.'),
+('t', 'Visto de embarque para vítimas de tráfico humano.', 'Verificar o documento: provas de vítima de tráfico humano.'),
+('to', 'Visto de embarque para vítimas de tráfico humano.', 'Verificar o documento: provas de vítima de tráfico humano.'),
+('u', 'Visto de embarque para vítimas de crimes.', 'Verificar o documento: provas de vítima de crime.'),
+('v', 'Visto de embarque para cônjuges ou filhos de residentes legais permanentes.', 'Verificar o documento: provas de relacionamento.'),
+('d', 'Visto de embarque para tripulantes de navios ou aeronaves.', 'Verificar o documento de licença de tripulação.'),
+('nato', 'Visto de embarque para membros da OTAN e suas famílias.', 'Verificar o documento de identificação da OTAN.'),
+('p1', 'Visto de atleta/artista de destaque.', 'Verificar documentação que comprove o status de atleta ou artista de destaque.'),
+('tn', 'Visto do Acordo de Livre Comércio da América do Norte (NAFTA).', NULL);
+''')
+'''
+def listar_vistos(cursor, filtro=None, ordem=None):
+    select = 'SELECT * FROM passageiros '
+    join = ' JOIN vistos ON passageiros.passaporte = vistos.passaporte' 
+    
     if filtro:
          sql = select + filtro + join
     else:
          sql = select + join    
+
+    if ordem:
+        sql += ordem
 
     cursor.execute(sql)
     
@@ -174,6 +213,9 @@ def listar_vistos(cursor, filtro=None):
     if resultados:
         for visto in resultados:
             print(visto)
+'''
+
+
 
 if __name__ == '__main__':
     conexao = conectar_db()
@@ -186,8 +228,10 @@ if __name__ == '__main__':
     criar_tabela_voos(cursor)
     criar_tabela_historico_embarque(cursor)
     inserir_dados_passageiros(cursor)
-    inserir_dados_vistos(cursor)'''
-    listar_vistos(cursor)
+    inserir_dados_vistos(cursor)
+    inserir_tipos_vistos(cursor)'''
+    #listar_vistos(cursor)
+    
     conexao.commit()
     cursor.close()
     conexao.close()
