@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 import psycopg2
 from os import getenv
 import dependencies as d
-
+#from Versao_Final_OCR import leitura_do_passaporte
 
 load_dotenv()
 
@@ -53,23 +53,20 @@ class Funcoes:
             self.conn.rollback()
 
 
-    def extrair_informacoes_txt(self, arquivo):
-        try:
-            with open(arquivo, 'r') as file:
-                lines = file.readlines()
-            
-            nome = lines[0].split(": ")[1].strip()
-            passaporte = lines[1].split(": ")[1].strip()
-            nacionalidade = lines[2].split(": ")[1].strip()
-            data_aniversario = (lines[3].split(": ")[1].strip())
+    def inserir_dados(self, info_array):
+        try:                       
+            nome = info_array[0]
+            passaporte = info_array[1]
+            nacionalidade = info_array[2]
+            data_aniversario = info_array[3]
+                                
             dia = int(data_aniversario[-2:])
             mes = int(data_aniversario[5:7])
             ano = int(data_aniversario[:4])
             
             data_nascimento = d.date(ano, mes, dia)
-            
-            sexo = lines[4].split(": ")[1].strip()
-            data_validade = (lines[5].split(": ")[1].strip())
+                        
+            data_validade = info_array[4]
 
             dia = int(data_validade[-2:])
             mes = int(data_validade[5:7])
@@ -77,9 +74,9 @@ class Funcoes:
         
             data_validade = d.date(ano, mes, dia)
 
-            tipo_visto = lines[6].split(": ")[1].strip()
-            pais_emitente = lines[7].split(": ")[1].strip()
-            numero_visto = lines[8].split(": ")[1].strip()
+            tipo_visto = info_array[5]
+            pais_emitente = info_array[6]
+            numero_visto = info_array[7]
 
             # Inserir dados do OCR na tabela 
             self.inserir_dados_ocr_passageiros(passaporte, nome, nacionalidade, data_nascimento)
@@ -153,18 +150,18 @@ class Funcoes:
 
 
 if __name__ == '__main__':
-    
-    arquivo = 'src\\database\\informacoes.txt'
-    
+            
     funcoes = Funcoes()
 
-    #funcoes.extrair_informacoes_txt(arquivo)    
-
+    #info_array = leitura_do_passaporte()
+    #info_array = ['FERNANDES  STEVE NKLAWRENCE', 'P6966107', '1ND', '1986-01-26', '2017-12-31', 'J1', 'MDR', 'M2728859']
+    #funcoes.inserir_dados(info_array)
+    
     #tipo = 'c1'.lower()
     #regra = funcoes.verificar_regras_embarque(tipo)
     #print(regra)
     
-    #funcoes.listar_vistos_asc()
+    funcoes.listar_vistos_asc()
     #funcoes.listar_vistos_desc()
 
     #funcoes.cur.close()
