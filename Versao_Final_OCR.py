@@ -1,5 +1,7 @@
 from src.image_processing import dependencies as d
 
+import dependencies as d
+
 def leitura_do_passaporte(image_path):
     # Carrega a imagem
     img = d.cv2.imread(image_path)
@@ -41,9 +43,19 @@ def leitura_do_passaporte(image_path):
     # Realiza OCR na ROI pré-processada para extrair informações do MRZ
     mrz = d.pytesseract.image_to_string(img_mrz_thresh, config='--psm 12')
 
-
     # Processa o texto extraído do MRZ
     mrz = [line for line in mrz.split('\n') if len(line) > 10]
+
+    # Inicializa as variáveis para armazenar as informações
+    name = ''
+    passport_number = ''
+    nationality = ''
+    dob = None
+    sex = ''
+    expiry_date = None
+    passport_type = ''
+    issuing_country = ''
+    visa_number = ''
 
     if mrz:  # Verifica se a lista mrz não está vazia
         if mrz[0].startswith('VNUSA'):  # Verifica se o MRZ começa com 'VNUSA'
@@ -71,7 +83,7 @@ def leitura_do_passaporte(image_path):
         expiry_date = expiry_date.replace(year=expiry_date.year + 1900 if expiry_date.year < current_year - 24 else expiry_date.year)  # Corrige o ano
         passport_type = mrz[1][28:30]  # Extrai o tipo de passaporte
         issuing_country = mrz[1][30:33]  # Extrai o país emitente
-
+        
     # Converte a imagem OpenCV para o formato do PIL
     img_copy_pil = d.Image.fromarray(d.cv2.cvtColor(img, d.cv2.COLOR_BGR2RGB))
 
@@ -87,18 +99,17 @@ def leitura_do_passaporte(image_path):
     # Salva o texto extraído da região do número do visto (MRZ) em uma variável
     visa_number = d.pytesseract.image_to_string(cropped_img)
 
-    # Salva as informações extraídas em um arquivo TXT
-    with open('informacoes.txt', 'w') as file:
-        file.write(f"Nome: {name}\n")
-        file.write(f"Numero de passaporte: {passport_number}\n")
-        file.write(f"Nacionalidade: {nationality}\n")
-        file.write(f"Data de aniversario: {dob.strftime('%Y-%m-%d')}\n")
-        file.write(f"Sexo: {sex}\n")
-        file.write(f"Data de Validade: {expiry_date.strftime('%Y-%m-%d')}\n")
-        file.write(f"Tipo de passaporte: {passport_type}\n")
-        file.write(f"Cidade Emitente: {issuing_country}\n")
-        file.write(f"Numero do visto: {visa_number}\n")
+    return name, passport_number, nationality, dob, sex, expiry_date, passport_type, issuing_country, visa_number
 
-#Uso:
+# Uso:
 image_path = 'imagem\\visto1.jpg'
-leitura_do_passaporte(image_path)
+name, passport_number, nationality, dob, sex, expiry_date, passport_type, issuing_country, visa_number = leitura_do_passaporte(image_path)
+# Formate as datas para remover as partes de hora e minuto e a representação "datetime.datetime"
+dob_str = dob.strftime('%Y-%m-%d')
+expiry_date_str = expiry_date.strftime('%Y-%m-%d')
+# Remove o caractere de nova linha (\n) da última string
+visa_number = visa_number.rstrip('\n')
+# Crie um array com todas as variáveis formatadas
+info_array = [name, passport_number, nationality, dob_str, expiry_date_str, passport_type, issuing_country, visa_number]
+# Imprime o array
+print(info_array)
