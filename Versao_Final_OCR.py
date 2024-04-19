@@ -51,7 +51,6 @@ def leitura_do_passaporte(image_path):
     passport_number = ''
     nationality = ''
     dob = None
-    sex = ''
     expiry_date = None
     passport_type = ''
     issuing_country = ''
@@ -78,7 +77,6 @@ def leitura_do_passaporte(image_path):
             dob = dob.replace(year=dob.year + 1900)
         else:
             dob = dob.replace(year=dob.year - 100)
-        sex = mrz[1][20]  # Extrai o sexo
         expiry_date = d.datetime.strptime(mrz[1][21:27], "%y%m%d")  # Extrai a data de validade
         expiry_date = expiry_date.replace(year=expiry_date.year + 1900 if expiry_date.year < current_year - 24 else expiry_date.year)  # Corrige o ano
         passport_type = mrz[1][28:30]  # Extrai o tipo de passaporte
@@ -99,17 +97,19 @@ def leitura_do_passaporte(image_path):
     # Salva o texto extraído da região do número do visto (MRZ) em uma variável
     visa_number = d.pytesseract.image_to_string(cropped_img)
 
-    return name, passport_number, nationality, dob, sex, expiry_date, passport_type, issuing_country, visa_number
+    # Formate as datas para remover as partes de hora e minuto e a representação "datetime.datetime"
+    dob_str = dob.strftime('%Y-%m-%d') if dob else None
+    expiry_date_str = expiry_date.strftime('%Y-%m-%d') if expiry_date else None
+
+    # Remove o caractere de nova linha (\n) da última string
+    visa_number = visa_number.rstrip('\n')
+
+    # Crie um array com todas as variáveis formatadas
+    infor = [name, passport_number, nationality, dob_str, expiry_date_str, passport_type, issuing_country, visa_number]
+
+    return infor
 
 # Uso:
-image_path = 'imagem\\visto1.jpg'
-name, passport_number, nationality, dob, sex, expiry_date, passport_type, issuing_country, visa_number = leitura_do_passaporte(image_path)
-# Formate as datas para remover as partes de hora e minuto e a representação "datetime.datetime"
-dob_str = dob.strftime('%Y-%m-%d')
-expiry_date_str = expiry_date.strftime('%Y-%m-%d')
-# Remove o caractere de nova linha (\n) da última string
-visa_number = visa_number.rstrip('\n')
-# Crie um array com todas as variáveis formatadas
-info_array = [name, passport_number, nationality, dob_str, expiry_date_str, passport_type, issuing_country, visa_number]
-# Imprime o array
-print(info_array)
+image_path = 'imagem\\visto5.jpg'
+infor = leitura_do_passaporte(image_path)
+print(infor)
