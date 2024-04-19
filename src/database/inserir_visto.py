@@ -164,7 +164,7 @@ if __name__ == '__main__':
     #regra = funcoes.verificar_regras_embarque(tipo)
     #print(regra)
     
-    #funcoes.listar_vistos_asc()
+    funcoes.listar_vistos_asc()
     #funcoes.listar_vistos_desc()
 
     #funcoes.cur.close()
