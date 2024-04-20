@@ -68,6 +68,7 @@ class Criar_bd:
         email character varying(150) NOT NULL,
         senha character varying(150) NOT NULL,
         cpf character varying(15) NOT NULL,
+        tipo_usuario character varying(15) NOT NULL,
         PRIMARY KEY (matricula)
     ); ''')
 
