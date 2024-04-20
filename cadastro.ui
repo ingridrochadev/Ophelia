@@ -32,9 +32,6 @@ QLabel{
 }</string>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
-    <property name="spacing">
-     <number>0</number>
-    </property>
     <property name="leftMargin">
      <number>0</number>
     </property>
@@ -474,19 +471,8 @@ font-weight: bold
           <item>
            <widget class="QStackedWidget" name="Pages">
             <property name="currentIndex">
-             <number>3</number>
+             <number>4</number>
             </property>
-            <widget class="QWidget" name="pg_home">
-             <layout class="QVBoxLayout" name="verticalLayout_7">
-              <item>
-               <widget class="QLabel" name="logo">
-                <property name="text">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;img src=&quot;:/logo/pages/icons/logo_nome_branco.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
             <widget class="QWidget" name="pg_adicionar">
              <layout class="QVBoxLayout" name="verticalLayout_10">
               <item>
@@ -831,9 +817,9 @@ QPushButton:hover {
                 <widget class="QTableWidget" name="tableWidget_2">
                  <property name="geometry">
                   <rect>
-                   <x>5</x>
-                   <y>50</y>
-                   <width>589</width>
+                   <x>0</x>
+                   <y>70</y>
+                   <width>821</width>
                    <height>558</height>
                   </rect>
                  </property>
@@ -902,8 +888,8 @@ background-color:rgb(252, 252, 252);
                 <widget class="QFrame" name="frame_7">
                  <property name="geometry">
                   <rect>
-                   <x>600</x>
-                   <y>50</y>
+                   <x>840</x>
+                   <y>70</y>
                    <width>100</width>
                    <height>558</height>
                   </rect>
@@ -1035,31 +1021,44 @@ QPushButton:hover {
                 <widget class="QLabel" name="label_9">
                  <property name="geometry">
                   <rect>
-                   <x>210</x>
+                   <x>350</x>
                    <y>10</y>
-                   <width>301</width>
-                   <height>31</height>
+                   <width>250</width>
+                   <height>50</height>
                   </rect>
                  </property>
                  <property name="font">
                   <font>
                    <family>Lato</family>
-                   <pointsize>14</pointsize>
+                   <pointsize>12</pointsize>
                    <weight>75</weight>
                    <bold>true</bold>
+                   <kerning>true</kerning>
                   </font>
                  </property>
                  <property name="layoutDirection">
                   <enum>Qt::LeftToRight</enum>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">color:rgb(255,255,255);</string>
+                  <string notr="true">background-color: rgb(150,150,150);
+color:rgb(255,255,255);
+border-radius:10px;</string>
+                 </property>
+                 <property name="lineWidth">
+                  <number>1</number>
                  </property>
                  <property name="text">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:24pt; font-weight:600;&quot;&gt;Vistos inseridos&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Lato'; font-size:12pt; font-weight:600; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;VISTOS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>
+                 </property>
+                 <property name="indent">
+                  <number>-1</number>
                  </property>
                 </widget>
                </widget>
@@ -1114,8 +1113,8 @@ QPushButton:hover {
              <widget class="QFrame" name="frame_10">
               <property name="geometry">
                <rect>
-                <x>200</x>
-                <y>90</y>
+                <x>300</x>
+                <y>100</y>
                 <width>411</width>
                 <height>491</height>
                </rect>
@@ -1241,6 +1240,22 @@ background-color: rgb(249, 249, 249)</string>
                       </widget>
                      </item>
                      <item>
+                      <widget class="QLineEdit" name="lineEdit">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>40</height>
+                        </size>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignCenter</set>
+                       </property>
+                       <property name="placeholderText">
+                        <string>Confirmar Senha</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
                       <spacer name="verticalSpacer_5">
                        <property name="orientation">
                         <enum>Qt::Vertical</enum>
@@ -1321,6 +1336,17 @@ QPushButton:hover {
                </item>
               </layout>
              </widget>
+            </widget>
+            <widget class="QWidget" name="pg_home">
+             <layout class="QVBoxLayout" name="verticalLayout_7">
+              <item>
+               <widget class="QLabel" name="logo">
+                <property name="text">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;img src=&quot;:/logo/pages/icons/logo_nome_branco.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </widget>
           </item>

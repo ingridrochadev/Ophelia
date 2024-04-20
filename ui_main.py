@@ -42,7 +42,6 @@ class Ui_MainWindow(object):
 "	color:rgb(255, 255, 255);\n"
 "}")
         self.horizontalLayout = QHBoxLayout(self.centralwidget)
-        self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setContentsMargins(0, 9, 0, 9)
         self.left_container = QFrame(self.centralwidget)
@@ -246,16 +245,6 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.Pages = QStackedWidget(self.main_frame)
         self.Pages.setObjectName(u"Pages")
-        self.pg_home = QWidget()
-        self.pg_home.setObjectName(u"pg_home")
-        self.verticalLayout_7 = QVBoxLayout(self.pg_home)
-        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
-        self.logo = QLabel(self.pg_home)
-        self.logo.setObjectName(u"logo")
-
-        self.verticalLayout_7.addWidget(self.logo)
-
-        self.Pages.addWidget(self.pg_home)
         self.pg_adicionar = QWidget()
         self.pg_adicionar.setObjectName(u"pg_adicionar")
         self.verticalLayout_10 = QVBoxLayout(self.pg_adicionar)
@@ -462,7 +451,7 @@ class Ui_MainWindow(object):
         __qtablewidgetitem8 = QTableWidgetItem()
         self.tableWidget_2.setHorizontalHeaderItem(8, __qtablewidgetitem8)
         self.tableWidget_2.setObjectName(u"tableWidget_2")
-        self.tableWidget_2.setGeometry(QRect(5, 50, 589, 558))
+        self.tableWidget_2.setGeometry(QRect(0, 70, 821, 558))
         sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
@@ -478,7 +467,7 @@ class Ui_MainWindow(object):
 "}")
         self.frame_7 = QFrame(self.frame_5)
         self.frame_7.setObjectName(u"frame_7")
-        self.frame_7.setGeometry(QRect(600, 50, 100, 558))
+        self.frame_7.setGeometry(QRect(840, 70, 100, 558))
         self.frame_7.setStyleSheet(u"QPushButton{\n"
 "border-radius: 15px;\n"
 "background-color: rgb(255,255,255);\n"
@@ -556,15 +545,20 @@ class Ui_MainWindow(object):
 
         self.label_9 = QLabel(self.frame_5)
         self.label_9.setObjectName(u"label_9")
-        self.label_9.setGeometry(QRect(210, 10, 301, 31))
+        self.label_9.setGeometry(QRect(350, 10, 250, 50))
         font5 = QFont()
         font5.setFamilies([u"Lato"])
-        font5.setPointSize(14)
+        font5.setPointSize(12)
         font5.setBold(True)
+        font5.setKerning(True)
         self.label_9.setFont(font5)
         self.label_9.setLayoutDirection(Qt.LeftToRight)
-        self.label_9.setStyleSheet(u"color:rgb(255,255,255);")
+        self.label_9.setStyleSheet(u"background-color: rgb(150,150,150);\n"
+"color:rgb(255,255,255);\n"
+"border-radius:10px;")
+        self.label_9.setLineWidth(1)
         self.label_9.setAlignment(Qt.AlignCenter)
+        self.label_9.setIndent(-1)
 
         self.horizontalLayout_8.addWidget(self.frame_5)
 
@@ -598,7 +592,7 @@ class Ui_MainWindow(object):
         self.pg_alterar_usuario.setObjectName(u"pg_alterar_usuario")
         self.frame_10 = QFrame(self.pg_alterar_usuario)
         self.frame_10.setObjectName(u"frame_10")
-        self.frame_10.setGeometry(QRect(200, 90, 411, 491))
+        self.frame_10.setGeometry(QRect(300, 100, 411, 491))
         self.frame_10.setStyleSheet(u"QLineEdit{\n"
 "background-color: rgb(255,255,255);\n"
 "font: 10pt \"MS Shell Dig 2\"\n"
@@ -659,6 +653,13 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_15.addWidget(self.senha_line)
 
+        self.lineEdit = QLineEdit(self.frame_13)
+        self.lineEdit.setObjectName(u"lineEdit")
+        self.lineEdit.setMinimumSize(QSize(0, 40))
+        self.lineEdit.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_15.addWidget(self.lineEdit)
+
         self.verticalSpacer_5 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout_15.addItem(self.verticalSpacer_5)
@@ -702,6 +703,16 @@ class Ui_MainWindow(object):
         self.horizontalLayout_7.addWidget(self.frame_12)
 
         self.Pages.addWidget(self.pg_alterar_usuario)
+        self.pg_home = QWidget()
+        self.pg_home.setObjectName(u"pg_home")
+        self.verticalLayout_7 = QVBoxLayout(self.pg_home)
+        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
+        self.logo = QLabel(self.pg_home)
+        self.logo.setObjectName(u"logo")
+
+        self.verticalLayout_7.addWidget(self.logo)
+
+        self.Pages.addWidget(self.pg_home)
 
         self.horizontalLayout_5.addWidget(self.Pages)
 
@@ -739,7 +750,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.toolBox.setCurrentIndex(0)
-        self.Pages.setCurrentIndex(3)
+        self.Pages.setCurrentIndex(4)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -758,7 +769,6 @@ class Ui_MainWindow(object):
         self.toolBox.setItemText(self.toolBox.indexOf(self.Usuario), QCoreApplication.translate("MainWindow", u"Usu\u00e1rio", None))
         self.btn_toggle.setText("")
         self.label.setText(QCoreApplication.translate("MainWindow", u"Sistema de leitura de Documentos de Viagem", None))
-        self.logo.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><img src=\":/logo/pages/icons/logo_nome_branco.png\"/></p></body></html>", None))
         self.ttl_add.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600;\">VISTO</span></p></body></html>", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"       Buscar Arquivo       ", None))
         self.nome_line.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Nome", None))
@@ -793,14 +803,20 @@ class Ui_MainWindow(object):
         self.btn_ordenar.setText(QCoreApplication.translate("MainWindow", u"Listar", None))
         self.btn_alterar_2.setText(QCoreApplication.translate("MainWindow", u"Alterar", None))
         self.btn_excluir.setText(QCoreApplication.translate("MainWindow", u"Excluir", None))
-        self.label_9.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:24pt; font-weight:600;\">Vistos inseridos</span></p></body></html>", None))
+        self.label_9.setText(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Lato'; font-size:12pt; font-weight:600; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:20pt;\">VISTOS</span></p></body></html>", None))
         self.ttl_sobre.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\">SOBRE</p></body></html>", None))
         self.txt_sobre.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt;\">Esse sistema l\u00ea as informa\u00e7\u00f5es contidas nos vistos de passageiros viajando para os EUA e libera ou nega o embarque desses passageiros nos voos das companhias a\u00e9reas.</span></p></body></html>", None))
         self.ttl_add_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600;\">USU\u00c1RIO</span></p></body></html>", None))
         self.emial_line.setText("")
         self.emial_line.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Email", None))
         self.senha_line.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Senha", None))
+        self.lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Confirmar Senha", None))
         self.ctn_add_2.setText(QCoreApplication.translate("MainWindow", u"Alterar", None))
+        self.logo.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><img src=\":/logo/pages/icons/logo_nome_branco.png\"/></p></body></html>", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"\u00a9 Ophelia 2024", None))
     # retranslateUi
 
