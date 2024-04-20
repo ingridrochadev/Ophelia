@@ -1,8 +1,8 @@
 from src.image_processing import dependencies as d
 
-import dependencies as d
+import src.image_processing.dependencies as d
 
-def leitura_do_visto(image_path):
+def leitura_do_passaporte(image_path):
     # Carrega a imagem
     img = d.cv2.imread(image_path)
 
@@ -111,5 +111,5 @@ def leitura_do_visto(image_path):
 
 # Uso:
 image_path = 'imagem\\visto5.jpg'
-infor = leitura_do_visto(image_path)
+infor = leitura_do_passaporte(image_path)
 print(infor)
