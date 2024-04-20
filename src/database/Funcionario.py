@@ -71,4 +71,6 @@ class Funcionario:
                 self.conn.rollback()
         else:
             st.error("Preencha todos os campos obrigatórios!")
+
+
     
