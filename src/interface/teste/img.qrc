@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="img">
+    <file>Logo.png</file>
+    <file>Ophelia purple.png</file>
+  </qresource>
+</RCC>
