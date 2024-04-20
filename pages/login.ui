@@ -20,7 +20,7 @@
    <property name="geometry">
     <rect>
      <x>90</x>
-     <y>260</y>
+     <y>220</y>
      <width>331</width>
      <height>271</height>
     </rect>
@@ -145,9 +145,9 @@ color:rgb(255,255,255);
 border-radius: 10px;
 }
 
-QPushButton::hoover{
-background-color:rgb(255,255,255);
-color:rgb(0,0,0);
+QPushButton:hover {
+background-color: rgb(255,255,255);
+color: rgb(0,0,0);
 border-radius: 10px;
 }</string>
     </property>
@@ -180,7 +180,7 @@ border-radius: 10px;
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="../logo_.qrc">:/logo/pages/icons/logo_nome_branco.png</pixmap>
+    <pixmap resource="logo_.qrc">:/logo/pages/icons/logo_nome_branco.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -188,7 +188,7 @@ border-radius: 10px;
   </widget>
  </widget>
  <resources>
-  <include location="../logo_.qrc"/>
+  <include location="logo_.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -1,7 +1,7 @@
 import psycopg2
 from os import getenv
 from dotenv import load_dotenv
-import streamlit as st
+import bcrypt
 
 load_dotenv()
 
@@ -20,18 +20,27 @@ class Sistema:
         conn.autocommit = False  # Desativa o modo de autocommit para fazer commits manuais
         return conn
     
+    def encriptar_senha(self, senha):
+        salt = bcrypt.gensalt()
+        hash_senha = bcrypt.hashpw(senha.encode('utf-8'), salt) # Gera o hash da senha usando o salt
+        return salt.decode('utf-8') + hash_senha.decode('utf-8') # Concatena o salt e o hash e retorna str
+    
+    
     def criar_usuario(self, nome: str, cpf: str, email: str, senha: str, matricula: int):
         if nome and cpf and email and senha and matricula:
             try:
-                self.cur.execute("INSERT INTO usuarios (nome, cpf, email, senha, matricula) VALUES (%s, %s, %s, %s, %s)", (nome, cpf, email, senha, matricula))
+                hashed_senha = self.encriptar_senha(senha)
+                
+                self.cur.execute("INSERT INTO usuarios (nome, cpf, email, senha, matricula) VALUES (%s, %s, %s, %s, %s)", (nome, cpf, email, hashed_senha, matricula))
                 self.conn.commit()
 
             except Exception as error:
-                st.error(f"Houve um erro ao inserir usuário. Motivo: {error}")
+                print(f"Houve um erro ao inserir usuário. Motivo: {error}")
                 self.conn.rollback()
         else:
-            st.error("Preencha todos os campos obrigatórios!")
-    
+            print("Preencha todos os campos obrigatórios!")
+            
+        
     def excluir_usuario(self, matricula: int):
         if matricula:
             try:
@@ -39,30 +48,41 @@ class Sistema:
                 self.conn.commit()
 
             except Exception as error:
-                st.error(f"Houve um erro ao excluir usuário. Motivo: {error}")
+                print(f"Houve um erro ao excluir usuário. Motivo: {error}")
                 self.conn.rollback()
         else:
-            st.error("Preencha todos os campos obrigatórios!")
+            print("Preencha todos os campos obrigatórios!")
     
     # ** Métodos não finalizados / testados
-    # -> Criptografia de senha do método 'fazer_login()' será implementado posteriormente
-    # -> Ações do método 'fazer_logout()' serão implementadas posteriormente
+    
     def fazer_login(self, email: str, senha: str):
         if email and senha:
             try:
-                self.cur.execute("SELECT matricula, nome, email, senha, cpf FROM usuarios WHERE email = %s AND senha = %s", (email, senha))
-                login = self.cur.fetchone()
+                self.conn = self.estabelecer_conexao(self)
+                self.cur = self.conn.cursor()
                 
-                if login:
-                    st.success("Login realizado com sucesso! Redirecionando...")
+                # Verifica se o email está cadastrado
+                self.cur.execute("SELECT senha FROM usuarios WHERE email = %s", (email, ))
+                usuario = self.cur.fetchone()
+                if usuario:
+                    senha_str = usuario[0] # Recebe a senha do banco de dados
+                    salt = senha_str[:29] # Extrai o salt do hash armazenado
+                    hash_fornecido = bcrypt.hashpw(senha.encode('utf-8'), salt.encode('utf-8')) # Gera o hash da senha inserida utilizando o mesmo salt
+                    
+                    # Verifica se o hash gerado corresponde ao hash armazenado
+                    if senha_str == salt + hash_fornecido.decode('utf-8'):
+                        print("Login realizado com sucesso! Redirecionando...")
+                        return True
+                    else:
+                        print("E-mail e/ou senha incorreta. Tente novamente!")
+                        return False
                 else:
-                    st.error("E-mail e/ou senha incorreta. Tente novamente")
+                    return False
                     
             except Exception as error:
-                st.error(f"Ocorreu um erro na tentativa de login. Motivo: {error}")
+                print(f"Ocorreu um erro na tentativa de login. Motivo: {error}")
+                return False
                 
         else:
-            st.error("Preencha todos os campos obrigatórios.")
-    
-    def fazer_logout(self):
-        pass
+            print("Preencha todos os campos obrigatórios.")
+            return False

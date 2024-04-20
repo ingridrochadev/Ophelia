@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import psycopg2
 from os import getenv
-import dependencies as d
+import src.image_processing.dependencies as d
 #from Versao_Final_OCR import leitura_do_passaporte
 
 load_dotenv()

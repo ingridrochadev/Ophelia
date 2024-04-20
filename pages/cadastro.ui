@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>999</width>
-    <height>806</height>
+    <width>1017</width>
+    <height>837</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+   <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -32,9 +32,6 @@ QLabel{
 }</string>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
-    <property name="spacing">
-     <number>0</number>
-    </property>
     <property name="leftMargin">
      <number>0</number>
     </property>
@@ -49,9 +46,15 @@ QLabel{
     </property>
     <item>
      <widget class="QFrame" name="left_container">
+      <property name="minimumSize">
+       <size>
+        <width>7</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="maximumSize">
        <size>
-        <width>200</width>
+        <width>9</width>
         <height>16777215</height>
        </size>
       </property>
@@ -87,9 +90,17 @@ QLabel{
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
-           <widget class="QLabel" name="label_3">
+           <widget class="QLabel" name="txt_bemvindo">
+            <property name="font">
+             <font>
+              <family>Lato</family>
+              <pointsize>11</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
             <property name="text">
-             <string>Ophelia</string>
+             <string>Bem-vindo(a)!</string>
             </property>
            </widget>
           </item>
@@ -176,8 +187,8 @@ font-weight: bold
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>180</width>
-               <height>671</height>
+               <width>122</width>
+               <height>687</height>
               </rect>
              </property>
              <attribute name="label">
@@ -300,8 +311,8 @@ font-weight: bold
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>180</width>
-               <height>671</height>
+               <width>114</width>
+               <height>687</height>
               </rect>
              </property>
              <attribute name="label">
@@ -309,7 +320,7 @@ font-weight: bold
              </attribute>
              <layout class="QVBoxLayout" name="verticalLayout_9">
               <item>
-               <widget class="QPushButton" name="pushButton_2">
+               <widget class="QPushButton" name="btn_editarUsuario">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -330,7 +341,7 @@ font-weight: bold
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_3">
+               <widget class="QPushButton" name="btn_logout">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -398,7 +409,7 @@ font-weight: bold
             </property>
             <property name="icon">
              <iconset resource="logo_.qrc">
-              <normaloff>:/icons/Programmation/AlphaEdtech/Trilha 1/Desafio/Ophelia/pages/menu.png</normaloff>:/icons/Programmation/AlphaEdtech/Trilha 1/Desafio/Ophelia/pages/menu.png</iconset>
+              <normaloff>:/logo/pages/icons/menu.png</normaloff>:/logo/pages/icons/menu.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -410,6 +421,17 @@ font-weight: bold
           </item>
           <item>
            <widget class="QLabel" name="label">
+            <property name="font">
+             <font>
+              <family>Lato</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLineEdit {
+    font: 10pt &quot;Lato Regular&quot;;
+}</string>
+            </property>
             <property name="text">
              <string>Sistema de leitura de Documentos de Viagem</string>
             </property>
@@ -449,19 +471,8 @@ font-weight: bold
           <item>
            <widget class="QStackedWidget" name="Pages">
             <property name="currentIndex">
-             <number>1</number>
+             <number>4</number>
             </property>
-            <widget class="QWidget" name="pg_home">
-             <layout class="QVBoxLayout" name="verticalLayout_7">
-              <item>
-               <widget class="QLabel" name="logo">
-                <property name="text">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;img src=&quot;:/logo/Green Monogram Letter O Logo (4).png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
             <widget class="QWidget" name="pg_adicionar">
              <layout class="QVBoxLayout" name="verticalLayout_10">
               <item>
@@ -474,7 +485,10 @@ font: 10pt &quot;MS Shell Dig 2&quot;
 
 QFrame{
 background-color: rgb(231,231,231);	
-}</string>
+border-radius: 8px
+}
+
+</string>
                 </property>
                 <property name="frameShape">
                  <enum>QFrame::StyledPanel</enum>
@@ -483,29 +497,6 @@ background-color: rgb(231,231,231);
                  <enum>QFrame::Raised</enum>
                 </property>
                 <layout class="QHBoxLayout" name="horizontalLayout_4">
-                 <item>
-                  <widget class="QFrame" name="frame_6">
-                   <property name="frameShape">
-                    <enum>QFrame::StyledPanel</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Raised</enum>
-                   </property>
-                   <widget class="QPushButton" name="pushButton">
-                    <property name="geometry">
-                     <rect>
-                      <x>0</x>
-                      <y>170</y>
-                      <width>80</width>
-                      <height>23</height>
-                     </rect>
-                    </property>
-                    <property name="text">
-                     <string>BUscar Arquivo</string>
-                    </property>
-                   </widget>
-                  </widget>
-                 </item>
                  <item>
                   <widget class="QFrame" name="frame_3">
                    <property name="frameShape">
@@ -517,6 +508,12 @@ background-color: rgb(231,231,231);
                    <layout class="QVBoxLayout" name="verticalLayout_8">
                     <item>
                      <widget class="QLabel" name="ttl_add">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>0</height>
+                       </size>
+                      </property>
                       <property name="layoutDirection">
                        <enum>Qt::LeftToRight</enum>
                       </property>
@@ -525,7 +522,7 @@ background-color: rgb(231,231,231);
 background-color: rgb(249, 249, 249)</string>
                       </property>
                       <property name="text">
-                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;VISTO&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600;&quot;&gt;VISTO&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
@@ -533,78 +530,270 @@ background-color: rgb(249, 249, 249)</string>
                      </widget>
                     </item>
                     <item>
-                     <spacer name="verticalSpacer_4">
-                      <property name="orientation">
-                       <enum>Qt::Vertical</enum>
+                     <widget class="QFrame" name="frame_8">
+                      <property name="styleSheet">
+                       <string notr="true">QFrame {
+    border-radius: 4px
+}</string>
                       </property>
-                      <property name="sizeHint" stdset="0">
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QVBoxLayout" name="verticalLayout_6">
+                       <item>
+                        <widget class="QFrame" name="frame_6">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>80</height>
+                          </size>
+                         </property>
+                         <property name="frameShape">
+                          <enum>QFrame::StyledPanel</enum>
+                         </property>
+                         <property name="frameShadow">
+                          <enum>QFrame::Raised</enum>
+                         </property>
+                         <layout class="QHBoxLayout" name="horizontalLayout_6">
+                          <item>
+                           <widget class="QPushButton" name="pushButton">
+                            <property name="minimumSize">
+                             <size>
+                              <width>0</width>
+                              <height>30</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>300</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
+                            <property name="sizeIncrement">
+                             <size>
+                              <width>0</width>
+                              <height>1</height>
+                             </size>
+                            </property>
+                            <property name="font">
+                             <font>
+                              <family>Lato Bold</family>
+                              <pointsize>11</pointsize>
+                             </font>
+                            </property>
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">QPushButton {
+    background-color: rgb(190, 190, 190);
+    border-radius: 15px;
+	font-family: &quot;Lato Bold&quot;, sans-serif;
+}
+
+QPushButton:hover {
+    background-color: rgb(115, 0, 200);
+    border-radius: 15px;
+	font-family: &quot;Lato Bold&quot;, sans-serif;
+	color: #fff
+}</string>
+                            </property>
+                            <property name="text">
+                             <string>       Buscar Arquivo       </string>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLineEdit" name="nome_line">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>40</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">QFrame {
+    border-radius: 8px;
+}</string>
+                         </property>
+                         <property name="placeholderText">
+                          <string>Nome</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLineEdit" name="date_nasc_line">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>40</height>
+                          </size>
+                         </property>
+                         <property name="placeholderText">
+                          <string>Data de nascimento</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLineEdit" name="nacionalidade_line">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>40</height>
+                          </size>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="placeholderText">
+                          <string>Nacionalidade</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLineEdit" name="passport_line">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>40</height>
+                          </size>
+                         </property>
+                         <property name="placeholderText">
+                          <string>Passaporte</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLineEdit" name="gender_line">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>40</height>
+                          </size>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="placeholderText">
+                          <string>Cidade emitente</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLineEdit" name="validade_line">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>40</height>
+                          </size>
+                         </property>
+                         <property name="placeholderText">
+                          <string>Validade do visto</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLineEdit" name="tipo_visto_line">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>40</height>
+                          </size>
+                         </property>
+                         <property name="placeholderText">
+                          <string>Tipo de visto</string>
+                         </property>
+                         <property name="clearButtonEnabled">
+                          <bool>false</bool>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLineEdit" name="num_visto_line">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>40</height>
+                          </size>
+                         </property>
+                         <property name="placeholderText">
+                          <string>Número do visto</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QFrame" name="frame_9">
+                      <property name="minimumSize">
                        <size>
-                        <width>20</width>
-                        <height>40</height>
+                        <width>0</width>
+                        <height>80</height>
                        </size>
                       </property>
-                     </spacer>
-                    </item>
-                    <item>
-                     <widget class="QLineEdit" name="nacionalidade_line">
-                      <property name="text">
-                       <string/>
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
                       </property>
-                      <property name="placeholderText">
-                       <string>Nacionalidade</string>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
                       </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLineEdit" name="nome_line">
-                      <property name="placeholderText">
-                       <string>Nome</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLineEdit" name="passport_line">
-                      <property name="placeholderText">
-                       <string>Passaporte</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLineEdit" name="validade_line">
-                      <property name="placeholderText">
-                       <string>Validade do visto</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLineEdit" name="tipo_visto_line">
-                      <property name="placeholderText">
-                       <string>Tipo de visto</string>
-                      </property>
-                      <property name="clearButtonEnabled">
-                       <bool>false</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLineEdit" name="date_nasc_line">
-                      <property name="placeholderText">
-                       <string>Data de nascimento</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLineEdit" name="gender_line">
-                      <property name="placeholderText">
-                       <string>Sexo</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLineEdit" name="num_visto_line">
-                      <property name="placeholderText">
-                       <string>Número do visto</string>
-                      </property>
+                      <layout class="QGridLayout" name="gridLayout">
+                       <item row="0" column="0">
+                        <widget class="QPushButton" name="ctn_add">
+                         <property name="minimumSize">
+                          <size>
+                           <width>100</width>
+                           <height>30</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>200</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="font">
+                          <font>
+                           <family>Lato Bold</family>
+                           <pointsize>11</pointsize>
+                          </font>
+                         </property>
+                         <property name="cursor">
+                          <cursorShape>PointingHandCursor</cursorShape>
+                         </property>
+                         <property name="layoutDirection">
+                          <enum>Qt::LeftToRight</enum>
+                         </property>
+                         <property name="autoFillBackground">
+                          <bool>false</bool>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">QPushButton {
+    background-color: rgb(190, 190, 190);
+    border-radius: 15px;
+	font-family: &quot;Lato Bold&quot;, sans-serif;
+}
+
+QPushButton:hover {
+    background-color: rgb(115, 0, 200);
+    border-radius: 15px;
+	font-family: &quot;Lato Bold&quot;, sans-serif;
+	color: #fff
+}</string>
+                         </property>
+                         <property name="text">
+                          <string>     Adicionar     </string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
                      </widget>
                     </item>
                    </layout>
@@ -620,7 +809,7 @@ background-color: rgb(249, 249, 249)</string>
               <item>
                <widget class="QFrame" name="frame_5">
                 <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
+                 <enum>QFrame::NoFrame</enum>
                 </property>
                 <property name="frameShadow">
                  <enum>QFrame::Raised</enum>
@@ -628,11 +817,27 @@ background-color: rgb(249, 249, 249)</string>
                 <widget class="QTableWidget" name="tableWidget_2">
                  <property name="geometry">
                   <rect>
-                   <x>5</x>
-                   <y>50</y>
-                   <width>589</width>
+                   <x>0</x>
+                   <y>70</y>
+                   <width>821</width>
                    <height>558</height>
                   </rect>
+                 </property>
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QHeaderView::section{
+background-color:rgb(148, 148, 148);
+color:rgb(255,255,255);
+font: 11pt &quot;Lato Heavy&quot;;
+}
+QTableWidget{
+background-color:rgb(252, 252, 252);
+}</string>
                  </property>
                  <column>
                   <property name="text">
@@ -683,11 +888,23 @@ background-color: rgb(249, 249, 249)</string>
                 <widget class="QFrame" name="frame_7">
                  <property name="geometry">
                   <rect>
-                   <x>600</x>
-                   <y>50</y>
+                   <x>840</x>
+                   <y>70</y>
                    <width>100</width>
                    <height>558</height>
                   </rect>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton{
+border-radius: 15px;
+background-color: rgb(255,255,255);
+font: 11pt &quot;Lato Heavy&quot;;
+color: rgb(0,24,74)
+}
+
+QFrame{
+background-color: rgb(230,230,230);
+}</string>
                  </property>
                  <property name="frameShape">
                   <enum>QFrame::StyledPanel</enum>
@@ -698,6 +915,29 @@ background-color: rgb(249, 249, 249)</string>
                  <layout class="QVBoxLayout" name="verticalLayout_12">
                   <item>
                    <widget class="QPushButton" name="btn_ordenar">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QPushButton {
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+	font-family: &quot;Lato Heavy&quot;, sans-serif;
+}
+
+QPushButton:hover {
+    background-color: rgb(115, 0, 200);
+    border-radius: 15px;
+	font-family: &quot;Lato Heavy&quot;, sans-serif;
+	color: #fff
+}</string>
+                    </property>
                     <property name="text">
                      <string>Listar</string>
                     </property>
@@ -705,6 +945,29 @@ background-color: rgb(249, 249, 249)</string>
                   </item>
                   <item>
                    <widget class="QPushButton" name="btn_alterar_2">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QPushButton {
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+	font-family: &quot;Lato Heavy&quot;, sans-serif;
+}
+
+QPushButton:hover {
+    background-color: rgb(115, 0, 200);
+    border-radius: 15px;
+	font-family: &quot;Lato Heavy&quot;, sans-serif;
+	color: #fff
+}</string>
+                    </property>
                     <property name="text">
                      <string>Alterar</string>
                     </property>
@@ -712,6 +975,29 @@ background-color: rgb(249, 249, 249)</string>
                   </item>
                   <item>
                    <widget class="QPushButton" name="btn_excluir">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QPushButton {
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+	font-family: &quot;Lato Heavy&quot;, sans-serif;
+}
+
+QPushButton:hover {
+    background-color: rgb(115, 0, 200);
+    border-radius: 15px;
+	font-family: &quot;Lato Heavy&quot;, sans-serif;
+	color: #fff
+}</string>
+                    </property>
                     <property name="text">
                      <string>Excluir</string>
                     </property>
@@ -735,56 +1021,332 @@ background-color: rgb(249, 249, 249)</string>
                 <widget class="QLabel" name="label_9">
                  <property name="geometry">
                   <rect>
-                   <x>210</x>
+                   <x>350</x>
                    <y>10</y>
-                   <width>301</width>
-                   <height>31</height>
+                   <width>250</width>
+                   <height>50</height>
                   </rect>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Lato</family>
+                   <pointsize>12</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                   <kerning>true</kerning>
+                  </font>
                  </property>
                  <property name="layoutDirection">
                   <enum>Qt::LeftToRight</enum>
                  </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(150,150,150);
+color:rgb(255,255,255);
+border-radius:10px;</string>
+                 </property>
+                 <property name="lineWidth">
+                  <number>1</number>
+                 </property>
                  <property name="text">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt;&quot;&gt;Vistos inseridos&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Lato'; font-size:12pt; font-weight:600; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;VISTOS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>
+                 </property>
+                 <property name="indent">
+                  <number>-1</number>
                  </property>
                 </widget>
                </widget>
               </item>
              </layout>
             </widget>
-            <widget class="QWidget" name="pg_editar">
-             <widget class="QLabel" name="ttl_sobre">
+            <widget class="QWidget" name="pg_sobre">
+             <layout class="QVBoxLayout" name="verticalLayout_13">
+              <item>
+               <widget class="QLabel" name="ttl_sobre">
+                <property name="minimumSize">
+                 <size>
+                  <width>100</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Lato</family>
+                  <pointsize>16</pointsize>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="autoFillBackground">
+                 <bool>false</bool>
+                </property>
+                <property name="text">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;SOBRE&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="txt_sobre">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Esse sistema lê as informações contidas nos vistos de passageiros viajando para os EUA e libera ou nega o embarque desses passageiros nos voos das companhias aéreas.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="pg_alterar_usuario">
+             <widget class="QFrame" name="frame_10">
               <property name="geometry">
                <rect>
-                <x>350</x>
-                <y>170</y>
-                <width>57</width>
-                <height>15</height>
+                <x>300</x>
+                <y>100</y>
+                <width>411</width>
+                <height>491</height>
                </rect>
               </property>
-              <property name="text">
-               <string>SOBRE</string>
+              <property name="styleSheet">
+               <string notr="true">QLineEdit{
+background-color: rgb(255,255,255);
+font: 10pt &quot;MS Shell Dig 2&quot;
+}
+
+QFrame{
+background-color: rgb(231,231,231);	
+border-radius: 8px
+}
+
+</string>
               </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_7">
+               <item>
+                <widget class="QFrame" name="frame_12">
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_14">
+                  <item>
+                   <widget class="QLabel" name="ttl_add_2">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="layoutDirection">
+                     <enum>Qt::LeftToRight</enum>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color:rgb(115,0,220);
+background-color: rgb(249, 249, 249)</string>
+                    </property>
+                    <property name="text">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600;&quot;&gt;USUÁRIO&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QFrame" name="frame_13">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QFrame {
+    border-radius: 4px
+}</string>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_15">
+                     <item>
+                      <spacer name="verticalSpacer_4">
+                       <property name="orientation">
+                        <enum>Qt::Vertical</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>20</width>
+                         <height>40</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                     <item>
+                      <widget class="QLineEdit" name="emial_line">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>40</height>
+                        </size>
+                       </property>
+                       <property name="text">
+                        <string/>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignCenter</set>
+                       </property>
+                       <property name="placeholderText">
+                        <string>Email</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLineEdit" name="senha_line">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>40</height>
+                        </size>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignCenter</set>
+                       </property>
+                       <property name="placeholderText">
+                        <string>Senha</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLineEdit" name="lineEdit">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>40</height>
+                        </size>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignCenter</set>
+                       </property>
+                       <property name="placeholderText">
+                        <string>Confirmar Senha</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <spacer name="verticalSpacer_5">
+                       <property name="orientation">
+                        <enum>Qt::Vertical</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>20</width>
+                         <height>40</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QFrame" name="btn_alterar">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_16">
+                     <item>
+                      <widget class="QPushButton" name="ctn_add_2">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>30</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>Lato Bold</family>
+                         <pointsize>11</pointsize>
+                        </font>
+                       </property>
+                       <property name="cursor">
+                        <cursorShape>PointingHandCursor</cursorShape>
+                       </property>
+                       <property name="layoutDirection">
+                        <enum>Qt::LeftToRight</enum>
+                       </property>
+                       <property name="autoFillBackground">
+                        <bool>false</bool>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">QPushButton {
+    background-color: rgb(190, 190, 190);
+    border-radius: 15px;
+	font-family: &quot;Lato Bold&quot;, sans-serif;
+}
+
+QPushButton:hover {
+    background-color: rgb(115, 0, 200);
+    border-radius: 15px;
+	font-family: &quot;Lato Bold&quot;, sans-serif;
+	color: #fff
+}</string>
+                       </property>
+                       <property name="text">
+                        <string>Alterar</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
              </widget>
-             <widget class="QLabel" name="txt_sobre">
-              <property name="geometry">
-               <rect>
-                <x>180</x>
-                <y>270</y>
-                <width>371</width>
-                <height>251</height>
-               </rect>
-              </property>
-              <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Esse sistema lê as informações contidas nos vistos de passageiros viajando para os EUA e libera ou nega o embarque desses passageiros nos voos das companhias aéreas.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-              <property name="wordWrap">
-               <bool>true</bool>
-              </property>
-             </widget>
+            </widget>
+            <widget class="QWidget" name="pg_home">
+             <layout class="QVBoxLayout" name="verticalLayout_7">
+              <item>
+               <widget class="QLabel" name="logo">
+                <property name="text">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;img src=&quot;:/logo/pages/icons/logo_nome_branco.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </widget>
           </item>
@@ -808,8 +1370,15 @@ background-color: rgb(249, 249, 249)</string>
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
            <widget class="QLabel" name="label_2">
+            <property name="font">
+             <font>
+              <family>Lato</family>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
             <property name="text">
-             <string>Ophelia</string>
+             <string>© Ophelia 2024</string>
             </property>
            </widget>
           </item>

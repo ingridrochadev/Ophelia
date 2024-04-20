@@ -1,8 +1,9 @@
 from PySide6.QtCore import QCoreApplication, QPropertyAnimation, QEasingCurve
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QApplication, QMainWindow, QWidget
-from ui_login import Ui_Form
-from ui_main import Ui_MainWindow
+from pages.ui_login import Ui_Form
+from pages.ui_main import Ui_MainWindow
+from pages.utils import Sistema
 import sys
 
 class Login(QWidget, Ui_Form):
@@ -14,8 +15,12 @@ class Login(QWidget, Ui_Form):
         self.btn_entrar.clicked.connect(self.open_system)
     
     def open_system(self):
+        email = self.email_line.text()  # Obtenha o texto digitado no campo de email
+        senha = self.senha_line.text()
+        print(email,senha)
+        usuario_verificado = Sistema.fazer_login(Sistema, email, senha)
         
-        if self.senha_line.text() == '1234':
+        if usuario_verificado:
             self.w = MainWindow()
             self.w.show()
             self.close()

@@ -21,7 +21,7 @@ class Criar_bd:
 
             print('Conexão estabelecida com sucesso!')
             
-           
+            
         except Exception as e:
             print(f'\nOcorreu um erro ao conectar ao banco de dados: {e}')
 
