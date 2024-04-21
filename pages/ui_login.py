@@ -27,7 +27,7 @@ class Ui_Form(object):
         Form.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0.584, y1:0.466045, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(153, 0, 255, 255));")
         self.frame_2 = QFrame(Form)
         self.frame_2.setObjectName(u"frame_2")
-        self.frame_2.setGeometry(QRect(90, 260, 331, 271))
+        self.frame_2.setGeometry(QRect(100, 250, 331, 271))
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -79,9 +79,9 @@ class Ui_Form(object):
 "border-radius: 10px;\n"
 "}\n"
 "\n"
-"QPushButton::hoover{\n"
-"background-color:rgb(255,255,255);\n"
-"color:rgb(0,0,0);\n"
+"QPushButton:hover {\n"
+"background-color: rgb(255,255,255);\n"
+"color: rgb(0,0,0);\n"
 "border-radius: 10px;\n"
 "}")
         self.label = QLabel(Form)

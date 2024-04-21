@@ -68,6 +68,7 @@ class Criar_bd:
         email character varying(150) NOT NULL,
         senha character varying(150) NOT NULL,
         cpf character varying(15) NOT NULL,
+        tipo_usuario character varying(15) NOT NULL,
         PRIMARY KEY (matricula)
     ); ''')
 
@@ -216,7 +217,16 @@ class Criar_bd:
         self.inserir_dados_vistos()
         self.inserir_tipos_vistos()
         self.conn.commit()
+    
+    def criar_usuario(self, nome, cpf, email, senha, matricula, tipo_usuario):
+        try:
+            self.cur.execute("INSERT INTO usuarios (matricula, nome, email, senha, cpf, tipo_usuario) VALUES (%s, %s, %s, %s, %s, %s)",
+                             (matricula, nome, email, senha, cpf, tipo_usuario))
+            print("Usuário criado com sucesso!")
+        except Exception as e:
+            print(f"Erro ao criar usuário: {e}")
 
+# Restante do código...
 
 if __name__ == '__main__':
     bd = Criar_bd()
@@ -224,7 +234,23 @@ if __name__ == '__main__':
     bd.apagar_tabelas()
     bd.criar_tabelas()
     bd.inserir_dados()
-    
+
+    # Inserindo os usuários
+    bd.criar_usuario("Administrador", "12345678900", "admin@email.com", "admin", "ADM001", "administrador")
+    bd.criar_usuario("Usuário Normal", "98765432100", "user@email.com", "user", "USR001", "user")
         
     bd.cur.close()
     bd.conn.close()
+
+
+
+# if __name__ == '__main__':
+#     bd = Criar_bd()
+
+#     bd.apagar_tabelas()
+#     bd.criar_tabelas()
+#     bd.inserir_dados()
+    
+        
+#     bd.cur.close()
+#     bd.conn.close()

@@ -471,8 +471,19 @@ font-weight: bold
           <item>
            <widget class="QStackedWidget" name="Pages">
             <property name="currentIndex">
-             <number>4</number>
+             <number>1</number>
             </property>
+            <widget class="QWidget" name="pg_home">
+             <layout class="QVBoxLayout" name="verticalLayout_7">
+              <item>
+               <widget class="QLabel" name="logo">
+                <property name="text">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;img src=&quot;:/logo/pages/icons/logo_nome_branco.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
             <widget class="QWidget" name="pg_adicionar">
              <layout class="QVBoxLayout" name="verticalLayout_10">
               <item>
@@ -505,28 +516,120 @@ border-radius: 8px
                    <property name="frameShadow">
                     <enum>QFrame::Raised</enum>
                    </property>
-                   <layout class="QVBoxLayout" name="verticalLayout_8">
+                   <layout class="QHBoxLayout" name="horizontalLayout_6">
                     <item>
-                     <widget class="QLabel" name="ttl_add">
+                     <widget class="QFrame" name="frame_11">
                       <property name="minimumSize">
                        <size>
-                        <width>0</width>
-                        <height>0</height>
+                        <width>400</width>
+                        <height>60</height>
                        </size>
                       </property>
-                      <property name="layoutDirection">
-                       <enum>Qt::LeftToRight</enum>
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
                       </property>
-                      <property name="styleSheet">
-                       <string notr="true">color:rgb(115,0,220);
-background-color: rgb(249, 249, 249)</string>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
                       </property>
-                      <property name="text">
-                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600;&quot;&gt;VISTO&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignCenter</set>
-                      </property>
+                      <layout class="QVBoxLayout" name="verticalLayout_8">
+                       <item>
+                        <spacer name="verticalSpacer_7">
+                         <property name="orientation">
+                          <enum>Qt::Vertical</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>20</width>
+                           <height>40</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="img_space">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>300</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>600</width>
+                           <height>300</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color:rgb(255,255,255);
+frame-radius:10px;</string>
+                         </property>
+                         <property name="text">
+                          <string>TextLabel</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item alignment="Qt::AlignHCenter">
+                        <widget class="QPushButton" name="btn_ler">
+                         <property name="minimumSize">
+                          <size>
+                           <width>60</width>
+                           <height>50</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>120</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="sizeIncrement">
+                          <size>
+                           <width>0</width>
+                           <height>1</height>
+                          </size>
+                         </property>
+                         <property name="font">
+                          <font>
+                           <family>Lato Bold</family>
+                           <pointsize>11</pointsize>
+                          </font>
+                         </property>
+                         <property name="cursor">
+                          <cursorShape>PointingHandCursor</cursorShape>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">QPushButton {
+    background-color: rgb(190, 190, 190);
+    border-radius: 15px;
+	font-family: &quot;Lato Bold&quot;, sans-serif;
+}
+
+QPushButton:hover {
+    background-color: rgb(115, 0, 200);
+    border-radius: 15px;
+	font-family: &quot;Lato Bold&quot;, sans-serif;
+	color: #fff
+}</string>
+                         </property>
+                         <property name="text">
+                          <string>Buscar visto</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <spacer name="verticalSpacer_6">
+                         <property name="orientation">
+                          <enum>Qt::Vertical</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>20</width>
+                           <height>40</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                      </layout>
                      </widget>
                     </item>
                     <item>
@@ -544,82 +647,36 @@ background-color: rgb(249, 249, 249)</string>
                       </property>
                       <layout class="QVBoxLayout" name="verticalLayout_6">
                        <item>
-                        <widget class="QFrame" name="frame_6">
-                         <property name="minimumSize">
-                          <size>
-                           <width>0</width>
-                           <height>80</height>
-                          </size>
-                         </property>
-                         <property name="frameShape">
-                          <enum>QFrame::StyledPanel</enum>
-                         </property>
-                         <property name="frameShadow">
-                          <enum>QFrame::Raised</enum>
-                         </property>
-                         <layout class="QHBoxLayout" name="horizontalLayout_6">
-                          <item>
-                           <widget class="QPushButton" name="pushButton">
-                            <property name="minimumSize">
-                             <size>
-                              <width>0</width>
-                              <height>30</height>
-                             </size>
-                            </property>
-                            <property name="maximumSize">
-                             <size>
-                              <width>300</width>
-                              <height>16777215</height>
-                             </size>
-                            </property>
-                            <property name="sizeIncrement">
-                             <size>
-                              <width>0</width>
-                              <height>1</height>
-                             </size>
-                            </property>
-                            <property name="font">
-                             <font>
-                              <family>Lato Bold</family>
-                              <pointsize>11</pointsize>
-                             </font>
-                            </property>
-                            <property name="cursor">
-                             <cursorShape>PointingHandCursor</cursorShape>
-                            </property>
-                            <property name="styleSheet">
-                             <string notr="true">QPushButton {
-    background-color: rgb(190, 190, 190);
-    border-radius: 15px;
-	font-family: &quot;Lato Bold&quot;, sans-serif;
-}
-
-QPushButton:hover {
-    background-color: rgb(115, 0, 200);
-    border-radius: 15px;
-	font-family: &quot;Lato Bold&quot;, sans-serif;
-	color: #fff
-}</string>
-                            </property>
-                            <property name="text">
-                             <string>       Buscar Arquivo       </string>
-                            </property>
-                           </widget>
-                          </item>
-                         </layout>
-                        </widget>
-                       </item>
-                       <item>
                         <widget class="QLineEdit" name="nome_line">
                          <property name="minimumSize">
                           <size>
-                           <width>0</width>
+                           <width>300</width>
                            <height>40</height>
                           </size>
                          </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>500</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="font">
+                          <font>
+                           <family>MS Shell Dig 2</family>
+                           <pointsize>10</pointsize>
+                           <weight>50</weight>
+                           <italic>false</italic>
+                           <bold>false</bold>
+                          </font>
+                         </property>
+                         <property name="layoutDirection">
+                          <enum>Qt::LeftToRight</enum>
+                         </property>
                          <property name="styleSheet">
                           <string notr="true">QFrame {
+    background-color: transparent;
     border-radius: 8px;
+    border: 2px solid white;
 }</string>
                          </property>
                          <property name="placeholderText">
@@ -635,6 +692,12 @@ QPushButton:hover {
                            <height>40</height>
                           </size>
                          </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>500</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
                          <property name="placeholderText">
                           <string>Data de nascimento</string>
                          </property>
@@ -646,6 +709,12 @@ QPushButton:hover {
                           <size>
                            <width>0</width>
                            <height>40</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>500</width>
+                           <height>16777215</height>
                           </size>
                          </property>
                          <property name="text">
@@ -664,6 +733,12 @@ QPushButton:hover {
                            <height>40</height>
                           </size>
                          </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>500</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
                          <property name="placeholderText">
                           <string>Passaporte</string>
                          </property>
@@ -675,6 +750,12 @@ QPushButton:hover {
                           <size>
                            <width>0</width>
                            <height>40</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>500</width>
+                           <height>16777215</height>
                           </size>
                          </property>
                          <property name="text">
@@ -693,6 +774,12 @@ QPushButton:hover {
                            <height>40</height>
                           </size>
                          </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>500</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
                          <property name="placeholderText">
                           <string>Validade do visto</string>
                          </property>
@@ -704,6 +791,12 @@ QPushButton:hover {
                           <size>
                            <width>0</width>
                            <height>40</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>500</width>
+                           <height>16777215</height>
                           </size>
                          </property>
                          <property name="placeholderText">
@@ -722,31 +815,19 @@ QPushButton:hover {
                            <height>40</height>
                           </size>
                          </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>500</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
                          <property name="placeholderText">
                           <string>Número do visto</string>
                          </property>
                         </widget>
                        </item>
-                      </layout>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QFrame" name="frame_9">
-                      <property name="minimumSize">
-                       <size>
-                        <width>0</width>
-                        <height>80</height>
-                       </size>
-                      </property>
-                      <property name="frameShape">
-                       <enum>QFrame::StyledPanel</enum>
-                      </property>
-                      <property name="frameShadow">
-                       <enum>QFrame::Raised</enum>
-                      </property>
-                      <layout class="QGridLayout" name="gridLayout">
-                       <item row="0" column="0">
-                        <widget class="QPushButton" name="ctn_add">
+                       <item alignment="Qt::AlignHCenter">
+                        <widget class="QPushButton" name="btn_add_2">
                          <property name="minimumSize">
                           <size>
                            <width>100</width>
@@ -796,6 +877,16 @@ QPushButton:hover {
                       </layout>
                      </widget>
                     </item>
+                    <item>
+                     <widget class="QFrame" name="frame_6">
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                     </widget>
+                    </item>
                    </layout>
                   </widget>
                  </item>
@@ -814,7 +905,7 @@ QPushButton:hover {
                 <property name="frameShadow">
                  <enum>QFrame::Raised</enum>
                 </property>
-                <widget class="QTableWidget" name="tableWidget_2">
+                <widget class="QTableWidget" name="tbl_vistos">
                  <property name="geometry">
                   <rect>
                    <x>0</x>
@@ -839,49 +930,31 @@ QTableWidget{
 background-color:rgb(252, 252, 252);
 }</string>
                  </property>
+                 <attribute name="horizontalHeaderDefaultSectionSize">
+                  <number>274</number>
+                 </attribute>
                  <column>
                   <property name="text">
                    <string>Nome</string>
                   </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string>Passaporte </string>
+                  <property name="textAlignment">
+                   <set>AlignLeading|AlignVCenter</set>
                   </property>
                  </column>
                  <column>
                   <property name="text">
-                   <string>Nacionalidade</string>
+                   <string>Passaporte</string>
+                  </property>
+                  <property name="textAlignment">
+                   <set>AlignLeading|AlignVCenter</set>
                   </property>
                  </column>
                  <column>
                   <property name="text">
-                   <string>Data de nascimento</string>
+                   <string>Status Embarque</string>
                   </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string>Sexo</string>
-                  </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string>Data de validade</string>
-                  </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string>Tipo de visto</string>
-                  </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string>Cidade emitente</string>
-                  </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string>Número do visto</string>
+                  <property name="textAlignment">
+                   <set>AlignLeading|AlignVCenter</set>
                   </property>
                  </column>
                 </widget>
@@ -914,7 +987,7 @@ background-color: rgb(230,230,230);
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_12">
                   <item>
-                   <widget class="QPushButton" name="btn_ordenar">
+                   <widget class="QPushButton" name="btn_exportar">
                     <property name="minimumSize">
                      <size>
                       <width>0</width>
@@ -939,7 +1012,7 @@ QPushButton:hover {
 }</string>
                     </property>
                     <property name="text">
-                     <string>Listar</string>
+                     <string>Exportar</string>
                     </property>
                    </widget>
                   </item>
@@ -1018,7 +1091,7 @@ QPushButton:hover {
                   </item>
                  </layout>
                 </widget>
-                <widget class="QLabel" name="label_9">
+                <widget class="QLabel" name="ttl_vistos">
                  <property name="geometry">
                   <rect>
                    <x>350</x>
@@ -1066,8 +1139,8 @@ p, li { white-space: pre-wrap; }
              </layout>
             </widget>
             <widget class="QWidget" name="pg_sobre">
-             <layout class="QVBoxLayout" name="verticalLayout_13">
-              <item>
+             <layout class="QGridLayout" name="gridLayout_2">
+              <item row="0" column="0">
                <widget class="QLabel" name="ttl_sobre">
                 <property name="minimumSize">
                  <size>
@@ -1091,7 +1164,7 @@ p, li { white-space: pre-wrap; }
                 </property>
                </widget>
               </item>
-              <item>
+              <item row="1" column="0">
                <widget class="QLabel" name="txt_sobre">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
@@ -1099,11 +1172,39 @@ p, li { white-space: pre-wrap; }
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>500</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
                 <property name="text">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Esse sistema lê as informações contidas nos vistos de passageiros viajando para os EUA e libera ou nega o embarque desses passageiros nos voos das companhias aéreas.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
                 <property name="wordWrap">
                  <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="txt_desenvolvedoras">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>400</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>800</width>
+                  <height>400</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;DESENVOLVEDORAS:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;BIANCA YURI&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;DJULLIE CAROLINE&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;INGRID ROCHA&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;TAYNARA MORAIS&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;YASMIM FERREIRA&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                </widget>
               </item>
@@ -1336,17 +1437,6 @@ QPushButton:hover {
                </item>
               </layout>
              </widget>
-            </widget>
-            <widget class="QWidget" name="pg_home">
-             <layout class="QVBoxLayout" name="verticalLayout_7">
-              <item>
-               <widget class="QLabel" name="logo">
-                <property name="text">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;img src=&quot;:/logo/pages/icons/logo_nome_branco.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
             </widget>
            </widget>
           </item>

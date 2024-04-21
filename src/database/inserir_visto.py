@@ -141,11 +141,24 @@ class Funcoes:
             if regra:
                 return regra
             else:
-                return 'Não são necessárias confirmações adicionais.'
+                return True
 
         if not regras:
             return 'Tipo de visto não encontrado!'
 
+    def verificar_tipo_visto(self, tipo_visto):
+        self.cur.execute("SELECT tipo, descricao, regras FROM tipos_vistos WHERE tipo = %s", (tipo_visto,))
+        tipos_vistos = self.cur.fetchall()
+
+        for tipo_visto in tipos_vistos:
+            tipo = tipo_visto[0]
+            descricao = tipo_visto[1]
+            regra = tipo_visto[2]
+
+            if tipo:
+                return tipo, descricao, regra
+            else:
+                return None, None, None  # Retornar None se o tipo de visto não for encontrado
 
 
 
