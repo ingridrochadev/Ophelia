@@ -58,22 +58,9 @@ class Funcoes:
             nome = info_array[0]
             passaporte = info_array[1]
             nacionalidade = info_array[2]
-            data_aniversario = info_array[3]
-                                
-            dia = int(data_aniversario[-2:])
-            mes = int(data_aniversario[5:7])
-            ano = int(data_aniversario[:4])
-            
-            data_nascimento = d.date(ano, mes, dia)
+            data_nascimento = info_array[3]
                         
             data_validade = info_array[4]
-
-            dia = int(data_validade[-2:])
-            mes = int(data_validade[5:7])
-            ano = int(data_validade[:4])
-        
-            data_validade = d.date(ano, mes, dia)
-
             tipo_visto = info_array[5]
             pais_emitente = info_array[6]
             numero_visto = info_array[7]

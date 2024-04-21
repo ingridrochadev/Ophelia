@@ -7,7 +7,7 @@ from pages.ui_main import Ui_MainWindow
 from pages.utils import Sistema
 from src.image_processing.Versao_Final_OCR import read_visto
 import sys
-# from src.database.inserir_visto import Funcoes
+from src.database.inserir_visto import Funcoes
 
 sistema = Sistema()
 class Login(QWidget, Ui_Form):
@@ -44,6 +44,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             super(MainWindow, self).__init__()
             self.setupUi(self)
             self.setWindowTitle("Ophelia")
+            self.resize(1200, 800)
             appIcon = QIcon(u"")
             self.setWindowIcon(appIcon)
             
@@ -57,8 +58,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.btn_sobre.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_sobre))
             self.btn_editarUsuario.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_alterar_usuario))
             
+            # Define a página inicial como 'pg_home'
+            self.Pages.setCurrentWidget(self.pg_home)
+            
             #Botões de importação
-            self.btn_ler.clicked.connect(self.leituraImg)
+            self.btn_ler.clicked.connect(self.leitura_img)
+            self.btn_add_2.clicked.connect(self.inserir_dados_bd)
+            
+            # Armazenar os dados do visto
+            self.dados_visto = None
             
         def leftMenu(self):
             width = self.left_container.width()
@@ -71,37 +79,56 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.animation.setEasingCurve(QEasingCurve.InOutQuart)
             self.animation.start()
 
-        def leituraImg(self):
+        def leitura_img(self):
             file_dialog = QFileDialog(self)
             file_dialog.setFileMode(QFileDialog.ExistingFile)
             file_dialog.setViewMode(QFileDialog.Detail)
 
             if file_dialog.exec():
-                arquivo_path = file_dialog.selectedFiles()  # Obtém o caminho do arquivo selecionado pelo usuário
+                arquivo_path = file_dialog.selectedFiles()  # Obtém o caminho do arquivo selecionado pelo usuário como array, precisa passar o index quando usar
 
             if arquivo_path:  # Verifica se o caminho do arquivo foi selecionado
-                dados_visto = read_visto(arquivo_path[0])  # Passa o caminho do arquivo para a função read_visto
-                print(dados_visto)
+                self.dados_visto = read_visto(arquivo_path[0])  # Passa o caminho do arquivo para a função read_visto
+                
+                dt_nascimento = self.dados_visto[3].strftime("%d-%m-%Y")
+                validade_visto = self.dados_visto[4].strftime("%d-%m-%Y")                
+                
+                # Preenche os QLineEdit com os dados obtidos do OCR
+                self.nome_line.setText(self.dados_visto[0])
+                self.passport_line.setText(self.dados_visto[1])
+                self.tipo_visto_line.setText(self.dados_visto[5])
+                self.date_nasc_line.setText(dt_nascimento)
+                self.validade_line.setText(validade_visto)
+                self.gender_line.setText(self.dados_visto[6])
+                self.nacionalidade_line.setText(self.dados_visto[2])
+                self.num_visto_line.setText(self.dados_visto[7])
+        
                 pixmap = QPixmap(arquivo_path[0])
                 self.img_space.setPixmap(pixmap.scaled(self.img_space.size(), Qt.KeepAspectRatio))
             
-            # func.inserir_dados(img_dados)
-            # tipo, descricao, regra = func.verificar_tipo_visto
-            
-            # if !(regra):
-            #     msg = QMessageBox()
-            #     msg.setIcon(QMessageBox.Information)
-            #     msg.setWindowTitle('Visto adicionado!')
-            #     msg.exec()
-            # else:
-            #     msg = QMessageBox()
-            #     msg.setWindowTitle(f"Visto tipo {tipo.upper()}")
-            #     msg.setInformativeText(regra)
-            #     msg.setStandardButtons(msg::Save | msg::Discard | msg::Cancel)
-            #     msg.setDefaultButton(msg::Save)
-            #     int ret = msg.exec()
+        def inserir_dados_bd(self):
+            if self.dados_visto:
+                func = Funcoes()
+                func.inserir_dados(self.dados_visto)
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Information)
+                msg.setWindowTitle('Visto Inserido!')
+                msg.exec()
+                # tipo, descricao, regra = func.verificar_tipo_visto
                 
-                
+                # if !(regra):
+                #     msg = QMessageBox()
+                #     msg.setIcon(QMessageBox.Information)
+                #     msg.setWindowTitle('Visto adicionado!')
+                #     msg.exec()
+                # else:
+                #     msg = QMessageBox()
+                #     msg.setWindowTitle(f"Visto tipo {tipo.upper()}")
+                #     msg.setInformativeText(regra)
+                #     msg.setStandardButtons(msg::Save | msg::Discard | msg::Cancel)
+                #     msg.setDefaultButton(msg::Save)
+                #     int ret = msg.exec()
+                    
                 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

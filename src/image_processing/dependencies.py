@@ -8,7 +8,8 @@ import numpy as np
 
 import math
 
-from datetime import datetime
-from dateutil.relativedelta import relativedelta
+from datetime import date, datetime
 
 from PIL import Image
+
+from dateutil.relativedelta import relativedelta

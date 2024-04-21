@@ -97,13 +97,22 @@ def read_visto(image_path):
 
     # Formate as datas para remover as partes de hora e minuto e a representação "datetime.datetime"
     dob_str = dob.strftime('%Y-%m-%d') if dob else None
+    dia_n = int(dob_str[-2:])
+    mes_n = int(dob_str[5:7])
+    ano_n = int(dob_str[:4])
+    dob = d.date(ano_n, mes_n, dia_n)
+    
     expiry_date_str = expiry_date.strftime('%Y-%m-%d') if expiry_date else None
+    dia = int(expiry_date_str[-2:])
+    mes = int(expiry_date_str[5:7])
+    ano = int(expiry_date_str[:4])
+    expiry_date = d.date(ano, mes, dia)
 
     # Remove o caractere de nova linha (\n) da última string
     visa_number = visa_number.rstrip('\n')
 
     # Crie um array com todas as variáveis formatadas
-    infor = [name, passport_number, nationality, dob_str, expiry_date_str, passport_type, issuing_country, visa_number]
+    infor = [name, passport_number, nationality, dob, expiry_date, passport_type, issuing_country, visa_number]
 
     return infor
 
