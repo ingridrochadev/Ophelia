@@ -245,16 +245,6 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.Pages = QStackedWidget(self.main_frame)
         self.Pages.setObjectName(u"Pages")
-        self.pg_home = QWidget()
-        self.pg_home.setObjectName(u"pg_home")
-        self.verticalLayout_7 = QVBoxLayout(self.pg_home)
-        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
-        self.logo = QLabel(self.pg_home)
-        self.logo.setObjectName(u"logo")
-
-        self.verticalLayout_7.addWidget(self.logo)
-
-        self.Pages.addWidget(self.pg_home)
         self.pg_adicionar = QWidget()
         self.pg_adicionar.setObjectName(u"pg_adicionar")
         self.verticalLayout_10 = QVBoxLayout(self.pg_adicionar)
@@ -304,8 +294,8 @@ class Ui_MainWindow(object):
 
         self.btn_ler = QPushButton(self.frame_11)
         self.btn_ler.setObjectName(u"btn_ler")
-        self.btn_ler.setMinimumSize(QSize(60, 50))
-        self.btn_ler.setMaximumSize(QSize(120, 16777215))
+        self.btn_ler.setMinimumSize(QSize(150, 50))
+        self.btn_ler.setMaximumSize(QSize(120, 100))
         self.btn_ler.setSizeIncrement(QSize(0, 1))
         font4 = QFont()
         font4.setFamilies([u"Lato Bold"])
@@ -338,15 +328,78 @@ class Ui_MainWindow(object):
         self.frame_8.setObjectName(u"frame_8")
         self.frame_8.setStyleSheet(u"QFrame {\n"
 "    border-radius: 4px\n"
+"}\n"
+"\n"
+"QLabel {\n"
+"    color: rgb(80,80,80);\n"
 "}")
         self.frame_8.setFrameShape(QFrame.StyledPanel)
         self.frame_8.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_6 = QVBoxLayout(self.frame_8)
-        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
+        self.gridLayout = QGridLayout(self.frame_8)
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.nacionalidade_line = QLineEdit(self.frame_8)
+        self.nacionalidade_line.setObjectName(u"nacionalidade_line")
+        self.nacionalidade_line.setMinimumSize(QSize(340, 40))
+        self.nacionalidade_line.setMaximumSize(QSize(500, 16777215))
+
+        self.gridLayout.addWidget(self.nacionalidade_line, 3, 1, 1, 1)
+
+        self.lbl_nacionalidade = QLabel(self.frame_8)
+        self.lbl_nacionalidade.setObjectName(u"lbl_nacionalidade")
+
+        self.gridLayout.addWidget(self.lbl_nacionalidade, 3, 0, 1, 1)
+
+        self.date_nasc_line = QLineEdit(self.frame_8)
+        self.date_nasc_line.setObjectName(u"date_nasc_line")
+        self.date_nasc_line.setMinimumSize(QSize(340, 40))
+        self.date_nasc_line.setMaximumSize(QSize(340, 16777215))
+
+        self.gridLayout.addWidget(self.date_nasc_line, 2, 1, 1, 1)
+
+        self.lbl_nome = QLabel(self.frame_8)
+        self.lbl_nome.setObjectName(u"lbl_nome")
+
+        self.gridLayout.addWidget(self.lbl_nome, 0, 0, 1, 1)
+
+        self.lbl_passaporte = QLabel(self.frame_8)
+        self.lbl_passaporte.setObjectName(u"lbl_passaporte")
+
+        self.gridLayout.addWidget(self.lbl_passaporte, 4, 0, 1, 1)
+
+        self.lbl_city = QLabel(self.frame_8)
+        self.lbl_city.setObjectName(u"lbl_city")
+
+        self.gridLayout.addWidget(self.lbl_city, 5, 0, 1, 1)
+
+        self.lbl_tipo_visto = QLabel(self.frame_8)
+        self.lbl_tipo_visto.setObjectName(u"lbl_tipo_visto")
+
+        self.gridLayout.addWidget(self.lbl_tipo_visto, 7, 0, 1, 1)
+
+        self.tipo_visto_line = QLineEdit(self.frame_8)
+        self.tipo_visto_line.setObjectName(u"tipo_visto_line")
+        self.tipo_visto_line.setMinimumSize(QSize(340, 40))
+        self.tipo_visto_line.setMaximumSize(QSize(500, 16777215))
+        self.tipo_visto_line.setClearButtonEnabled(False)
+
+        self.gridLayout.addWidget(self.tipo_visto_line, 7, 1, 1, 1)
+
+        self.city_line = QLineEdit(self.frame_8)
+        self.city_line.setObjectName(u"city_line")
+        self.city_line.setMinimumSize(QSize(340, 40))
+        self.city_line.setMaximumSize(QSize(500, 16777215))
+
+        self.gridLayout.addWidget(self.city_line, 5, 1, 1, 1)
+
+        self.lbl_exp = QLabel(self.frame_8)
+        self.lbl_exp.setObjectName(u"lbl_exp")
+
+        self.gridLayout.addWidget(self.lbl_exp, 6, 0, 1, 1)
+
         self.nome_line = QLineEdit(self.frame_8)
         self.nome_line.setObjectName(u"nome_line")
-        self.nome_line.setMinimumSize(QSize(300, 40))
-        self.nome_line.setMaximumSize(QSize(500, 16777215))
+        self.nome_line.setMinimumSize(QSize(340, 40))
+        self.nome_line.setMaximumSize(QSize(340, 16777215))
         font5 = QFont()
         font5.setFamilies([u"MS Shell Dig 2"])
         font5.setPointSize(10)
@@ -360,57 +413,38 @@ class Ui_MainWindow(object):
 "    border: 2px solid white;\n"
 "}")
 
-        self.verticalLayout_6.addWidget(self.nome_line)
+        self.gridLayout.addWidget(self.nome_line, 0, 1, 1, 2)
 
-        self.date_nasc_line = QLineEdit(self.frame_8)
-        self.date_nasc_line.setObjectName(u"date_nasc_line")
-        self.date_nasc_line.setMinimumSize(QSize(0, 40))
-        self.date_nasc_line.setMaximumSize(QSize(500, 16777215))
+        self.lbl_dob = QLabel(self.frame_8)
+        self.lbl_dob.setObjectName(u"lbl_dob")
 
-        self.verticalLayout_6.addWidget(self.date_nasc_line)
-
-        self.nacionalidade_line = QLineEdit(self.frame_8)
-        self.nacionalidade_line.setObjectName(u"nacionalidade_line")
-        self.nacionalidade_line.setMinimumSize(QSize(0, 40))
-        self.nacionalidade_line.setMaximumSize(QSize(500, 16777215))
-
-        self.verticalLayout_6.addWidget(self.nacionalidade_line)
+        self.gridLayout.addWidget(self.lbl_dob, 2, 0, 1, 1)
 
         self.passport_line = QLineEdit(self.frame_8)
         self.passport_line.setObjectName(u"passport_line")
-        self.passport_line.setMinimumSize(QSize(0, 40))
+        self.passport_line.setMinimumSize(QSize(340, 40))
         self.passport_line.setMaximumSize(QSize(500, 16777215))
 
-        self.verticalLayout_6.addWidget(self.passport_line)
-
-        self.gender_line = QLineEdit(self.frame_8)
-        self.gender_line.setObjectName(u"gender_line")
-        self.gender_line.setMinimumSize(QSize(0, 40))
-        self.gender_line.setMaximumSize(QSize(500, 16777215))
-
-        self.verticalLayout_6.addWidget(self.gender_line)
+        self.gridLayout.addWidget(self.passport_line, 4, 1, 1, 1)
 
         self.validade_line = QLineEdit(self.frame_8)
         self.validade_line.setObjectName(u"validade_line")
-        self.validade_line.setMinimumSize(QSize(0, 40))
+        self.validade_line.setMinimumSize(QSize(340, 40))
         self.validade_line.setMaximumSize(QSize(500, 16777215))
 
-        self.verticalLayout_6.addWidget(self.validade_line)
-
-        self.tipo_visto_line = QLineEdit(self.frame_8)
-        self.tipo_visto_line.setObjectName(u"tipo_visto_line")
-        self.tipo_visto_line.setMinimumSize(QSize(0, 40))
-        self.tipo_visto_line.setMaximumSize(QSize(500, 16777215))
-        self.tipo_visto_line.setClearButtonEnabled(False)
-
-        self.verticalLayout_6.addWidget(self.tipo_visto_line)
+        self.gridLayout.addWidget(self.validade_line, 6, 1, 1, 1)
 
         self.num_visto_line = QLineEdit(self.frame_8)
         self.num_visto_line.setObjectName(u"num_visto_line")
-        self.num_visto_line.setMinimumSize(QSize(0, 40))
+        self.num_visto_line.setMinimumSize(QSize(340, 40))
         self.num_visto_line.setMaximumSize(QSize(500, 16777215))
 
-        self.verticalLayout_6.addWidget(self.num_visto_line)
+        self.gridLayout.addWidget(self.num_visto_line, 8, 1, 1, 1)
+
+        self.lbl_num_visto = QLabel(self.frame_8)
+        self.lbl_num_visto.setObjectName(u"lbl_num_visto")
+
+        self.gridLayout.addWidget(self.lbl_num_visto, 8, 0, 1, 1)
 
         self.btn_add_2 = QPushButton(self.frame_8)
         self.btn_add_2.setObjectName(u"btn_add_2")
@@ -433,7 +467,7 @@ class Ui_MainWindow(object):
 "	color: #fff\n"
 "}")
 
-        self.verticalLayout_6.addWidget(self.btn_add_2, 0, Qt.AlignHCenter)
+        self.gridLayout.addWidget(self.btn_add_2, 9, 1, 1, 1, Qt.AlignHCenter)
 
 
         self.horizontalLayout_6.addWidget(self.frame_8)
@@ -452,6 +486,16 @@ class Ui_MainWindow(object):
         self.verticalLayout_10.addWidget(self.frame_4)
 
         self.Pages.addWidget(self.pg_adicionar)
+        self.pg_home = QWidget()
+        self.pg_home.setObjectName(u"pg_home")
+        self.verticalLayout_7 = QVBoxLayout(self.pg_home)
+        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
+        self.logo = QLabel(self.pg_home)
+        self.logo.setObjectName(u"logo")
+
+        self.verticalLayout_7.addWidget(self.logo)
+
+        self.Pages.addWidget(self.pg_home)
         self.pg_listar = QWidget()
         self.pg_listar.setObjectName(u"pg_listar")
         self.horizontalLayout_8 = QHBoxLayout(self.pg_listar)
@@ -772,7 +816,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.toolBox.setCurrentIndex(0)
-        self.Pages.setCurrentIndex(1)
+        self.Pages.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -791,20 +835,28 @@ class Ui_MainWindow(object):
         self.toolBox.setItemText(self.toolBox.indexOf(self.Usuario), QCoreApplication.translate("MainWindow", u"Usu\u00e1rio", None))
         self.btn_toggle.setText("")
         self.label.setText(QCoreApplication.translate("MainWindow", u"Sistema de leitura de Documentos de Viagem", None))
-        self.logo.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><img src=\":/logo/pages/icons/logo_nome_branco.png\"/></p></body></html>", None))
         self.img_space.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.btn_ler.setText(QCoreApplication.translate("MainWindow", u"Buscar visto", None))
-        self.nome_line.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Nome", None))
-        self.date_nasc_line.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Data de nascimento", None))
         self.nacionalidade_line.setText("")
-        self.nacionalidade_line.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Nacionalidade", None))
-        self.passport_line.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Passaporte", None))
-        self.gender_line.setText("")
-        self.gender_line.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Cidade emitente", None))
-        self.validade_line.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Validade do visto", None))
-        self.tipo_visto_line.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Tipo de visto", None))
-        self.num_visto_line.setPlaceholderText(QCoreApplication.translate("MainWindow", u"N\u00famero do visto", None))
+        self.nacionalidade_line.setPlaceholderText("")
+        self.lbl_nacionalidade.setText(QCoreApplication.translate("MainWindow", u"Nacionalidade", None))
+        self.date_nasc_line.setPlaceholderText("")
+        self.lbl_nome.setText(QCoreApplication.translate("MainWindow", u"Nome", None))
+        self.lbl_passaporte.setText(QCoreApplication.translate("MainWindow", u"Passaporte", None))
+        self.lbl_city.setText(QCoreApplication.translate("MainWindow", u"Cidade emitente", None))
+        self.lbl_tipo_visto.setText(QCoreApplication.translate("MainWindow", u"Tipo de visto", None))
+        self.tipo_visto_line.setPlaceholderText("")
+        self.city_line.setText("")
+        self.city_line.setPlaceholderText("")
+        self.lbl_exp.setText(QCoreApplication.translate("MainWindow", u"Validade do visto", None))
+        self.nome_line.setPlaceholderText("")
+        self.lbl_dob.setText(QCoreApplication.translate("MainWindow", u"Data de nascimento  ", None))
+        self.passport_line.setPlaceholderText("")
+        self.validade_line.setPlaceholderText("")
+        self.num_visto_line.setPlaceholderText("")
+        self.lbl_num_visto.setText(QCoreApplication.translate("MainWindow", u"N\u00famero do visto", None))
         self.btn_add_2.setText(QCoreApplication.translate("MainWindow", u"     Adicionar     ", None))
+        self.logo.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><img src=\":/logo/pages/icons/logo_nome_branco.png\"/></p></body></html>", None))
         ___qtablewidgetitem = self.tbl_vistos.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"Nome", None));
         ___qtablewidgetitem1 = self.tbl_vistos.horizontalHeaderItem(1)

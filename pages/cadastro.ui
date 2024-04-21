@@ -471,19 +471,8 @@ font-weight: bold
           <item>
            <widget class="QStackedWidget" name="Pages">
             <property name="currentIndex">
-             <number>1</number>
+             <number>0</number>
             </property>
-            <widget class="QWidget" name="pg_home">
-             <layout class="QVBoxLayout" name="verticalLayout_7">
-              <item>
-               <widget class="QLabel" name="logo">
-                <property name="text">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;img src=&quot;:/logo/pages/icons/logo_nome_branco.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
             <widget class="QWidget" name="pg_adicionar">
              <layout class="QVBoxLayout" name="verticalLayout_10">
               <item>
@@ -572,14 +561,14 @@ frame-radius:10px;</string>
                         <widget class="QPushButton" name="btn_ler">
                          <property name="minimumSize">
                           <size>
-                           <width>60</width>
+                           <width>150</width>
                            <height>50</height>
                           </size>
                          </property>
                          <property name="maximumSize">
                           <size>
                            <width>120</width>
-                           <height>16777215</height>
+                           <height>100</height>
                           </size>
                          </property>
                          <property name="sizeIncrement">
@@ -637,6 +626,10 @@ QPushButton:hover {
                       <property name="styleSheet">
                        <string notr="true">QFrame {
     border-radius: 4px
+}
+
+QLabel {
+    color: rgb(80,80,80);
 }</string>
                       </property>
                       <property name="frameShape">
@@ -645,18 +638,145 @@ QPushButton:hover {
                       <property name="frameShadow">
                        <enum>QFrame::Raised</enum>
                       </property>
-                      <layout class="QVBoxLayout" name="verticalLayout_6">
-                       <item>
-                        <widget class="QLineEdit" name="nome_line">
+                      <layout class="QGridLayout" name="gridLayout">
+                       <item row="3" column="1">
+                        <widget class="QLineEdit" name="nacionalidade_line">
                          <property name="minimumSize">
                           <size>
-                           <width>300</width>
+                           <width>340</width>
                            <height>40</height>
                           </size>
                          </property>
                          <property name="maximumSize">
                           <size>
                            <width>500</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="placeholderText">
+                          <string/>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="3" column="0">
+                        <widget class="QLabel" name="lbl_nacionalidade">
+                         <property name="text">
+                          <string>Nacionalidade</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="1">
+                        <widget class="QLineEdit" name="date_nasc_line">
+                         <property name="minimumSize">
+                          <size>
+                           <width>340</width>
+                           <height>40</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>340</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="placeholderText">
+                          <string/>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="0">
+                        <widget class="QLabel" name="lbl_nome">
+                         <property name="text">
+                          <string>Nome</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="4" column="0">
+                        <widget class="QLabel" name="lbl_passaporte">
+                         <property name="text">
+                          <string>Passaporte</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="5" column="0">
+                        <widget class="QLabel" name="lbl_city">
+                         <property name="text">
+                          <string>Cidade emitente</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="7" column="0">
+                        <widget class="QLabel" name="lbl_tipo_visto">
+                         <property name="text">
+                          <string>Tipo de visto</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="7" column="1">
+                        <widget class="QLineEdit" name="tipo_visto_line">
+                         <property name="minimumSize">
+                          <size>
+                           <width>340</width>
+                           <height>40</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>500</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="placeholderText">
+                          <string/>
+                         </property>
+                         <property name="clearButtonEnabled">
+                          <bool>false</bool>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="5" column="1">
+                        <widget class="QLineEdit" name="city_line">
+                         <property name="minimumSize">
+                          <size>
+                           <width>340</width>
+                           <height>40</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>500</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="placeholderText">
+                          <string/>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="6" column="0">
+                        <widget class="QLabel" name="lbl_exp">
+                         <property name="text">
+                          <string>Validade do visto</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="1" colspan="2">
+                        <widget class="QLineEdit" name="nome_line">
+                         <property name="minimumSize">
+                          <size>
+                           <width>340</width>
+                           <height>40</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>340</width>
                            <height>16777215</height>
                           </size>
                          </property>
@@ -680,56 +800,22 @@ QPushButton:hover {
 }</string>
                          </property>
                          <property name="placeholderText">
-                          <string>Nome</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QLineEdit" name="date_nasc_line">
-                         <property name="minimumSize">
-                          <size>
-                           <width>0</width>
-                           <height>40</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>500</width>
-                           <height>16777215</height>
-                          </size>
-                         </property>
-                         <property name="placeholderText">
-                          <string>Data de nascimento</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QLineEdit" name="nacionalidade_line">
-                         <property name="minimumSize">
-                          <size>
-                           <width>0</width>
-                           <height>40</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>500</width>
-                           <height>16777215</height>
-                          </size>
-                         </property>
-                         <property name="text">
                           <string/>
                          </property>
-                         <property name="placeholderText">
-                          <string>Nacionalidade</string>
+                        </widget>
+                       </item>
+                       <item row="2" column="0">
+                        <widget class="QLabel" name="lbl_dob">
+                         <property name="text">
+                          <string>Data de nascimento  </string>
                          </property>
                         </widget>
                        </item>
-                       <item>
+                       <item row="4" column="1">
                         <widget class="QLineEdit" name="passport_line">
                          <property name="minimumSize">
                           <size>
-                           <width>0</width>
+                           <width>340</width>
                            <height>40</height>
                           </size>
                          </property>
@@ -740,37 +826,15 @@ QPushButton:hover {
                           </size>
                          </property>
                          <property name="placeholderText">
-                          <string>Passaporte</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QLineEdit" name="gender_line">
-                         <property name="minimumSize">
-                          <size>
-                           <width>0</width>
-                           <height>40</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>500</width>
-                           <height>16777215</height>
-                          </size>
-                         </property>
-                         <property name="text">
                           <string/>
                          </property>
-                         <property name="placeholderText">
-                          <string>Cidade emitente</string>
-                         </property>
                         </widget>
                        </item>
-                       <item>
+                       <item row="6" column="1">
                         <widget class="QLineEdit" name="validade_line">
                          <property name="minimumSize">
                           <size>
-                           <width>0</width>
+                           <width>340</width>
                            <height>40</height>
                           </size>
                          </property>
@@ -781,37 +845,15 @@ QPushButton:hover {
                           </size>
                          </property>
                          <property name="placeholderText">
-                          <string>Validade do visto</string>
+                          <string/>
                          </property>
                         </widget>
                        </item>
-                       <item>
-                        <widget class="QLineEdit" name="tipo_visto_line">
-                         <property name="minimumSize">
-                          <size>
-                           <width>0</width>
-                           <height>40</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>500</width>
-                           <height>16777215</height>
-                          </size>
-                         </property>
-                         <property name="placeholderText">
-                          <string>Tipo de visto</string>
-                         </property>
-                         <property name="clearButtonEnabled">
-                          <bool>false</bool>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
+                       <item row="8" column="1">
                         <widget class="QLineEdit" name="num_visto_line">
                          <property name="minimumSize">
                           <size>
-                           <width>0</width>
+                           <width>340</width>
                            <height>40</height>
                           </size>
                          </property>
@@ -822,11 +864,18 @@ QPushButton:hover {
                           </size>
                          </property>
                          <property name="placeholderText">
+                          <string/>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="8" column="0">
+                        <widget class="QLabel" name="lbl_num_visto">
+                         <property name="text">
                           <string>Número do visto</string>
                          </property>
                         </widget>
                        </item>
-                       <item alignment="Qt::AlignHCenter">
+                       <item row="9" column="1" alignment="Qt::AlignHCenter">
                         <widget class="QPushButton" name="btn_add_2">
                          <property name="minimumSize">
                           <size>
@@ -891,6 +940,17 @@ QPushButton:hover {
                   </widget>
                  </item>
                 </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="pg_home">
+             <layout class="QVBoxLayout" name="verticalLayout_7">
+              <item>
+               <widget class="QLabel" name="logo">
+                <property name="text">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;img src=&quot;:/logo/pages/icons/logo_nome_branco.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
                </widget>
               </item>
              </layout>

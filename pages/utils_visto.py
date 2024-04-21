@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 import psycopg2
 from os import getenv
 import src.database.dependencies as d
+import datetime as dt
 #from Versao_Final_OCR import leitura_do_passaporte
 
 load_dotenv()
@@ -58,7 +59,6 @@ class Funcoes:
             passaporte = info_array[1]
             nacionalidade = info_array[2]
             data_nascimento = info_array[3]
-                        
             data_validade = info_array[4]
             tipo_visto = info_array[5]
             pais_emitente = info_array[6]
@@ -72,6 +72,24 @@ class Funcoes:
         except Exception as e:
             print(f'Ocorreu um erro: {e}')
 
+    def listar_vistos(self):
+        try:
+            sql = '''SELECT passageiros.passaporte, 
+                            passageiros.nome,
+                            passageiros.nacionalidade,
+                            passageiros.data_nascimento,
+                            vistos.numero_visto,
+                            vistos.tipo_visto,
+                            vistos.data_validade
+            FROM passageiros 
+            JOIN vistos ON passageiros.passaporte = vistos.passaporte;'''
+        
+            self.cur.execute(sql)
+            resultados = self.cur.fetchall()
+            return resultados
+        
+        except Exception as e:
+            print(f'Ocorreu um erro: {e}')
 
     def listar_vistos_asc(self):
         try:
@@ -88,8 +106,8 @@ class Funcoes:
         
             self.cur.execute(sql)
             resultados = self.cur.fetchall()
-            self.imprimir_resultados(resultados)
-
+            return resultados
+        
         except Exception as e:
             print(f'Ocorreu um erro: {e}')
 
@@ -115,18 +133,25 @@ class Funcoes:
             print(f'Ocorreu um erro: {e}')
 
 
-    def imprimir_resultados(self, resultados):
-        if resultados:
-            for visto in resultados:
-                print(visto)
+    def verificar_regras_embarque(self, tipo_visto, dob, expiracao):
+        current_date = dt.datetime.now().date()  # Obtém apenas a data de hoje
+        dob_date = dt.datetime.combine(dob, dt.datetime.min.time())  # Converte dob para datetime
+        age = current_date.year - dob_date.year - ((current_date.month, current_date.day) < (dob_date.month, dob_date.day))
+        tipo_encontrado = None  # Defina tipo_encontrado como None inicialmente
+        
+        # Verifique o tipo de visto
+        if tipo_visto:
+            self.cur.execute("SELECT tipo, regras FROM tipos_vistos WHERE tipo = %s", (tipo_visto.lower(),))
+            tipo_encontrado = self.cur.fetchone()  # Busca apenas um registro
 
-    def verificar_regras_embarque(self, tipo_visto):
-        self.cur.execute("SELECT tipo, regras FROM tipos_vistos WHERE tipo = %s", (tipo_visto,))
-        tipo_encontrado = self.cur.fetchone()  # Busca apenas um registro
-        if tipo_encontrado:
+        if expiracao < current_date: # Verifica se a data de expiração do visto está na validade
+            return "O visto está vencido!"
+        elif age < 18:
+            return "O passageiro é menor de idade. Verificar autorização dos responsáveis." # Verifica se é menor de idade
+        elif tipo_encontrado:
             return tipo_encontrado[1] # Retorna a regra correspondente ao tipo de visto
         else:
-            return False
+            return False # Retorna a regra correspondente ao tipo de visto
 
 # if __name__ == '__main__':
             

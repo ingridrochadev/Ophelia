@@ -1,13 +1,15 @@
 from PySide6.QtCore import Qt
 from PySide6.QtCore import QCoreApplication, QPropertyAnimation, QEasingCurve
 from PySide6.QtGui import QIcon, QPixmap
-from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QMessageBox, QFileDialog
+from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QMessageBox, QFileDialog, QBoxLayout
 from pages.ui_login import Ui_Form
 from pages.ui_main import Ui_MainWindow
-from pages.utils import Sistema
 from src.image_processing.Versao_Final_OCR import read_visto
+from pages.utils import Sistema
+from pages.utils_visto import Funcoes
+from pages.utils_interface import Home
 import sys
-from src.database.utils_visto import Funcoes
+import pandas as pd
 
 sistema = Sistema()
 class Login(QWidget, Ui_Form):
@@ -99,19 +101,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.tipo_visto_line.setText(self.dados_visto[5])
                 self.date_nasc_line.setText(dt_nascimento)
                 self.validade_line.setText(validade_visto)
-                self.gender_line.setText(self.dados_visto[6])
+                self.city_line.setText(self.dados_visto[6])
                 self.nacionalidade_line.setText(self.dados_visto[2])
                 self.num_visto_line.setText(self.dados_visto[7])
-                
-                #Atualizar dados lidos com as edições feitas
-                self.dados_visto[0] = self.nome_line.text()
-                self.dados_visto[1] = self.passport_line.text()
-                self.dados_visto[2] = self.nacionalidade_line.text()
-                self.dados_visto[3] = self.date_nasc_line.text()
-                self.dados_visto[4] = self.validade_line.text()
-                self.dados_visto[5] = self.tipo_visto_line.text()                
-                self.dados_visto[6] = self.gender_line.text()
-                self.dados_visto[7] = self.num_visto_line.text()
 
                 pixmap = QPixmap(arquivo_path[0])
                 self.img_space.setPixmap(pixmap.scaled(self.img_space.size(), Qt.KeepAspectRatio))
@@ -119,22 +111,131 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         def inserir_dados_bd(self):
             if self.dados_visto:
                 func = Funcoes()
-                regra = func.verificar_regras_embarque(self.dados_visto[5].lower())
+                regra = func.verificar_regras_embarque(self.dados_visto[5].lower(), self.dados_visto[3], self.dados_visto[4])
+                
                 if regra:
                     msg = QMessageBox()
+                    msg.setIcon(QMessageBox.Warning)
                     msg.setWindowTitle(f"Visto tipo {self.dados_visto[5].upper()}")
                     msg.setInformativeText(regra)
-                    msg.setStandardButtons(QMessageBox.Save | QMessageBox.Discard | QMessageBox.Cancel)
-                    msg.setDefaultButton(QMessageBox.Save)
-                    msg.exec()
+                    
+                    # Define os botões e seus textos
+                    ok_button = msg.addButton(QMessageBox.Ok)
+                    ok_button.setText("\n Autorizar \n Embarque")
+                    
+                    discard_button = msg.addButton(QMessageBox.Discard)
+                    discard_button.setText("\n Negar \n Embarqu")
+                    
+                    msg.setDefaultButton(QMessageBox.Discard)
+
+                    msg.setFixedSize(200, 500)
+                    
+                    # Definindo a folha de estilo para a QMessageBox
+                    msg.setStyleSheet("QMessageBox { font-size: 12pt; }" 
+                                    "QPushButton { font-size: 12pt; }" 
+                                    "QPushButton { margin-top: 10px; }")
+                    
+                    layout = msg.layout()
+                    if isinstance(layout, QBoxLayout):
+                        layout.setAlignment(Qt.AlignTop)  # Alinha os botões ao topo
+                        layout.setSpacing(10)
+                    
+                    resp = msg.exec()
+                    
+                    if resp == QMessageBox.Ok:
+                        #Atualizar dados lidos com as edições feitas
+                        self.dados_visto[0] = self.nome_line.text()
+                        self.dados_visto[1] = self.passport_line.text()
+                        self.dados_visto[2] = self.nacionalidade_line.text()
+                        self.dados_visto[3] = self.date_nasc_line.text()
+                        self.dados_visto[4] = self.validade_line.text()
+                        self.dados_visto[5] = self.tipo_visto_line.text()                
+                        self.dados_visto[6] = self.city_line.text()
+                        self.dados_visto[7] = self.num_visto_line.text()
+                        print(self.dados_visto)
+                        
+                        try:
+                            func.inserir_dados(self.dados_visto)
+                            # Limpa os QLineEdit
+                            self.nome_line.clear()
+                            self.passport_line.clear()
+                            self.tipo_visto_line.clear()
+                            self.date_nasc_line.clear()
+                            self.validade_line.clear()
+                            self.city_line.clear()
+                            self.nacionalidade_line.clear()
+                            self.num_visto_line.clear()
+                            # Remove a imagem carregada
+                            self.img_space.clear()
+                            
+                            msg = QMessageBox()
+                            msg.setIcon(QMessageBox.Information)
+                            msg.setWindowTitle('Visto Inserido!')
+                            msg.setText(f'Visto salvo com sucesso!')
+                            msg.exec()
+                            
+                        except Exception as e:
+                            msg = QMessageBox()
+                            msg.setIcon(QMessageBox.Critical)
+                            msg.setWindowTitle('Erro ao inserir visto')
+                            msg.setText(f'Erro ao inserir dados na tabela de vistos: {str(e)}')
+                            msg.exec()
+                            
+                    elif resp == QMessageBox.Discard:
+                        pass
+
                 else:
-                    func.inserir_dados(self.dados_visto)
-                    msg = QMessageBox()
-                    msg.setIcon(QMessageBox.Information)
-                    msg.setWindowTitle('Visto Inserido!')
-                    msg.setText(f'Passageiro salvo com sucesso!')
-                    msg.exec()
-                
+                    #Atualizar dados lidos com as edições feitas
+                    self.dados_visto[0] = self.nome_line.text()
+                    self.dados_visto[1] = self.passport_line.text()
+                    self.dados_visto[2] = self.nacionalidade_line.text()
+                    self.dados_visto[3] = self.date_nasc_line.text()
+                    self.dados_visto[4] = self.validade_line.text()
+                    self.dados_visto[5] = self.tipo_visto_line.text()                
+                    self.dados_visto[6] = self.city_line.text()
+                    self.dados_visto[7] = self.num_visto_line.text()
+
+                    try:
+                        func.inserir_dados(self.dados_visto)
+                        # Limpa os QLineEdit
+                        self.nome_line.clear()
+                        self.passport_line.clear()
+                        self.tipo_visto_line.clear()
+                        self.date_nasc_line.clear()
+                        self.validade_line.clear()
+                        self.city_line.clear()
+                        self.nacionalidade_line.clear()
+                        self.num_visto_line.clear()
+                        # Remove a imagem carregada
+                        self.img_space.clear()
+                            
+                        msg = QMessageBox()
+                        msg.setIcon(QMessageBox.Information)
+                        msg.setWindowTitle('Visto Inserido!')
+                        msg.setText(f'Visto salvo com sucesso!')
+                        msg.exec()
+                        
+                    except Exception as e:
+                        msg = QMessageBox()
+                        msg.setIcon(QMessageBox.Critical)
+                        msg.setWindowTitle('Erro ao inserir visto')
+                        msg.setText(f'Erro ao inserir dados na tabela de vistos: {str(e)}')
+                        msg.exec()
+            
+        def table_passageiros(self):
+            self.tbl_vistos.setStyleSheet(u" QHeaderView{color:black;}; color:#fff;font-size: 15px;")
+            
+            lista_pax = Funcoes.listar_vistos()
+            
+            for pax in lista_pax:
+                pass
+            
+            self.tbl_vistos.setSortingEnabled(True)
+            
+            for i in range(1,3):
+                self.tbl_vistos.resizeColumnToContents(i)
+            
+            
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = Login()
