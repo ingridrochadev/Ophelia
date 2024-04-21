@@ -7,7 +7,7 @@ from pages.ui_main import Ui_MainWindow
 from pages.utils import Sistema
 from src.image_processing.Versao_Final_OCR import read_visto
 import sys
-from src.database.inserir_visto import Funcoes
+from src.database.utils_visto import Funcoes
 
 sistema = Sistema()
 class Login(QWidget, Ui_Form):
@@ -102,33 +102,38 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.gender_line.setText(self.dados_visto[6])
                 self.nacionalidade_line.setText(self.dados_visto[2])
                 self.num_visto_line.setText(self.dados_visto[7])
-        
+                
+                #Atualizar dados lidos com as edições feitas
+                self.dados_visto[0] = self.nome_line.text()
+                self.dados_visto[1] = self.passport_line.text()
+                self.dados_visto[2] = self.nacionalidade_line.text()
+                self.dados_visto[3] = self.date_nasc_line.text()
+                self.dados_visto[4] = self.validade_line.text()
+                self.dados_visto[5] = self.tipo_visto_line.text()                
+                self.dados_visto[6] = self.gender_line.text()
+                self.dados_visto[7] = self.num_visto_line.text()
+
                 pixmap = QPixmap(arquivo_path[0])
                 self.img_space.setPixmap(pixmap.scaled(self.img_space.size(), Qt.KeepAspectRatio))
             
         def inserir_dados_bd(self):
             if self.dados_visto:
                 func = Funcoes()
-                func.inserir_dados(self.dados_visto)
-                msg = QMessageBox()
-                msg.setIcon(QMessageBox.Information)
-                msg.setWindowTitle('Visto Inserido!')
-                msg.exec()
-                # tipo, descricao, regra = func.verificar_tipo_visto
-                
-                # if !(regra):
-                #     msg = QMessageBox()
-                #     msg.setIcon(QMessageBox.Information)
-                #     msg.setWindowTitle('Visto adicionado!')
-                #     msg.exec()
-                # else:
-                #     msg = QMessageBox()
-                #     msg.setWindowTitle(f"Visto tipo {tipo.upper()}")
-                #     msg.setInformativeText(regra)
-                #     msg.setStandardButtons(msg::Save | msg::Discard | msg::Cancel)
-                #     msg.setDefaultButton(msg::Save)
-                #     int ret = msg.exec()
-                    
+                regra = func.verificar_regras_embarque(self.dados_visto[5].lower())
+                if regra:
+                    msg = QMessageBox()
+                    msg.setWindowTitle(f"Visto tipo {self.dados_visto[5].upper()}")
+                    msg.setInformativeText(regra)
+                    msg.setStandardButtons(QMessageBox.Save | QMessageBox.Discard | QMessageBox.Cancel)
+                    msg.setDefaultButton(QMessageBox.Save)
+                    msg.exec()
+                else:
+                    func.inserir_dados(self.dados_visto)
+                    msg = QMessageBox()
+                    msg.setIcon(QMessageBox.Information)
+                    msg.setWindowTitle('Visto Inserido!')
+                    msg.setText(f'Passageiro salvo com sucesso!')
+                    msg.exec()
                 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

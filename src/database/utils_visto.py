@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import psycopg2
 from os import getenv
-import src.image_processing.dependencies as d
+import src.database.dependencies as d
 #from Versao_Final_OCR import leitura_do_passaporte
 
 load_dotenv()
@@ -26,7 +26,6 @@ class Funcoes:
            
         except Exception as e:
             print(f'\nOcorreu um erro ao conectar ao banco de dados: {e}')
-            
 
 
     # Método para inserir dados do OCR na tabela de vistos
@@ -122,36 +121,16 @@ class Funcoes:
                 print(visto)
 
     def verificar_regras_embarque(self, tipo_visto):
-        self.cur.execute("SELECT regras FROM tipos_vistos WHERE tipo = %s", (tipo_visto,))
-        regras = [regra[0] for regra in self.cur.fetchall()]
-        for regra in regras:
-            if regra:
-                return regra
-            else:
-                return True
+        self.cur.execute("SELECT tipo, regras FROM tipos_vistos WHERE tipo = %s", (tipo_visto,))
+        tipo_encontrado = self.cur.fetchone()  # Busca apenas um registro
+        if tipo_encontrado:
+            return tipo_encontrado[1] # Retorna a regra correspondente ao tipo de visto
+        else:
+            return False
 
-        if not regras:
-            return 'Tipo de visto não encontrado!'
-
-    def verificar_tipo_visto(self, tipo_visto):
-        self.cur.execute("SELECT tipo, descricao, regras FROM tipos_vistos WHERE tipo = %s", (tipo_visto,))
-        tipos_vistos = self.cur.fetchall()
-
-        for tipo_visto in tipos_vistos:
-            tipo = tipo_visto[0]
-            descricao = tipo_visto[1]
-            regra = tipo_visto[2]
-
-            if tipo:
-                return tipo, descricao, regra
-            else:
-                return None, None, None  # Retornar None se o tipo de visto não for encontrado
-
-
-
-if __name__ == '__main__':
+# if __name__ == '__main__':
             
-    funcoes = Funcoes()
+#     funcoes = Funcoes()
 
     #info_array = leitura_do_passaporte()
     #info_array = ['FERNANDES  STEVE NKLAWRENCE', 'P6966107', '1ND', '1986-01-26', '2017-12-31', 'J1', 'MDR', 'M2728859']
@@ -161,7 +140,7 @@ if __name__ == '__main__':
     #regra = funcoes.verificar_regras_embarque(tipo)
     #print(regra)
     
-    funcoes.listar_vistos_asc()
+    # funcoes.listar_vistos_asc()
     #funcoes.listar_vistos_desc()
 
 

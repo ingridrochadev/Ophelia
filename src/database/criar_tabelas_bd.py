@@ -171,8 +171,6 @@ class Criar_bd:
     def inserir_tipos_vistos(self):
         self.cur.execute('''INSERT INTO public.tipos_vistos (tipo, descricao, regras) VALUES
     ('b1', 'Visto de embarque para turismo, visitas a amigos ou parentes, tratamento médico, etc.', 'Para o tipo B1, verificar se o empregado doméstico está acompanhado do seu empregador.'),
-    ('b2', 'Visto de embarque para turismo, visitas a amigos ou parentes, tratamento médico, etc.', NULL),
-    ('b3', 'Visto de embarque para turismo, visitas a amigos ou parentes, tratamento médico, etc.', NULL),
     ('c1', 'Visto de trânsito.', 'Verificar se o destino final do passageiro é fora dos EUA.'),
     ('f1', 'Visto de embarque para estudantes matriculados em instituições acadêmicas ou estudantes não acadêmicos. Limitado a instituições educacionais específicas.', 'Verificar o documento de Formulário I-20 da instituição educacional.'),
     ('m1', 'Visto de embarque para estudantes matriculados em instituições acadêmicas ou estudantes não acadêmicos. Limitado a instituições educacionais específicas.', 'Verificar o documento de Formulário I-20 da instituição educacional.'),
@@ -198,8 +196,7 @@ class Criar_bd:
     ('v', 'Visto de embarque para cônjuges ou filhos de residentes legais permanentes.', 'Verificar o documento: provas de relacionamento.'),
     ('d', 'Visto de embarque para tripulantes de navios ou aeronaves.', 'Verificar o documento de licença de tripulação.'),
     ('nato', 'Visto de embarque para membros da OTAN e suas famílias.', 'Verificar o documento de identificação da OTAN.'),
-    ('p1', 'Visto de atleta/artista de destaque.', 'Verificar documentação que comprove o status de atleta ou artista de destaque.'),
-    ('tn', 'Visto do Acordo de Livre Comércio da América do Norte (NAFTA).', NULL);
+    ('p1', 'Visto de atleta/artista de destaque.', 'Verificar documentação que comprove o status de atleta ou artista de destaque.')
     ''')
 
 
@@ -228,29 +225,16 @@ class Criar_bd:
 
 # Restante do código...
 
-if __name__ == '__main__':
-    bd = Criar_bd()
-
-    bd.apagar_tabelas()
-    bd.criar_tabelas()
-    bd.inserir_dados()
-
-    # Inserindo os usuários
-    bd.criar_usuario("Administrador", "12345678900", "admin@email.com", "admin", "ADM001", "administrador")
-    bd.criar_usuario("Usuário Normal", "98765432100", "user@email.com", "user", "USR001", "user")
-        
-    bd.cur.close()
-    bd.conn.close()
-
-
-
 # if __name__ == '__main__':
 #     bd = Criar_bd()
 
 #     bd.apagar_tabelas()
 #     bd.criar_tabelas()
 #     bd.inserir_dados()
-    
+
+#     # Inserindo os usuários
+#     bd.criar_usuario("Administrador", "12345678900", "admin@email.com", "admin", "ADM001", "administrador")
+#     bd.criar_usuario("Usuário Normal", "98765432100", "user@email.com", "user", "USR001", "user")
         
 #     bd.cur.close()
 #     bd.conn.close()
