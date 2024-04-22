@@ -52,6 +52,7 @@ class Criar_bd:
         tipo_visto character varying(10) NOT NULL,
         local_emissor character varying(15) NOT NULL,
         data_validade date NOT NULL,
+        status character varying(20),
         PRIMARY KEY (numero_visto),
         CONSTRAINT fk_passageiro FOREIGN KEY (passaporte)
             REFERENCES public.passageiros (passaporte)                 
@@ -147,23 +148,23 @@ class Criar_bd:
         print('Dados de passageiros inseridos')
     
     def inserir_dados_vistos(self):
-        self.cur.execute('''INSERT INTO public.vistos (numero_visto, passaporte, tipo_visto, local_emissor, data_validade)
+        self.cur.execute('''INSERT INTO public.vistos (numero_visto, passaporte, tipo_visto, local_emissor, data_validade, status)
     VALUES 
-    ('V1B123456', 'ABC123456', 'B1', 'USA', '2034-01-23'),
-    ('V2B234567', 'DEF234567', 'B2', 'CAN','2033-12-15'),
-    ('V3C345678', 'GHI345678', 'C1', 'GBR', '2033-11-20'),
-    ('V4D456789', 'JKL456789', 'D', 'AUS','2033-10-05'),
-    ('V5F567890', 'MNO567890', 'F1', 'GER', '2033-09-10'),
-    ('V6H678901', 'PQR678901', 'H1B', 'FRA', '2033-08-25'),
-    ('V7K789012', 'STU789012', 'K1', 'BRA', '2033-07-30'),
-    ('V8J890123', 'VWX890123', 'J1', 'IND', '2033-06-15'),
-    ('V9L901234', 'YZA901234', 'L1', 'CHN', '2033-05-20'),
-    ('V10M012345', 'BCD012345', 'M', 'JPN', '2033-04-05'),
-    ('V11O123456', 'EFG123456', 'O1', 'USA', '2034-01-23'),
-    ('V12P234567', 'HIJ234567', 'P1', 'ESP', '2033-12-15'),
-    ('V13R345678', 'KLM345678', 'R1', 'CAN', '2033-11-20'),
-    ('V14TN456789', 'NOP456789', 'TN', 'KOR', '2033-10-05'),
-    ('V15B567890', 'QRS567890', 'B1', 'TWN', '2033-09-10');
+    ('V1B123456', 'ABC123456', 'B1', 'USA', '2034-01-23', 'Aprovado'),
+    ('V2B234567', 'DEF234567', 'B2', 'CAN','2033-12-15', 'Aprovado'),
+    ('V3C345678', 'GHI345678', 'C1', 'GBR', '2033-11-20', 'Aprovado'),
+    ('V4D456789', 'JKL456789', 'D', 'AUS','2033-10-05','Negado'),
+    ('V5F567890', 'MNO567890', 'F1', 'GER', '2033-09-10','Aprovado'),
+    ('V6H678901', 'PQR678901', 'H1B', 'FRA', '2033-08-25','Aprovado'),
+    ('V7K789012', 'STU789012', 'K1', 'BRA', '2033-07-30','Negado'),
+    ('V8J890123', 'VWX890123', 'J1', 'IND', '2033-06-15','Aprovado'),
+    ('V9L901234', 'YZA901234', 'L1', 'CHN', '2033-05-20','Aprovado'),
+    ('V10M012345', 'BCD012345', 'M', 'JPN', '2033-04-05','Negado'),
+    ('V11O123456', 'EFG123456', 'O1', 'USA', '2034-01-23','Aprovado'),
+    ('V12P234567', 'HIJ234567', 'P1', 'ESP', '2033-12-15','Aprovado'),
+    ('V13R345678', 'KLM345678', 'R1', 'CAN', '2033-11-20','Aprovado'),
+    ('V14TN456789', 'NOP456789', 'TN', 'KOR', '2033-10-05','Aprovado'),
+    ('V15B567890', 'QRS567890', 'B1', 'TWN', '2033-09-10','Aprovado');
     ''')
         print('Dados de passageiros inseridos')
 
@@ -214,27 +215,15 @@ class Criar_bd:
         self.inserir_dados_vistos()
         self.inserir_tipos_vistos()
         self.conn.commit()
-    
-    def criar_usuario(self, nome, cpf, email, senha, matricula, tipo_usuario):
-        try:
-            self.cur.execute("INSERT INTO usuarios (matricula, nome, email, senha, cpf, tipo_usuario) VALUES (%s, %s, %s, %s, %s, %s)",
-                             (matricula, nome, email, senha, cpf, tipo_usuario))
-            print("Usuário criado com sucesso!")
-        except Exception as e:
-            print(f"Erro ao criar usuário: {e}")
 
 # Restante do código...
 
-# if __name__ == '__main__':
-#     bd = Criar_bd()
+if __name__ == '__main__':
+    bd = Criar_bd()
 
-#     bd.apagar_tabelas()
-#     bd.criar_tabelas()
-#     bd.inserir_dados()
-
-#     # Inserindo os usuários
-#     bd.criar_usuario("Administrador", "12345678900", "admin@email.com", "admin", "ADM001", "administrador")
-#     bd.criar_usuario("Usuário Normal", "98765432100", "user@email.com", "user", "USR001", "user")
+    bd.apagar_tabelas()
+    bd.criar_tabelas()
+    bd.inserir_dados()
         
-#     bd.cur.close()
-#     bd.conn.close()
+    bd.cur.close()
+    bd.conn.close()
