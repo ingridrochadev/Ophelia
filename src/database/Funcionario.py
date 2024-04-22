@@ -1,6 +1,4 @@
-from .tabelas import Sistema
-import streamlit as st
-
+from pages.utils import Sistema
 class Funcionario:
     def __init__(self):
         self.sistema = Sistema()
@@ -16,10 +14,10 @@ class Funcionario:
                 if nova_senha:
                     self.cur.execute("UPDATE usuarios SET senha = %s WHERE matricula = %s", (nova_senha, matricula))
                 self.conn.commit()
-                st.success("Dados alterados com sucesso!")
+                print("Dados alterados com sucesso!")
             
             except Exception as error:
-                st.error(f"Ocorreu um erro ao alterar os dados: {error}")
+                print(f"Ocorreu um erro ao alterar os dados: {error}")
     
     
     def verificar_visto(self, nome: str, nacionalidade: str, data_nascimento: str, numero_visto: int, passaporte: int, tipo_visto: str, data_validade: str, pais_emitente: str):
@@ -30,10 +28,10 @@ class Funcionario:
                 self.conn.commit()
 
             except Exception as error:
-                st.error(f"Houve um erro ao validar o visto. Motivo: {error}")
+                print(f"Houve um erro ao validar o visto. Motivo: {error}")
                 self.conn.rollback()
         else:
-            st.error("Preencha todos os campos obrigatórios!")
+            print("Preencha todos os campos obrigatórios!")
             
     # -> Método ainda falta ser finalizado
     def editar_visto(self, novo_nome: None, nova_nacionalidade: None, nova_data_nascimento: None, novo_numero_visto: None, novo_passaporte: None, novo_tipo_visto: None, nova_data_validade: None, novo_pais_emitente):
@@ -57,7 +55,7 @@ class Funcionario:
             self.conn.commit()
         
         except Exception as error:
-            st.error(f"Ocorreu um erro: {error}")
+            print(f"Ocorreu um erro: {error}")
                 
      
     def excluir_visto(self, numero_visto: str):
@@ -67,8 +65,10 @@ class Funcionario:
                 self.conn.commit()
 
             except Exception as error:
-                st.error(f"Houve um erro ao excluir o visto. Motivo: {error}")
+                print(f"Houve um erro ao excluir o visto. Motivo: {error}")
                 self.conn.rollback()
         else:
-            st.error("Preencha todos os campos obrigatórios!")
+            print("Preencha todos os campos obrigatórios!")
+
+
     

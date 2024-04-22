@@ -8,10 +8,8 @@ import numpy as np
 
 import math
 
-from datetime import datetime
-from dateutil.relativedelta import relativedelta
+from datetime import date, datetime
 
 from PIL import Image
 
-"""class created"""
-from filter import Filter
+from dateutil.relativedelta import relativedelta

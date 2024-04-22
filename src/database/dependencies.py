@@ -13,6 +13,3 @@ from datetime import date
 from PIL import Image
 
 from dateutil.relativedelta import relativedelta
-
-"""class created"""
-#from filter import Filter
