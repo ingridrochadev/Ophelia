@@ -52,6 +52,7 @@ class Criar_bd:
         tipo_visto character varying(10) NOT NULL,
         local_emissor character varying(15) NOT NULL,
         data_validade date NOT NULL,
+        status character varying(20),
         PRIMARY KEY (numero_visto),
         CONSTRAINT fk_passageiro FOREIGN KEY (passaporte)
             REFERENCES public.passageiros (passaporte)                 
@@ -228,15 +229,15 @@ class Criar_bd:
 if __name__ == '__main__':
     bd = Criar_bd()
 
-    # bd.apagar_tabelas()
-    # bd.criar_tabelas()
-    # bd.inserir_dados()
+    bd.apagar_tabelas()
+    bd.criar_tabelas()
+    bd.inserir_dados()
 
-    # # Inserindo os usuários
+    # Inserindo os usuários
     # bd.criar_usuario("Administrador", "12345678900", "admin@email.com", "admin", "ADM001", "administrador")
     # bd.criar_usuario("Usuário Normal", "98765432100", "user@email.com", "user", "USR001", "user")
         
-    # bd.cur.close()
-    # bd.conn.close()
+    bd.cur.close()
+    bd.conn.close()
 
-    bd.inserir_tipos_vistos()
+    # bd.inserir_tipos_vistos()

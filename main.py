@@ -12,6 +12,7 @@ import sys
 import pandas as pd
 
 sistema = Sistema()
+func = Funcoes()
 class Login(QWidget, Ui_Form):
     def __init__(self):
         super(Login, self).__init__()
@@ -22,12 +23,13 @@ class Login(QWidget, Ui_Form):
         self.btn_entrar.clicked.connect(self.open_system)
     
     def open_system(self):
-        email = self.email_line.text()  # Obtenha o texto digitado no campo de email
+        email = self.email_line.text()  # Obtém o texto digitado no campo de email
         senha = self.senha_line.text()
         usuario_verificado = sistema.fazer_login(email, senha)
+        perfil = sistema.verificar_tipo_perfil(email)
         
         if usuario_verificado:
-            self.w = MainWindow()
+            self.w = MainWindow(perfil)
             self.w.show()
             self.close()
         else:
@@ -40,15 +42,19 @@ class Login(QWidget, Ui_Form):
                 self.tentativas += 1
             if self.tentativas == 3:
                 sys.exit(0)
-    
+            
+            
 class MainWindow(QMainWindow, Ui_MainWindow):
-        def __init__(self):
+        def __init__(self, user):
             super(MainWindow, self).__init__()
             self.setupUi(self)
             self.setWindowTitle("Ophelia")
             self.resize(1200, 800)
-            appIcon = QIcon(u"")
+            appIcon = QIcon(u"pages/icons/logo_branca.png")
             self.setWindowIcon(appIcon)
+            
+            if user == "user":
+                self.btn_inserir_user.setVisible(False)
             
             #Togle Button
             self.btn_toggle.clicked.connect(self.leftMenu)
@@ -66,13 +72,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             #Botões de importação
             self.btn_ler.clicked.connect(self.leitura_img)
             self.btn_add_2.clicked.connect(self.inserir_dados_bd)
+            # self.btn_add_user.clicked.connect(self.criar_novo_usuario)
             
             # Armazenar os dados do visto
             self.dados_visto = None
             self.status_visto = None
 
             # self.buscar_vistos()
-            self.btn_alterar_2.clicked.connect(self.buscar_vistos)            
+            self.btn_listar.clicked.connect(self.buscar_vistos)            
 
         def leftMenu(self):
             width = self.left_container.width()
@@ -84,7 +91,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.animation.setEndValue(newWidth)
             self.animation.setEasingCurve(QEasingCurve.InOutQuart)
             self.animation.start()
-
+            
+        def pop_up_success(self,titulo,texto):
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Information)
+            msg.setWindowTitle(titulo)
+            msg.setText(texto)
+            msg.exec()
+            
+            
         def leitura_img(self):
             file_dialog = QFileDialog(self)
             file_dialog.setFileMode(QFileDialog.ExistingFile)
@@ -115,7 +130,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # ALTERAR: QUANDO MODIFICA MANUALMENTE NÃO ALTERA E OS DADOS SÃO INSERIDOS INCORRETAMENTE
         def inserir_dados_bd(self):
             if self.dados_visto:
-                func = Funcoes()
                 regra = func.verificar_regras_embarque(self.dados_visto[5].lower(), self.dados_visto[3], self.dados_visto[4])
                 
                 # Se Visto estiver ok
@@ -177,12 +191,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                             self.num_visto_line.clear()
                             # Remove a imagem carregada
                             self.img_space.clear()
-                            
-                            msg = QMessageBox()
-                            msg.setIcon(QMessageBox.Information)
-                            msg.setWindowTitle('Visto Inserido!')
-                            msg.setText(f'Visto salvo com sucesso!')
-                            msg.exec()
+                            self.pop_up_success('Visto inserido', 'Visto salvo com sucesso!')
                             
                         except Exception as e:
                             msg = QMessageBox()
@@ -204,7 +213,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
                         try:
                             func.inserir_dados(self.dados_visto)
-                            self.status_visto = "Não Autorizado"
+                            self.status_visto = "😭 Não Autorizado"
                             func.inserir_status(self.status_visto, self.dados_visto[1])
                             # Limpa os QLineEdit
                             self.nome_line.clear()
@@ -284,6 +293,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     self.tbl_vistos.setItem(row, column, QTableWidgetItem(str(data)))
 
             
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = Login()

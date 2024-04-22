@@ -100,7 +100,32 @@ class Sistema:
         else:
             print("Preencha todos os campos obrigatórios.")
             return False
+    
+    def verificar_tipo_perfil(self, email):
+        if email:
+            try:
+                conn = self.estabelecer_conexao()
+                cur = conn.cursor()
+                
+                cur.execute("SELECT tipo_usuario FROM usuarios WHERE email = %s", (email, ))
+                perfil = cur.fetchone()
+                if perfil[0] == "Administrador":
+                    return 'admin'
+                elif perfil[0] == "Usuário":
+                    return 'user'
+                else:
+                    pass
+                    
+            except Exception as error:
+                print(f"Ocorreu um erro na tentativa de login. Motivo: {error}")
+                return "Sem Acesso"
             
+            finally:
+                cur.close()
+                conn.close()
+                
+        else:
+            return "Preencha todos os campos obrigatórios."
             
     def alterar_senha(self, email: str, senha_armazenada: str, nova_senha: str, nova_senha2: str):
         if email and senha_armazenada and nova_senha and nova_senha2:
@@ -176,10 +201,10 @@ class Sistema:
         else:
             print("Preencha todos os campos obrigatórios!")
 
-# sistema = Sistema()
+sistema = Sistema()
 
-# # Criando um usuário administrador
-# sistema.criar_usuario("Administrador", "12345678900", "admin@email.com", "admin", "ADM001", "administrador")
+# Criando um usuário administrador
+sistema.criar_usuario("Administrador", "12345678900", "admin@email.com", "admin", "ADM001", "Administrador")
 
-# # Criando um usuário normal
-# sistema.criar_usuario("Usuário Normal", "98765432100", "user@email.com", "user", "USR001", "usuario")
+# Criando um usuário normal
+sistema.criar_usuario("Usuário Normal", "98765432100", "user@email.com", "user", "USR001", "Usuário")
