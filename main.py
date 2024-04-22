@@ -75,6 +75,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.btn_ler.clicked.connect(self.leitura_img)
             self.btn_add_2.clicked.connect(self.inserir_dados_bd)
             self.btn_add_user.clicked.connect(self.criar_novo_usuario)
+            self.btn_alterar_senha.clicked.connect(self.alterar_senha)
             
             # Armazenar os dados do visto
             self.dados_visto = None
@@ -96,7 +97,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             msg.setWindowTitle(titulo)
             msg.setText(texto)
             msg.exec()
-            
             
         def leitura_img(self):
             file_dialog = QFileDialog(self)
@@ -251,8 +251,28 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             
             sistema.criar_usuario(nome, cpf, email, senha, matricula, tipo_usuario)
             self.pop_up_success('Usuário inserido', 'Usuário inserido com sucesso!')
+        
+        def alterar_senha(self):
+            email = self.emial_line.text()
+            senha_atual = self.senha_atual_line.text()
+            nova_senha = self.senha_line.text()
+            nova_senha2 = self.senha_line_2.text()
             
-
+            verificacao = sistema.alterar_senha(email, senha_atual, nova_senha, nova_senha2)
+            
+            if verificacao == "Verificado":
+                self.emial_line.clear()
+                self.senha_atual_line.clear()
+                self.senha_line.clear()
+                self.senha_line_2.clear()
+                self.pop_up_success('Senha alterada', 'Senha alterada com sucesso!')
+            else:
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Critical)
+                msg.setWindowTitle('Erro ao alterar senha')
+                msg.setText(verificacao)
+                msg.exec()
+                
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = Login()
