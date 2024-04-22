@@ -72,6 +72,16 @@ class Funcoes:
         except Exception as e:
             print(f'Ocorreu um erro: {e}')
 
+    def inserir_status(self, status: str, passaporte):
+        try:
+            self.cur.execute("UPDATE vistos SET status = %s WHERE passaporte = %s", (status, passaporte))
+            self.conn.commit()
+            print("Status inserido na tabela de vistos com sucesso.")
+        except Exception as e:
+            print(f"Erro ao inserir status na tabela de vistos: {e}")
+            self.conn.rollback()
+
+    # Tem que alterar para listar o status do embarque
     def listar_vistos(self):
         try:
             sql = '''SELECT passageiros.passaporte, 
@@ -140,18 +150,20 @@ class Funcoes:
         tipo_encontrado = None  # Defina tipo_encontrado como None inicialmente
         
         # Verifique o tipo de visto
-        if tipo_visto:
-            self.cur.execute("SELECT tipo, regras FROM tipos_vistos WHERE tipo = %s", (tipo_visto.lower(),))
-            tipo_encontrado = self.cur.fetchone()  # Busca apenas um registro
-
+        self.cur.execute("SELECT regras FROM tipos_vistos WHERE tipo = %s;", (tipo_visto.lower(),))
+        tipo_encontrado = self.cur.fetchone()  # Busca apenas um registro
+        
         if expiracao < current_date: # Verifica se a data de expiração do visto está na validade
             return "O visto está vencido!"
+        
         elif age < 18:
             return "O passageiro é menor de idade. Verificar autorização dos responsáveis." # Verifica se é menor de idade
+        
         elif tipo_encontrado:
-            return tipo_encontrado[1] # Retorna a regra correspondente ao tipo de visto
+            return tipo_encontrado # Retorna a regra correspondente ao tipo de visto
+        
         else:
-            return False # Retorna a regra correspondente ao tipo de visto
+            return "Tipo de visto não corresponde a nenhum que conhecemos"
 
 # if __name__ == '__main__':
             

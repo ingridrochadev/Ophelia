@@ -225,16 +225,18 @@ class Criar_bd:
 
 # Restante do código...
 
-# if __name__ == '__main__':
-#     bd = Criar_bd()
+if __name__ == '__main__':
+    bd = Criar_bd()
 
-#     bd.apagar_tabelas()
-#     bd.criar_tabelas()
-#     bd.inserir_dados()
+    # bd.apagar_tabelas()
+    # bd.criar_tabelas()
+    # bd.inserir_dados()
 
-#     # Inserindo os usuários
-#     bd.criar_usuario("Administrador", "12345678900", "admin@email.com", "admin", "ADM001", "administrador")
-#     bd.criar_usuario("Usuário Normal", "98765432100", "user@email.com", "user", "USR001", "user")
+    # # Inserindo os usuários
+    # bd.criar_usuario("Administrador", "12345678900", "admin@email.com", "admin", "ADM001", "administrador")
+    # bd.criar_usuario("Usuário Normal", "98765432100", "user@email.com", "user", "USR001", "user")
         
-#     bd.cur.close()
-#     bd.conn.close()
+    # bd.cur.close()
+    # bd.conn.close()
+
+    bd.inserir_tipos_vistos()
