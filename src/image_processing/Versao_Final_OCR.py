@@ -111,7 +111,6 @@ def read_visto(image_path):
     # Remove o caractere de nova linha (\n) da última string
     visa_number = visa_number.rstrip('\n')
 
-    # Crie um array com todas as variáveis formatadas
     infor = [name, passport_number, nationality, dob, expiry_date, passport_type, issuing_country, visa_number]
 
     return infor

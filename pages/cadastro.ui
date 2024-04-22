@@ -180,7 +180,7 @@ font-weight: bold
 }</string>
             </property>
             <property name="currentIndex">
-             <number>1</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="Vistos">
              <property name="geometry">
@@ -492,7 +492,7 @@ font-weight: bold
           <item>
            <widget class="QStackedWidget" name="Pages">
             <property name="currentIndex">
-             <number>4</number>
+             <number>2</number>
             </property>
             <widget class="QWidget" name="pg_adicionar">
              <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -1083,6 +1083,36 @@ background-color: rgb(230,230,230);
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_12">
                   <item>
+                   <widget class="QPushButton" name="btn_listar_vistos">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QPushButton {
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+	font-family: &quot;Lato Heavy&quot;, sans-serif;
+}
+
+QPushButton:hover {
+    background-color: rgb(115, 0, 200);
+    border-radius: 15px;
+	font-family: &quot;Lato Heavy&quot;, sans-serif;
+	color: #fff
+}</string>
+                    </property>
+                    <property name="text">
+                     <string>Listar</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
                    <widget class="QPushButton" name="btn_exportar">
                     <property name="minimumSize">
                      <size>
@@ -1109,36 +1139,6 @@ QPushButton:hover {
                     </property>
                     <property name="text">
                      <string>Exportar</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QPushButton" name="btn_alterar_2">
-                    <property name="minimumSize">
-                     <size>
-                      <width>0</width>
-                      <height>30</height>
-                     </size>
-                    </property>
-                    <property name="cursor">
-                     <cursorShape>PointingHandCursor</cursorShape>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">QPushButton {
-    background-color: rgb(255, 255, 255);
-    border-radius: 15px;
-	font-family: &quot;Lato Heavy&quot;, sans-serif;
-}
-
-QPushButton:hover {
-    background-color: rgb(115, 0, 200);
-    border-radius: 15px;
-	font-family: &quot;Lato Heavy&quot;, sans-serif;
-	color: #fff
-}</string>
-                    </property>
-                    <property name="text">
-                     <string>Alterar</string>
                     </property>
                    </widget>
                   </item>
@@ -2092,7 +2092,6 @@ border-radius:5px;</string>
  </widget>
  <resources>
   <include location="../logo_.qrc"/>
-  <include location="logo_.qrc"/>
  </resources>
  <connections/>
 </ui>

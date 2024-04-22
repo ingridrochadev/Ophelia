@@ -43,7 +43,7 @@ class Sistema:
                 conn.close()
         else:
             print("Preencha todos os campos obrigatórios!")
-                
+        
         
     def excluir_usuario(self, matricula: str):
         if matricula:

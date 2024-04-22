@@ -42,10 +42,10 @@ class Funcoes:
 
 
     # Método para inserir dados do OCR na tabela de vistos
-    def inserir_dados_ocr_vistos(self, numero_visto, passaporte, tipo_visto, pais_emitente, data_validade):
+    def inserir_dados_ocr_vistos(self, numero_visto, passaporte, tipo_visto, pais_emitente, data_validade, status):
         try:
-            self.cur.execute("INSERT INTO vistos (numero_visto, passaporte, tipo_visto, local_emissor, data_validade) VALUES (%s, %s, %s, %s, %s)",
-                                (numero_visto, passaporte, tipo_visto, pais_emitente, data_validade))
+            self.cur.execute("INSERT INTO vistos (numero_visto, passaporte, tipo_visto, local_emissor, data_validade, status) VALUES (%s, %s, %s, %s, %s, %s)",
+                                (numero_visto, passaporte, tipo_visto, pais_emitente, data_validade, status))
             self.conn.commit()
             print("Dados do OCR inseridos na tabela de vistos com sucesso.")
         except Exception as e:
@@ -53,7 +53,7 @@ class Funcoes:
             self.conn.rollback()
 
 
-    def inserir_dados(self, info_array):
+    def inserir_dados(self, info_array, status):
         try:                       
             nome = info_array[0]
             passaporte = info_array[1]
@@ -67,10 +67,19 @@ class Funcoes:
             # Inserir dados do OCR na tabela 
             self.inserir_dados_ocr_passageiros(passaporte, nome, nacionalidade, data_nascimento)
 
-            self.inserir_dados_ocr_vistos(numero_visto, passaporte, tipo_visto, pais_emitente, data_validade)
+            self.inserir_dados_ocr_vistos(numero_visto, passaporte, tipo_visto, pais_emitente, data_validade, status)
 
         except Exception as e:
             print(f'Ocorreu um erro: {e}')
+        
+    def inserir_status(self, status: str, passaporte):
+        try:
+            self.cur.execute("UPDATE vistos SET status = %s WHERE passaporte = %s", (status, passaporte))
+            self.conn.commit()
+            print("Status inserido na tabela de vistos com sucesso.")
+        except Exception as e:
+            print(f"Erro ao inserir status na tabela de vistos: {e}")
+            self.conn.rollback()
 
     def listar_vistos(self):
         try:
@@ -86,8 +95,25 @@ class Funcoes:
         
             self.cur.execute(sql)
             resultados = self.cur.fetchall()
+            print(resultados)
             return resultados
         
+        except Exception as e:
+            print(f'Ocorreu um erro: {e}')
+            
+    def listar_vistos_sys(self):
+        try:
+            sql = '''SELECT passageiros.nome,
+                            passageiros.passaporte,
+                            vistos.status 
+                    FROM vistos 
+                    JOIN passageiros ON passageiros.passaporte = vistos.passaporte;'''
+        
+            self.cur.execute(sql)
+            resultados = self.cur.fetchall()
+            print(resultados)
+            return resultados
+
         except Exception as e:
             print(f'Ocorreu um erro: {e}')
 
