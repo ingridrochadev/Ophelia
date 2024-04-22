@@ -12,10 +12,10 @@ class Criar_bd:
     def estabelecer_conexao(self):
         try:
             self.conn = psycopg2.connect(
-                dbname=getenv("DATABASE_NAME"),
-                user=getenv("DATABASE_USER"),
-                password=getenv("DATABASE_PASSWORD"),
-                host=getenv("DATABASE_HOST")
+                dbname=getenv('DATABASE_NAME'),
+                user=getenv('DATABASE_USER'),
+                password=getenv('DATABASE_PASSWORD'),
+                host=getenv('DATABASE_HOST')
             )  
             self.conn.autocommit = False  # Desativa o modo de autocommit para fazer commits manuais
 
@@ -199,7 +199,28 @@ class Criar_bd:
     ('nato', 'Visto de embarque para membros da OTAN e suas famílias.', 'Verificar o documento de identificação da OTAN.'),
     ('p1', 'Visto de atleta/artista de destaque.', 'Verificar documentação que comprove o status de atleta ou artista de destaque.')
     ''')
+        print('Tipos de vistos inseridos com sucesso')
 
+    def inserir_voos(self):
+        self.cur.execute('''INSERT INTO public.voos (numero_voo, origem, destino, data, horario_previsto) 
+    VALUES    
+    ('V1111', 'São Paulo', 'Nova York', '2024-04-27', '09:00:00'),
+    ('V2222', 'Rio de Janeiro', 'Los Angeles', '2024-04-28', '11:30:00'),
+    ('V3333', 'Brasília', 'Miami', '2024-04-29', '13:45:00'),
+    ('V4444', 'Salvador', 'Orlando', '2024-04-30', '16:20:00'),
+    ('V5555', 'Recife', 'Chicago', '2024-05-01', '19:00:00'),
+    ('V6666', 'Fortaleza', 'Atlanta', '2024-05-02', '08:30:00'),
+    ('V7777', 'Manaus', 'San Francisco', '2024-05-03', '10:45:00'),
+    ('V8888', 'Porto Alegre', 'Washington D.C.', '2024-05-04', '12:15:00'),
+    ('V9999', 'Curitiba', 'Houston', '2024-05-05', '14:30:00'),
+    ('V1010', 'Belém', 'Las Vegas', '2024-05-06', '16:45:00'),                                          
+    ('V1112', 'Florianópolis', 'Nova York', '2024-05-07', '08:00:00'),
+    ('V2223', 'Goiânia', 'Los Angeles', '2024-05-08', '10:30:00'),
+    ('V3334', 'Natal', 'Miami', '2024-05-09', '13:45:00'),
+    ('V4445', 'Vitória', 'Orlando', '2024-05-10', '16:20:00'),
+    ('V5556', 'Campo Grande', 'Chicago', '2024-05-11', '19:00:00')
+''')                         
+        print('Dados de voos inseridos')
 
     def criar_tabelas(self):
         self.criar_tabela_passageiros()
@@ -214,9 +235,10 @@ class Criar_bd:
         self.inserir_dados_passageiros()
         self.inserir_dados_vistos()
         self.inserir_tipos_vistos()
+        self.inserir_voos()
         self.conn.commit()
 
-# Restante do código...
+
 
 if __name__ == '__main__':
     bd = Criar_bd()
