@@ -128,6 +128,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     
                     discard_button = msg.addButton(QMessageBox.Discard)
                     discard_button.setText("\n Negar \n Embarqu")
+
+                    cancel_button = msg.addButton(QMessageBox.Cancel)
+                    cancel_button.setText("\n Cancelar")
                     
                     msg.setDefaultButton(QMessageBox.Discard)
 
