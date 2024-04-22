@@ -58,8 +58,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.btn_add.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_adicionar))
             self.btn_listar.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_listar))
             self.btn_sobre.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_sobre))
+            self.btn_inserir_user.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_inserir_user))
             self.btn_editarUsuario.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_alterar_usuario))
-            
+            self.btn_logout.clicked.connect(lambda: self.Pages.setCurrentWidget(sys.exit(0)))
+                        
             # Define a página inicial como 'pg_home'
             self.Pages.setCurrentWidget(self.pg_home)
             
@@ -124,7 +126,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     ok_button.setText("\n Autorizar \n Embarque")
                     
                     discard_button = msg.addButton(QMessageBox.Discard)
-                    discard_button.setText("\n Negar \n Embarqu")
+                    discard_button.setText("\n Negar \n Embarque")
                     
                     msg.setDefaultButton(QMessageBox.Discard)
 
