@@ -100,7 +100,32 @@ class Sistema:
         else:
             print("Preencha todos os campos obrigatórios.")
             return False
+    
+    def verificar_tipo_perfil(self, email):
+        if email:
+            try:
+                conn = self.estabelecer_conexao()
+                cur = conn.cursor()
+                
+                cur.execute("SELECT tipo_usuario FROM usuarios WHERE email = %s", (email, ))
+                perfil = cur.fetchone()
+                if perfil[0] == "Administrador":
+                    return 'admin'
+                elif perfil[0] == "Usuário":
+                    return 'user'
+                else:
+                    pass
+                    
+            except Exception as error:
+                print(f"Ocorreu um erro na tentativa de login. Motivo: {error}")
+                return "Sem Acesso"
             
+            finally:
+                cur.close()
+                conn.close()
+                
+        else:
+            return "Preencha todos os campos obrigatórios."
             
     def alterar_senha(self, email: str, senha_armazenada: str, nova_senha: str, nova_senha2: str):
         if email and senha_armazenada and nova_senha and nova_senha2:

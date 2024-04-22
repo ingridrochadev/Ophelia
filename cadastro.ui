@@ -357,7 +357,7 @@ font-weight: bold
                  </font>
                 </property>
                 <property name="text">
-                 <string>Editar Usuário</string>
+                 <string>Alterar Senha</string>
                 </property>
                </widget>
               </item>
@@ -492,7 +492,7 @@ font-weight: bold
           <item>
            <widget class="QStackedWidget" name="Pages">
             <property name="currentIndex">
-             <number>3</number>
+             <number>4</number>
             </property>
             <widget class="QWidget" name="pg_adicionar">
              <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -1558,10 +1558,10 @@ QLineEdit {
                          </size>
                         </property>
                         <property name="text">
-                         <string>Senha atual</string>
+                         <string/>
                         </property>
                         <property name="echoMode">
-                         <enum>QLineEdit::Password</enum>
+                         <enum>QLineEdit::PasswordEchoOnEdit</enum>
                         </property>
                         <property name="alignment">
                          <set>Qt::AlignCenter</set>
@@ -1580,10 +1580,10 @@ QLineEdit {
                          </size>
                         </property>
                         <property name="text">
-                         <string>Nova Senha</string>
+                         <string/>
                         </property>
                         <property name="echoMode">
-                         <enum>QLineEdit::Password</enum>
+                         <enum>QLineEdit::PasswordEchoOnEdit</enum>
                         </property>
                         <property name="alignment">
                          <set>Qt::AlignCenter</set>
@@ -1602,10 +1602,10 @@ QLineEdit {
                          </size>
                         </property>
                         <property name="text">
-                         <string>Confirmar Nova Senha</string>
+                         <string/>
                         </property>
                         <property name="echoMode">
-                         <enum>QLineEdit::Password</enum>
+                         <enum>QLineEdit::PasswordEchoOnEdit</enum>
                         </property>
                         <property name="alignment">
                          <set>Qt::AlignCenter</set>
@@ -1872,6 +1872,9 @@ QLineEdit {
                 <property name="text">
                  <string/>
                 </property>
+                <property name="echoMode">
+                 <enum>QLineEdit::Password</enum>
+                </property>
                 <property name="placeholderText">
                  <string>Senha</string>
                 </property>
@@ -1949,9 +1952,9 @@ QLineEdit {
                 <property name="geometry">
                  <rect>
                   <x>130</x>
-                  <y>350</y>
-                  <width>118</width>
-                  <height>30</height>
+                  <y>340</y>
+                  <width>150</width>
+                  <height>50</height>
                  </rect>
                 </property>
                 <property name="minimumSize">
@@ -1969,7 +1972,7 @@ QLineEdit {
                 <property name="font">
                  <font>
                   <family>Lato Bold</family>
-                  <pointsize>11</pointsize>
+                  <pointsize>15</pointsize>
                  </font>
                 </property>
                 <property name="cursor">
