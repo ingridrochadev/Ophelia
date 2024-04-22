@@ -1,7 +1,7 @@
 from PySide6.QtCore import Qt
 from PySide6.QtCore import QCoreApplication, QPropertyAnimation, QEasingCurve
 from PySide6.QtGui import QIcon, QPixmap
-from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QMessageBox, QFileDialog, QBoxLayout
+from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QMessageBox, QFileDialog, QBoxLayout, QTableWidgetItem
 from pages.ui_login import Ui_Form
 from pages.ui_main import Ui_MainWindow
 from src.image_processing.Versao_Final_OCR import read_visto
@@ -70,7 +70,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             # Armazenar os dados do visto
             self.dados_visto = None
             self.status_visto = None
-            
+
+            # self.buscar_vistos()
+            self.btn_alterar_2.clicked.connect(self.buscar_vistos)            
+
         def leftMenu(self):
             width = self.left_container.width()
             newWidth = 200 if width == 9 else 9
@@ -268,19 +271,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 #         msg.setText(f'Erro ao inserir dados na tabela de vistos: {str(e)}')
                 #         msg.exec()
             
-        def table_passageiros(self):
+        def buscar_vistos(self):
+
             self.tbl_vistos.setStyleSheet(u" QHeaderView{color:black;}; color:#fff;font-size: 15px;")
-            
-            lista_pax = Funcoes.listar_vistos()
-            
-            for pax in lista_pax:
-                pass
-            
-            self.tbl_vistos.setSortingEnabled(True)
-            
-            for i in range(1,3):
-                self.tbl_vistos.resizeColumnToContents(i)
-            
+            func = Funcoes()
+            result = func.listar_vistos_sys()
+            self.tbl_vistos.clearContents()
+            self.tbl_vistos.setRowCount(len(result))
+
+            for row, text in enumerate(result):
+                for column, data in enumerate(text):
+                    self.tbl_vistos.setItem(row, column, QTableWidgetItem(str(data)))
+
             
 if __name__ == "__main__":
     app = QApplication(sys.argv)

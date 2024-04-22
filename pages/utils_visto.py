@@ -141,6 +141,20 @@ class Funcoes:
 
         except Exception as e:
             print(f'Ocorreu um erro: {e}')
+    
+    def listar_vistos_sys(self):
+        try:
+            sql = '''select passageiros.nome, passageiros.passaporte, vistos.status 
+                    from vistos, passageiros
+                    where passageiros.passaporte = vistos.passaporte;'''
+        
+            self.cur.execute(sql)
+            resultados = self.cur.fetchall()
+            # self.imprimir_resultados(resultados)
+            return resultados
+
+        except Exception as e:
+            print(f'Ocorreu um erro: {e}')
 
 
     def verificar_regras_embarque(self, tipo_visto, dob, expiracao):
