@@ -127,7 +127,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     ok_button.setText("\n Autorizar \n Embarque")
                     
                     discard_button = msg.addButton(QMessageBox.Discard)
-                    discard_button.setText("\n Negar \n Embarqu")
+                    discard_button.setText("\n Negar \n Embarque")
 
                     cancel_button = msg.addButton(QMessageBox.Cancel)
                     cancel_button.setText("\n Cancelar")
