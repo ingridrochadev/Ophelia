@@ -260,6 +260,5 @@ if __name__ == '__main__':
     # funcoes.alterar_status_visto('KLM345678')
     # funcoes.alterar_status_visto('VWX890123')
 
-
     funcoes.cur.close()
     funcoes.conn.close()
