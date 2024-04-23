@@ -26,7 +26,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1024, 807)
+        MainWindow.resize(1030, 807)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -563,6 +563,25 @@ class Ui_MainWindow(object):
         self.frame_7.setFrameShadow(QFrame.Raised)
         self.verticalLayout_12 = QVBoxLayout(self.frame_7)
         self.verticalLayout_12.setObjectName(u"verticalLayout_12")
+        self.btn_listar_vistos = QPushButton(self.frame_7)
+        self.btn_listar_vistos.setObjectName(u"btn_listar_vistos")
+        self.btn_listar_vistos.setMinimumSize(QSize(0, 30))
+        self.btn_listar_vistos.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_listar_vistos.setStyleSheet(u"QPushButton {\n"
+"    background-color: rgb(255, 255, 255);\n"
+"    border-radius: 15px;\n"
+"	font-family: \"Lato Heavy\", sans-serif;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(115, 0, 200);\n"
+"    border-radius: 15px;\n"
+"	font-family: \"Lato Heavy\", sans-serif;\n"
+"	color: #fff\n"
+"}")
+
+        self.verticalLayout_12.addWidget(self.btn_listar_vistos)
+
         self.btn_exportar = QPushButton(self.frame_7)
         self.btn_exportar.setObjectName(u"btn_exportar")
         self.btn_exportar.setMinimumSize(QSize(0, 30))
@@ -581,25 +600,6 @@ class Ui_MainWindow(object):
 "}")
 
         self.verticalLayout_12.addWidget(self.btn_exportar)
-
-        self.btn_alterar_2 = QPushButton(self.frame_7)
-        self.btn_alterar_2.setObjectName(u"btn_alterar_2")
-        self.btn_alterar_2.setMinimumSize(QSize(0, 30))
-        self.btn_alterar_2.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_alterar_2.setStyleSheet(u"QPushButton {\n"
-"    background-color: rgb(255, 255, 255);\n"
-"    border-radius: 15px;\n"
-"	font-family: \"Lato Heavy\", sans-serif;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: rgb(115, 0, 200);\n"
-"    border-radius: 15px;\n"
-"	font-family: \"Lato Heavy\", sans-serif;\n"
-"	color: #fff\n"
-"}")
-
-        self.verticalLayout_12.addWidget(self.btn_alterar_2)
 
         self.btn_excluir = QPushButton(self.frame_7)
         self.btn_excluir.setObjectName(u"btn_excluir")
@@ -730,10 +730,10 @@ class Ui_MainWindow(object):
         self.label_6.setGeometry(QRect(40, 150, 431, 431))
         self.label_6.setPixmap(QPixmap(u":/logo/pages/icons/Black Minimalist Outline Icons Icon Set (1).png"))
         self.label_6.setScaledContents(True)
-        self.frame_10 = QFrame(self.frame_15)
-        self.frame_10.setObjectName(u"frame_10")
-        self.frame_10.setGeometry(QRect(540, 130, 381, 461))
-        self.frame_10.setStyleSheet(u"QFrame{\n"
+        self.frame_12 = QFrame(self.frame_15)
+        self.frame_12.setObjectName(u"frame_12")
+        self.frame_12.setGeometry(QRect(550, 200, 351, 353))
+        self.frame_12.setStyleSheet(u"QFrame{\n"
 "background-color:white;\n"
 "border-radius:5px;\n"
 "}\n"
@@ -743,14 +743,7 @@ class Ui_MainWindow(object):
 "    border-bottom: 2px solid grey; /* Adiciona uma borda somente na parte inferior */\n"
 "	font-family: \"Lato Heavy\", serif;\n"
 "    font-size: 16px;\n"
-"}\n"
-"")
-        self.frame_10.setFrameShape(QFrame.StyledPanel)
-        self.frame_10.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_7 = QHBoxLayout(self.frame_10)
-        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
-        self.frame_12 = QFrame(self.frame_10)
-        self.frame_12.setObjectName(u"frame_12")
+"}")
         self.frame_12.setFrameShape(QFrame.StyledPanel)
         self.frame_12.setFrameShadow(QFrame.Raised)
         self.verticalLayout_14 = QVBoxLayout(self.frame_12)
@@ -777,6 +770,14 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_15.addWidget(self.emial_line)
 
+        self.senha_atual_line = QLineEdit(self.frame_13)
+        self.senha_atual_line.setObjectName(u"senha_atual_line")
+        self.senha_atual_line.setMinimumSize(QSize(0, 40))
+        self.senha_atual_line.setEchoMode(QLineEdit.PasswordEchoOnEdit)
+        self.senha_atual_line.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_15.addWidget(self.senha_atual_line)
+
         self.senha_line = QLineEdit(self.frame_13)
         self.senha_line.setObjectName(u"senha_line")
         self.senha_line.setMinimumSize(QSize(0, 40))
@@ -784,14 +785,6 @@ class Ui_MainWindow(object):
         self.senha_line.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_15.addWidget(self.senha_line)
-
-        self.lineEdit = QLineEdit(self.frame_13)
-        self.lineEdit.setObjectName(u"lineEdit")
-        self.lineEdit.setMinimumSize(QSize(0, 40))
-        self.lineEdit.setEchoMode(QLineEdit.PasswordEchoOnEdit)
-        self.lineEdit.setAlignment(Qt.AlignCenter)
-
-        self.verticalLayout_15.addWidget(self.lineEdit)
 
         self.senha_line_2 = QLineEdit(self.frame_13)
         self.senha_line_2.setObjectName(u"senha_line_2")
@@ -840,9 +833,6 @@ class Ui_MainWindow(object):
 
 
         self.verticalLayout_14.addWidget(self.btn_alterar, 0, Qt.AlignHCenter)
-
-
-        self.horizontalLayout_7.addWidget(self.frame_12)
 
         self.Pages.addWidget(self.pg_alterar_usuario)
         self.pg_inserir_user = QWidget()
@@ -993,8 +983,8 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.toolBox.setCurrentIndex(1)
-        self.Pages.setCurrentIndex(4)
+        self.toolBox.setCurrentIndex(0)
+        self.Pages.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1042,8 +1032,8 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"Passaporte", None));
         ___qtablewidgetitem2 = self.tbl_vistos.horizontalHeaderItem(2)
         ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Status Embarque", None));
+        self.btn_listar_vistos.setText(QCoreApplication.translate("MainWindow", u"Listar", None))
         self.btn_exportar.setText(QCoreApplication.translate("MainWindow", u"Exportar", None))
-        self.btn_alterar_2.setText(QCoreApplication.translate("MainWindow", u"Alterar", None))
         self.btn_excluir.setText(QCoreApplication.translate("MainWindow", u"Excluir", None))
         self.ttl_vistos.setText(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
@@ -1058,12 +1048,12 @@ class Ui_MainWindow(object):
         self.label_6.setText("")
         self.emial_line.setText("")
         self.emial_line.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Email", None))
+        self.senha_atual_line.setText("")
+        self.senha_atual_line.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Senha Atual", None))
         self.senha_line.setText("")
         self.senha_line.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Nova Senha", None))
-        self.lineEdit.setText("")
-        self.lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Confirmar Senha", None))
         self.senha_line_2.setText("")
-        self.senha_line_2.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Nova Senha", None))
+        self.senha_line_2.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Confirmar Senha", None))
         self.btn_alterar_senha.setText(QCoreApplication.translate("MainWindow", u"Alterar", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:36pt;\">Cadastro de Usu\u00e1rio</span></p></body></html>", None))
         self.label_4.setText("")

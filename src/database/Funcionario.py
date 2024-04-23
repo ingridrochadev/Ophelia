@@ -1,4 +1,4 @@
-from pages.utils import Sistema
+from pages.utils_usuario import Sistema
 class Funcionario:
     def __init__(self):
         self.sistema = Sistema()

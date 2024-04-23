@@ -43,7 +43,7 @@ class Sistema:
                 conn.close()
         else:
             print("Preencha todos os campos obrigatórios!")
-                
+        
         
     def excluir_usuario(self, matricula: str):
         if matricula:
@@ -148,25 +148,25 @@ class Sistema:
                             hashed_senha = self.encriptar_senha(nova_senha)
                             cur.execute("UPDATE usuarios SET senha = %s WHERE email = %s", (hashed_senha, email))
                             conn.commit()
-                            print("Senha alterada com sucesso!")
+                            return "Verificado"
                         else:
-                            print("As senhas não correspondem. Tente novamente!")
+                            return "As senhas não correspondem. Tente novamente!"
                             
                     else: 
-                        print("E-mail e/ou senha incorreta. Tente novamente!")
+                        return "E-mail e/ou senha incorreta. Tente novamente!"
                         
                 else:
-                    print("E-mail e/ou senha incorreta. Tente novamente!")
+                    return "E-mail e/ou senha incorreta. Tente novamente!"
                 
             except Exception as error:
-                print(f'Ocorreu um erro ao alterar a senha: {error}')
                 conn.rollback()
+                return f'Ocorreu um erro ao alterar a senha: {error}'
                 
             finally:
                 cur.close()
                 conn.close()
         else:
-            print("Preencha todos os campos obrigatórios!")
+            return "Preencha todos os campos obrigatórios!"
             
             
     def redefinir_senha(self, email, nova_senha, nova_senha2):
@@ -203,8 +203,16 @@ class Sistema:
 
 sistema = Sistema()
 
+<<<<<<< HEAD:pages/utils.py
 # Criando um usuário administrador
 sistema.criar_usuario("Administrador", "12345678900", "admin@email.com", "admin", "ADM001", "Administrador")
 
 # Criando um usuário normal
 sistema.criar_usuario("Usuário Normal", "98765432100", "user@email.com", "user", "USR001", "Usuário")
+=======
+# # Criando um usuário administrador
+# sistema.criar_usuario("Administrador", "12345678900", "admin@email.com", "admin", "ADM001", "Administrador")
+
+# # Criando um usuário normal
+# sistema.criar_usuario("Usuário Normal", "98765432100", "user@email.com", "user", "USR001", "Usuário")
+>>>>>>> 25a93fa3c9eeee8b69a4ef3061088b0c0e11dbd1:pages/utils_usuario.py

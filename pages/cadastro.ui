@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1024</width>
+    <width>1030</width>
     <height>807</height>
    </rect>
   </property>
@@ -180,7 +180,7 @@ font-weight: bold
 }</string>
             </property>
             <property name="currentIndex">
-             <number>1</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="Vistos">
              <property name="geometry">
@@ -429,7 +429,7 @@ font-weight: bold
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="logo_.qrc">
+             <iconset resource="../logo_.qrc">
               <normaloff>:/logo/pages/icons/menu.png</normaloff>:/logo/pages/icons/menu.png</iconset>
             </property>
             <property name="iconSize">
@@ -492,7 +492,7 @@ font-weight: bold
           <item>
            <widget class="QStackedWidget" name="Pages">
             <property name="currentIndex">
-             <number>4</number>
+             <number>2</number>
             </property>
             <widget class="QWidget" name="pg_adicionar">
              <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -625,7 +625,7 @@ QPushButton:hover {
                           <string/>
                          </property>
                          <property name="icon">
-                          <iconset resource="logo_.qrc">
+                          <iconset resource="../logo_.qrc">
                            <normaloff>:/logo/pages/icons/Black Minimalist Outline Icons Icon Set (2).png</normaloff>:/logo/pages/icons/Black Minimalist Outline Icons Icon Set (2).png</iconset>
                          </property>
                          <property name="iconSize">
@@ -1083,6 +1083,36 @@ background-color: rgb(230,230,230);
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_12">
                   <item>
+                   <widget class="QPushButton" name="btn_listar_vistos">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QPushButton {
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+	font-family: &quot;Lato Heavy&quot;, sans-serif;
+}
+
+QPushButton:hover {
+    background-color: rgb(115, 0, 200);
+    border-radius: 15px;
+	font-family: &quot;Lato Heavy&quot;, sans-serif;
+	color: #fff
+}</string>
+                    </property>
+                    <property name="text">
+                     <string>Listar</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
                    <widget class="QPushButton" name="btn_exportar">
                     <property name="minimumSize">
                      <size>
@@ -1109,36 +1139,6 @@ QPushButton:hover {
                     </property>
                     <property name="text">
                      <string>Exportar</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QPushButton" name="btn_alterar_2">
-                    <property name="minimumSize">
-                     <size>
-                      <width>0</width>
-                      <height>30</height>
-                     </size>
-                    </property>
-                    <property name="cursor">
-                     <cursorShape>PointingHandCursor</cursorShape>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">QPushButton {
-    background-color: rgb(255, 255, 255);
-    border-radius: 15px;
-	font-family: &quot;Lato Heavy&quot;, sans-serif;
-}
-
-QPushButton:hover {
-    background-color: rgb(115, 0, 200);
-    border-radius: 15px;
-	font-family: &quot;Lato Heavy&quot;, sans-serif;
-	color: #fff
-}</string>
-                    </property>
-                    <property name="text">
-                     <string>Alterar</string>
                     </property>
                    </widget>
                   </item>
@@ -1381,7 +1381,7 @@ background-color:transparent;</string>
                   <string/>
                  </property>
                  <property name="pixmap">
-                  <pixmap resource="logo_.qrc">:/logo/pages/icons/Fundo.png</pixmap>
+                  <pixmap resource="../logo_.qrc">:/logo/pages/icons/Fundo.png</pixmap>
                  </property>
                  <property name="scaledContents">
                   <bool>true</bool>
@@ -1452,19 +1452,19 @@ background-color:transparent;</string>
                 <string/>
                </property>
                <property name="pixmap">
-                <pixmap resource="logo_.qrc">:/logo/pages/icons/Black Minimalist Outline Icons Icon Set (1).png</pixmap>
+                <pixmap resource="../logo_.qrc">:/logo/pages/icons/Black Minimalist Outline Icons Icon Set (1).png</pixmap>
                </property>
                <property name="scaledContents">
                 <bool>true</bool>
                </property>
               </widget>
-              <widget class="QFrame" name="frame_10">
+              <widget class="QFrame" name="frame_12">
                <property name="geometry">
                 <rect>
-                 <x>540</x>
-                 <y>130</y>
-                 <width>381</width>
-                 <height>461</height>
+                 <x>550</x>
+                 <y>200</y>
+                 <width>351</width>
+                 <height>353</height>
                 </rect>
                </property>
                <property name="styleSheet">
@@ -1478,8 +1478,7 @@ QLineEdit {
     border-bottom: 2px solid grey; /* Adiciona uma borda somente na parte inferior */
 	font-family: &quot;Lato Heavy&quot;, serif;
     font-size: 16px;
-}
-</string>
+}</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::StyledPanel</enum>
@@ -1487,196 +1486,187 @@ QLineEdit {
                <property name="frameShadow">
                 <enum>QFrame::Raised</enum>
                </property>
-               <layout class="QHBoxLayout" name="horizontalLayout_7">
+               <layout class="QVBoxLayout" name="verticalLayout_14">
                 <item>
-                 <widget class="QFrame" name="frame_12">
+                 <widget class="QFrame" name="frame_13">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QFrame {
+    border-radius: 4px
+}</string>
+                  </property>
                   <property name="frameShape">
                    <enum>QFrame::StyledPanel</enum>
                   </property>
                   <property name="frameShadow">
                    <enum>QFrame::Raised</enum>
                   </property>
-                  <layout class="QVBoxLayout" name="verticalLayout_14">
+                  <layout class="QVBoxLayout" name="verticalLayout_15">
                    <item>
-                    <widget class="QFrame" name="frame_13">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
+                    <spacer name="verticalSpacer_4">
+                     <property name="orientation">
+                      <enum>Qt::Vertical</enum>
                      </property>
-                     <property name="styleSheet">
-                      <string notr="true">QFrame {
-    border-radius: 4px
-}</string>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>40</height>
+                      </size>
                      </property>
-                     <property name="frameShape">
-                      <enum>QFrame::StyledPanel</enum>
-                     </property>
-                     <property name="frameShadow">
-                      <enum>QFrame::Raised</enum>
-                     </property>
-                     <layout class="QVBoxLayout" name="verticalLayout_15">
-                      <item>
-                       <spacer name="verticalSpacer_4">
-                        <property name="orientation">
-                         <enum>Qt::Vertical</enum>
-                        </property>
-                        <property name="sizeHint" stdset="0">
-                         <size>
-                          <width>20</width>
-                          <height>40</height>
-                         </size>
-                        </property>
-                       </spacer>
-                      </item>
-                      <item>
-                       <widget class="QLineEdit" name="emial_line">
-                        <property name="minimumSize">
-                         <size>
-                          <width>0</width>
-                          <height>40</height>
-                         </size>
-                        </property>
-                        <property name="text">
-                         <string/>
-                        </property>
-                        <property name="alignment">
-                         <set>Qt::AlignCenter</set>
-                        </property>
-                        <property name="placeholderText">
-                         <string>Email</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QLineEdit" name="senha_line">
-                        <property name="minimumSize">
-                         <size>
-                          <width>0</width>
-                          <height>40</height>
-                         </size>
-                        </property>
-                        <property name="text">
-                         <string/>
-                        </property>
-                        <property name="echoMode">
-                         <enum>QLineEdit::PasswordEchoOnEdit</enum>
-                        </property>
-                        <property name="alignment">
-                         <set>Qt::AlignCenter</set>
-                        </property>
-                        <property name="placeholderText">
-                         <string>Nova Senha</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QLineEdit" name="lineEdit">
-                        <property name="minimumSize">
-                         <size>
-                          <width>0</width>
-                          <height>40</height>
-                         </size>
-                        </property>
-                        <property name="text">
-                         <string/>
-                        </property>
-                        <property name="echoMode">
-                         <enum>QLineEdit::PasswordEchoOnEdit</enum>
-                        </property>
-                        <property name="alignment">
-                         <set>Qt::AlignCenter</set>
-                        </property>
-                        <property name="placeholderText">
-                         <string>Confirmar Senha</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QLineEdit" name="senha_line_2">
-                        <property name="minimumSize">
-                         <size>
-                          <width>0</width>
-                          <height>40</height>
-                         </size>
-                        </property>
-                        <property name="text">
-                         <string/>
-                        </property>
-                        <property name="echoMode">
-                         <enum>QLineEdit::PasswordEchoOnEdit</enum>
-                        </property>
-                        <property name="alignment">
-                         <set>Qt::AlignCenter</set>
-                        </property>
-                        <property name="placeholderText">
-                         <string>Nova Senha</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <spacer name="verticalSpacer_5">
-                        <property name="orientation">
-                         <enum>Qt::Vertical</enum>
-                        </property>
-                        <property name="sizeHint" stdset="0">
-                         <size>
-                          <width>20</width>
-                          <height>40</height>
-                         </size>
-                        </property>
-                       </spacer>
-                      </item>
-                     </layout>
-                    </widget>
+                    </spacer>
                    </item>
-                   <item alignment="Qt::AlignHCenter">
-                    <widget class="QFrame" name="btn_alterar">
+                   <item>
+                    <widget class="QLineEdit" name="emial_line">
                      <property name="minimumSize">
                       <size>
                        <width>0</width>
-                       <height>30</height>
+                       <height>40</height>
                       </size>
                      </property>
-                     <property name="frameShape">
-                      <enum>QFrame::StyledPanel</enum>
+                     <property name="text">
+                      <string/>
                      </property>
-                     <property name="frameShadow">
-                      <enum>QFrame::Raised</enum>
+                     <property name="alignment">
+                      <set>Qt::AlignCenter</set>
                      </property>
-                     <layout class="QVBoxLayout" name="verticalLayout_16">
-                      <item>
-                       <widget class="QPushButton" name="btn_alterar_senha">
-                        <property name="minimumSize">
-                         <size>
-                          <width>200</width>
-                          <height>35</height>
-                         </size>
-                        </property>
-                        <property name="maximumSize">
-                         <size>
-                          <width>200</width>
-                          <height>16777215</height>
-                         </size>
-                        </property>
-                        <property name="font">
-                         <font>
-                          <family>Lato Bold</family>
-                          <pointsize>11</pointsize>
-                         </font>
-                        </property>
-                        <property name="cursor">
-                         <cursorShape>PointingHandCursor</cursorShape>
-                        </property>
-                        <property name="layoutDirection">
-                         <enum>Qt::LeftToRight</enum>
-                        </property>
-                        <property name="autoFillBackground">
-                         <bool>false</bool>
-                        </property>
-                        <property name="styleSheet">
-                         <string notr="true">QPushButton {
+                     <property name="placeholderText">
+                      <string>Email</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="senha_atual_line">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="echoMode">
+                      <enum>QLineEdit::PasswordEchoOnEdit</enum>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignCenter</set>
+                     </property>
+                     <property name="placeholderText">
+                      <string>Senha Atual</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="senha_line">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="echoMode">
+                      <enum>QLineEdit::PasswordEchoOnEdit</enum>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignCenter</set>
+                     </property>
+                     <property name="placeholderText">
+                      <string>Nova Senha</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="senha_line_2">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="echoMode">
+                      <enum>QLineEdit::PasswordEchoOnEdit</enum>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignCenter</set>
+                     </property>
+                     <property name="placeholderText">
+                      <string>Confirmar Senha</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="verticalSpacer_5">
+                     <property name="orientation">
+                      <enum>Qt::Vertical</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item alignment="Qt::AlignHCenter">
+                 <widget class="QFrame" name="btn_alterar">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Raised</enum>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_16">
+                   <item>
+                    <widget class="QPushButton" name="btn_alterar_senha">
+                     <property name="minimumSize">
+                      <size>
+                       <width>200</width>
+                       <height>35</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>200</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Lato Bold</family>
+                       <pointsize>11</pointsize>
+                      </font>
+                     </property>
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
+                     <property name="layoutDirection">
+                      <enum>Qt::LeftToRight</enum>
+                     </property>
+                     <property name="autoFillBackground">
+                      <bool>false</bool>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">QPushButton {
     background-color: rgb(190, 190, 190);
     border-radius: 15px;
 	font-family: &quot;Lato Bold&quot;, sans-serif;
@@ -1688,13 +1678,10 @@ QPushButton:hover {
 	font-family: &quot;Lato Bold&quot;, sans-serif;
 	color: #fff
 }</string>
-                        </property>
-                        <property name="text">
-                         <string>Alterar</string>
-                        </property>
-                       </widget>
-                      </item>
-                     </layout>
+                     </property>
+                     <property name="text">
+                      <string>Alterar</string>
+                     </property>
                     </widget>
                    </item>
                   </layout>
@@ -1761,7 +1748,7 @@ QPushButton:hover {
                 <string/>
                </property>
                <property name="pixmap">
-                <pixmap resource="logo_.qrc">:/logo/pages/icons/Black Minimalist Outline Icons Icon Set.png</pixmap>
+                <pixmap resource="../logo_.qrc">:/logo/pages/icons/Black Minimalist Outline Icons Icon Set.png</pixmap>
                </property>
                <property name="scaledContents">
                 <bool>true</bool>
@@ -2104,7 +2091,7 @@ border-radius:5px;</string>
   </widget>
  </widget>
  <resources>
-  <include location="logo_.qrc"/>
+  <include location="../logo_.qrc"/>
  </resources>
  <connections/>
 </ui>
