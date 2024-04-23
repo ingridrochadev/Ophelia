@@ -2,6 +2,7 @@ import psycopg2
 from os import getenv
 from dotenv import load_dotenv
 import bcrypt
+import re
 
 load_dotenv()
 
@@ -23,6 +24,64 @@ class Sistema:
         return salt.decode('utf-8') + hash_senha.decode('utf-8') # Concatena o salt e o hash e retorna str
     
     
+    def validar_cpf(self, cpf: str):
+        if len(cpf) == 11 and cpf.isdigit():
+            # Verifica se todos os dígitos são iguais
+            if len(set(cpf)) == 1:
+                print("CPF inválido! Tente novamente.")
+                return False
+                
+            # * Verificação do 1° dígito:
+            soma = sum(int(cpf[i]) * (10 - i) for i in range(9)) 
+            verificador1 = (soma * 10) % 11
+            
+            # * Verificação do 2° dígito:
+            soma = sum(int(cpf[i]) * (11 - i) for i in range(10))
+            verificador2 = (soma * 10) % 11
+            
+            if verificador1 == int(cpf[9]) and verificador2 == int(cpf[10]):
+                print("CPF válido!")
+                return True
+            else:
+                print("CPF inválido! Tente novamente.")
+                return False
+        else:
+            print("CPF inválido! Tente novamente.")
+            return False
+        
+    
+    def validar_email(self, email: str):
+        regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b'
+        if re.fullmatch(regex, email):
+            print("E-mail válido!")
+            return True
+        else:
+            print("O e-mail não é válido!")
+            return False
+            
+            
+    def validar_senha(self, senha: str):
+        requisitos = {
+            "min_numero": 1,
+            "min_maiuscula": 1,
+            "min_minuscula": 1,
+            "min_simbolo": 1,
+            "min_tamanho": 6
+        }
+        # Verifica os requisitos mínimos para a senha
+        if (len(senha) < requisitos["min_tamanho"] or
+            len(re.findall(r"[A-Z]", senha)) < requisitos["min_maiuscula"] or
+            len(re.findall(r"[a-z]", senha)) < requisitos["min_minuscula"] or
+            len(re.findall(r"[0-9]", senha)) < requisitos["min_numero"] or
+            len(re.findall(r"[@#$]", senha)) < requisitos["min_simbolo"]):
+            
+            print("Senha inválida! A senha deve conter letras minúsculas, maiúsculas, números e símbolos e ter no minimo 8 caracteres.")
+            return False
+        else:
+            print("Senha válida")
+            return True
+    
+    
     def criar_usuario(self, nome: str, cpf: str, email: str, senha: str, matricula: str, tipo_usuario: str):
         if nome and cpf and email and senha and matricula and tipo_usuario:
             try:
@@ -30,9 +89,12 @@ class Sistema:
                 cur = conn.cursor()
                 hashed_senha = self.encriptar_senha(senha)
                 
-                cur.execute("INSERT INTO usuarios (nome, cpf, email, senha, matricula, tipo_usuario) VALUES (%s, %s, %s, %s, %s, %s)", 
-                            (nome, cpf, email, hashed_senha, matricula, tipo_usuario))
-                conn.commit()
+                if self.validar_cpf(cpf) and self.validar_email(email) and self.validar_senha(senha):
+                    cur.execute("INSERT INTO usuarios (nome, cpf, email, senha, matricula, tipo_usuario) VALUES (%s, %s, %s, %s, %s, %s)", 
+                                (nome, cpf, email, hashed_senha, matricula, tipo_usuario))
+                    conn.commit()
+                else:
+                    print("Os dados informados não são válidos! Tente novamente.")
 
             except Exception as error:
                 print(f"Houve um erro ao inserir usuário. Motivo: {error}")
