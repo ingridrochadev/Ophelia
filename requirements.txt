@@ -1,0 +1,9 @@
+psycopg2
+opencv-python
+python-dotenv
+pytesseract
+matplotlib
+pyside6
+requests
+pandas
+bcrypt

@@ -27,8 +27,6 @@ class Funcoes:
            
         except Exception as e:
             print(f'\nOcorreu um erro ao conectar ao banco de dados: {e}')
-
-
     # Método para inserir dados do OCR na tabela de vistos
     def inserir_dados_ocr_passageiros(self, passaporte, nome, nacionalidade, data_nascimento):
         try:
@@ -51,7 +49,6 @@ class Funcoes:
         except Exception as e:
             print(f"Erro ao inserir dados do OCR na tabela de vistos: {e}")
             self.conn.rollback()
-
 
     def inserir_dados(self, info_array, status):
         try:                       
@@ -136,7 +133,6 @@ class Funcoes:
         
         except Exception as e:
             print(f'Ocorreu um erro: {e}')
-
 
     def listar_vistos_desc(self):
         try:

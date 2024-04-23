@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import psycopg2
 from os import getenv
-
+from utils.utils_usuario import Sistema
 load_dotenv()
 
 class Criar_bd:
@@ -227,3 +227,11 @@ if __name__ == '__main__':
         
     bd.cur.close()
     bd.conn.close()
+    
+    sistema = Sistema()
+
+    # Criando um usuário administrador
+    sistema.criar_usuario("Administrador", "12345678900", "admin@email.com", "admin", "ADM001", "Administrador")
+
+    # Criando um usuário normal
+    sistema.criar_usuario("Usuário Normal", "98765432100", "user@email.com", "user", "USR001", "Usuário")

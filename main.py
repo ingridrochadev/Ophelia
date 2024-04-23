@@ -5,8 +5,8 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QMessageBox, Q
 from pages.ui_login import Ui_Form
 from pages.ui_main import Ui_MainWindow
 from src.image_processing.Versao_Final_OCR import read_visto
-from pages.utils_usuario import Sistema
-from pages.utils_visto import Funcoes
+from src.database.utils.utils_usuario import Sistema
+from src.database.utils.utils_visto import Funcoes
 # from pages.utils_interface import Home
 import sys
 import pandas as pd
@@ -63,6 +63,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.btn_sobre.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_sobre))
             self.btn_inserir_user.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_inserir_user))
             self.btn_editarUsuario.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_alterar_usuario))
+            self.btn_logout.clicked.connect(lambda: self.Pages.setCurrentWidget(sys.exit(0)))
             
             # Define a página inicial como 'pg_home'
             self.Pages.setCurrentWidget(self.pg_home)
