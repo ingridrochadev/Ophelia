@@ -1,5 +1,5 @@
 from Ophelia.src.database.utils.utils_visto import Funcoes
-from Ophelia.src.database.utils.utils_usuario import Sistema
+from src.database.utils.utils_usuario import Sistema
 
 instancia = Funcoes()
 instancia2 = Sistema()
