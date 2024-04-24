@@ -26,7 +26,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="page_login">
     <widget class="QFrame" name="frame_2">
@@ -690,10 +690,10 @@ color: #480070;</string>
       <widget class="QPlainTextEdit" name="plainTextEdit_4">
        <property name="geometry">
         <rect>
-         <x>50</x>
-         <y>80</y>
-         <width>291</width>
-         <height>51</height>
+         <x>60</x>
+         <y>60</y>
+         <width>271</width>
+         <height>71</height>
         </rect>
        </property>
        <property name="font">

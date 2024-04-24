@@ -106,7 +106,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.btn_sobre.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_sobre))
             self.btn_inserir_user.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_inserir_user))
             self.btn_editarUsuario.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_alterar_usuario))
-            self.btn_logout.clicked.connect(lambda: self.Pages.setCurrentWidget(Login()))
+            self.btn_logout.clicked.connect(lambda: self.Pages.setCurrentWidget(sys.exit(0)))
             
             #Botões de importação
             self.btn_ler.clicked.connect(self.leitura_img)
