@@ -91,7 +91,7 @@ class Ui_Form(object):
         self.label.setStyleSheet(u"        QFrame {\n"
 "            background-color: rgba(231, 231, 231, 0); /* Define a cor de fundo como transparente */\n"
 "        }")
-        self.label.setPixmap(QPixmap(u":/icons/pages/icons/logo_roxa.png"))
+        self.label.setPixmap(QPixmap(u":/icons/icons/logo_roxa.png"))
         self.label.setScaledContents(True)
         self.email_line = QLineEdit(self.frame)
         self.email_line.setObjectName(u"email_line")
@@ -180,7 +180,7 @@ class Ui_Form(object):
         self.label_2 = QLabel(self.frame_4)
         self.label_2.setObjectName(u"label_2")
         self.label_2.setGeometry(QRect(40, 220, 351, 331))
-        self.label_2.setPixmap(QPixmap(u":/icons/pages/icons/Black Minimalist Outline Icons Icon Set (4).png"))
+        self.label_2.setPixmap(QPixmap(u":/icons/icons/Black Minimalist Outline Icons Icon Set (4).png"))
         self.label_2.setScaledContents(True)
         self.plainTextEdit = QPlainTextEdit(self.frame_4)
         self.plainTextEdit.setObjectName(u"plainTextEdit")
@@ -214,7 +214,7 @@ class Ui_Form(object):
         self.label_3 = QLabel(self.frame_5)
         self.label_3.setObjectName(u"label_3")
         self.label_3.setGeometry(QRect(240, 0, 671, 661))
-        self.label_3.setPixmap(QPixmap(u":/icons/pages/icons/Fundo.png"))
+        self.label_3.setPixmap(QPixmap(u":/icons/icons/Fundo.png"))
         self.label_3.setScaledContents(True)
         self.frame_6 = QFrame(self.frame_5)
         self.frame_6.setObjectName(u"frame_6")
@@ -298,7 +298,7 @@ class Ui_Form(object):
 "color: #480070;")
         self.plainTextEdit_4 = QPlainTextEdit(self.frame_6)
         self.plainTextEdit_4.setObjectName(u"plainTextEdit_4")
-        self.plainTextEdit_4.setGeometry(QRect(50, 80, 291, 51))
+        self.plainTextEdit_4.setGeometry(QRect(60, 60, 271, 71))
         font6 = QFont()
         font6.setFamilies([u"Lato"])
         font6.setPointSize(11)
@@ -332,7 +332,7 @@ class Ui_Form(object):
         self.label_4 = QLabel(self.frame_7)
         self.label_4.setObjectName(u"label_4")
         self.label_4.setGeometry(QRect(250, 20, 661, 641))
-        self.label_4.setPixmap(QPixmap(u":/icons/pages/icons/Fundo.png"))
+        self.label_4.setPixmap(QPixmap(u":/icons/icons/Fundo.png"))
         self.label_4.setScaledContents(True)
         self.frame_8 = QFrame(self.frame_7)
         self.frame_8.setObjectName(u"frame_8")
@@ -437,7 +437,7 @@ class Ui_Form(object):
         self.label_5 = QLabel(self.frame_9)
         self.label_5.setObjectName(u"label_5")
         self.label_5.setGeometry(QRect(220, 20, 721, 641))
-        self.label_5.setPixmap(QPixmap(u":/icons/pages/icons/Fundo.png"))
+        self.label_5.setPixmap(QPixmap(u":/icons/icons/Fundo.png"))
         self.label_5.setScaledContents(True)
         self.frame_10 = QFrame(self.frame_9)
         self.frame_10.setObjectName(u"frame_10")
@@ -559,7 +559,7 @@ class Ui_Form(object):
 
         self.retranslateUi(Form)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(3)
 
 
         QMetaObject.connectSlotsByName(Form)

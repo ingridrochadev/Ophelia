@@ -30,10 +30,10 @@ class Login(QWidget, Ui_Form):
         
         self.set_up_botoes_login()
         
+        
     def set_up_botoes_login(self):
         self.btn_esquecer_senha.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pg_email_esqueci))
         self.btn_send_email_esqueci.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pg_codigo_2))
-        self.btn_entrar.clicked.connect(self.open_system)
         self.btn_voltar1.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_login))
         self.btn_voltar1_2.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_login))
         self.btn_voltar1_3.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_login))
@@ -46,16 +46,18 @@ class Login(QWidget, Ui_Form):
         #     msg.setText(f'Código Incorreto')
         #     msg.exec()
         
+        
     def open_system(self):
         email = self.email_line.text()  # Obtém o texto digitado no campo de email
         senha = self.senha_line.text()
         usuario_verificado = sistema.fazer_login(email, senha)
-        perfil = sistema.verificar_tipo_perfil(email)
+        perfil, nome = sistema.verificar_tipo_e_nome_perfil(email)
         
         if usuario_verificado:
-            self.w = MainWindow(perfil)
+            self.w = MainWindow(perfil, nome)
             self.w.show()
             self.close()
+            return usuario_verificado
         else:
             if self.tentativas < 3:
                 msg = QMessageBox()
@@ -68,44 +70,39 @@ class Login(QWidget, Ui_Form):
                 sys.exit(0)
     
 class MainWindow(QMainWindow, Ui_MainWindow):
-        def __init__(self, perfil):
+        def __init__(self, perfil, nome):
             super(MainWindow, self).__init__()
             self.setupUi(self)
             self.setWindowTitle("Ophelia")
-            self.resize(1200, 800)
+            self.resize(1222, 794)
             appIcon = QIcon(u"pages/icons/logo_branca.png")
             self.setWindowIcon(appIcon)
+            self.txt_bemvindo.setText(QCoreApplication.translate("MainWindow", f"Bem-vindo(a), {nome}!", None))
             # Define a página inicial como 'pg_home'
             self.Pages.setCurrentWidget(self.pg_home)
             # Armazenar os dados do visto
             self.dados_visto = None
             self.status_visto = None
-            self.set_up_botoes(perfil)
-            
-        def leftMenu(self):
-            width = self.left_container.width()
-            newWidth = 200 if width == 9 else 9
+            self.set_up_botoes()
 
-            self.animation = QPropertyAnimation(self.left_container, b"maximumWidth")
-            self.animation.setDuration(500)
-            self.animation.setStartValue(width)
-            self.animation.setEndValue(newWidth)
-            self.animation.setEasingCurve(QEasingCurve.InOutQuart)
-            self.animation.start()
-        
-        def set_up_botoes(self, perfil):
-            
+
             if perfil == "user":
                 self.btn_inserir_user.setVisible(False)
-            #Togle Button
-            self.btn_toggle.clicked.connect(self.leftMenu)
+                self.btn_listar_usuarios.setVisible(False)
+                self.btn_alterar_usuario.setVisible(False)
+                self.excluir_pax_btn.setVisible(False)
+        
+        def set_up_botoes(self):
             #Páginas do sistema
             self.btn_home.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_home))
             self.btn_add.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_adicionar))
             self.btn_listar.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_listar))
-            self.btn_sobre.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_sobre))
+            self.btn_alterar_visto.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_alterar_visto))
+            self.btn_sobre.clicked.connect(lambda: self.Pages.setCurrentWidget(self.page))
             self.btn_inserir_user.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_inserir_user))
-            self.btn_editarUsuario.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_alterar_usuario))
+            self.btn_listar_usuarios.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_listar_user))
+            self.btn_alterar_usuario.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_alterar_user))
+            self.btn_alterar_senha_2.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_alterar_senha))
             self.btn_logout.clicked.connect(lambda: self.Pages.setCurrentWidget(sys.exit(0)))
             
             #Botões de importação
@@ -113,8 +110,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.btn_add_2.clicked.connect(self.inserir_dados_bd)
             self.btn_add_user.clicked.connect(self.criar_novo_usuario)
             self.btn_alterar_senha.clicked.connect(self.alterar_senha)
-            self.btn_listar_vistos.clicked.connect(self.buscar_vistos)
+            self.btn_listar_vistos.clicked.connect(self.listar_vistos)
             self.btn_exportar.clicked.connect(self.exportar_excel)
+        
         
         def pop_up_success(self,titulo,texto):
             msg = QMessageBox()
@@ -123,12 +121,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             msg.setText(texto)
             msg.exec()
         
+        
         def pop_up_error(self,titulo,texto):
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Critical)
             msg.setWindowTitle(titulo)
             msg.setText(texto)
             msg.exec()
+        
         
         def pop_up_restricoes(self,regra):
             msg = QMessageBox()
@@ -172,7 +172,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                             
                 except Exception as e:
                     self.pop_up_success('Erro ao inserir visto', f'Erro ao inserir dados na tabela de vistos: {str(e)}')
-            
+        
+        
         def limpar_tela_visto(self):
             self.nome_line.clear()
             self.passport_line.clear()
@@ -184,6 +185,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.num_visto_line.clear()
             # Remove a imagem carregada
             self.img_space.clear()
+        
         
         def leitura_img(self):
             file_dialog = QFileDialog(self)
@@ -212,6 +214,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 pixmap = QPixmap(arquivo_path[0])
                 self.img_space.setPixmap(pixmap.scaled(self.img_space.size(), Qt.KeepAspectRatio))
         
+        
         def dados_atualizados(self, status):
         #Atualizar dados lidos com as edições feitas
             self.dados_visto[0] = self.nome_line.text()
@@ -223,6 +226,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.dados_visto[6] = self.city_line.text()
             self.dados_visto[7] = self.num_visto_line.text()
             self.status_visto = status
+        
         
         def inserir_dados_bd(self):
             if self.dados_visto:
@@ -242,16 +246,33 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     except Exception as e:
                             self.pop_up_success('Erro ao inserir visto', f'Erro ao inserir dados na tabela de vistos: {str(e)}')
         
-        def buscar_vistos(self):
-            self.tbl_vistos.setStyleSheet(u"QHeaderView::section{color:white;color:#fff;font-size: 15px;} QTableWidget{background-color:rgb(252, 252, 252);color:#430B78;}")
-            func = Funcoes()
-            result = func.listar_vistos_sys()
+        
+        def gerar_tabela(self, funcao_ordenacao):
+            result = funcao_ordenacao()
             self.tbl_vistos.clearContents()
             self.tbl_vistos.setRowCount(len(result))
 
             for row, text in enumerate(result):
                 for column, data in enumerate(text):
                     self.tbl_vistos.setItem(row, column, QTableWidgetItem(str(data)))
+        
+        
+        def listar_vistos(self):
+            ordenacao = self.cb_perfil_2.currentText()
+            apenas_aprovados = self.cb_aprovados.isChecked()
+            apenas_negados = self.checkBox_2.isChecked()
+            
+            if ordenacao == "Ordenar por:" and not apenas_aprovados and not apenas_negados:
+                self.gerar_tabela(func.listar_vistos_sys)
+
+            elif ordenacao == "                     A-Z" and not apenas_aprovados and not apenas_negados:
+                self.gerar_tabela(func.listar_vistos_asc)
+                
+            elif ordenacao == "                     Z-A" and not apenas_aprovados and not apenas_negados:
+                self.gerar_tabela(func.listar_vistos_desc)
+        
+        
+        
         
         def criar_novo_usuario(self):
             nome = self.nome_user_line.text()
@@ -283,7 +304,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
         def exportar_excel(self):
             try:
-                # Chamar o método listar_vistos_sys() na instância func da classe Funcoes
                 resultados = func.listar_vistos_sys()
                 # Converter os resultados para um DataFrame pandas
                 df = pd.DataFrame(resultados, columns=['Nome', 'Passaporte', 'Status'])

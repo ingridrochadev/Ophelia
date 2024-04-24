@@ -9,6 +9,7 @@ class Criar_bd:
         self.estabelecer_conexao()             
         self.cur = self.conn.cursor()
 
+
     def estabelecer_conexao(self):
         try:
             self.conn = psycopg2.connect(
@@ -69,7 +70,7 @@ class Criar_bd:
         email character varying(150) NOT NULL,
         senha character varying(150) NOT NULL,
         cpf character varying(15) NOT NULL,
-        tipo_usuario character varying(15) NOT NULL,
+        tipo_usuario character varying(30) NOT NULL,
         PRIMARY KEY (matricula)
     ); ''')
 
@@ -155,7 +156,8 @@ class Criar_bd:
     ('QRS567890', 'Ryan Chen', 'TWN', '1984-03-24');
     ''')
         print('Dados de passageiros inseridos')
-    
+
+
     def inserir_dados_vistos(self):
         self.cur.execute('''INSERT INTO public.vistos (numero_visto, passaporte, tipo_visto, local_emissor, data_validade, status)
     VALUES 
@@ -220,6 +222,7 @@ class Criar_bd:
         self.criar_tabela_codigos_verificacao()
         self.conn.commit()
 
+
     def inserir_dados(self):
         self.inserir_dados_passageiros()
         self.inserir_dados_vistos()
@@ -241,7 +244,7 @@ if __name__ == '__main__':
     sistema = Sistema()
 
     # Criando um usuário administrador
-    sistema.criar_usuario("Administrador", "46590518033", "admin@email.com", "admin1@A", "ADM001", "Administrador")
+    sistema.criar_usuario("Administrador", "46590518033", "admin@email.com", "admin1@A", "ADM001", "Supervisor")
 
     # Criando um usuário normal
-    sistema.criar_usuario("Usuário Normal", "82896051023", "user@email.com", "user2@A", "USR001", "Usuário")
+    sistema.criar_usuario("Usuário Normal", "82896051023", "user@email.com", "user2@A", "USR001", "Agente de Aeroporto")

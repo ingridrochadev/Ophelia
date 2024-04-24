@@ -8,3 +8,8 @@ requests
 pandas
 bcrypt
 openpyxl
+
+
+# ui_main
+        # self.txt_bemvindo.setText(QCoreApplication.translate("MainWindow", u"Bem-vindo(a), {nome_usuario}!", None))
+        # import pages.logo_rc as logo_rc

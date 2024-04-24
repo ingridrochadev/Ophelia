@@ -26,7 +26,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>3</number>
    </property>
    <widget class="QWidget" name="page_login">
     <widget class="QFrame" name="frame_2">
@@ -157,7 +157,7 @@ border-radius: 10px;
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../logo_.qrc">:/icons/pages/icons/logo_roxa.png</pixmap>
+        <pixmap resource="logo_.qrc">:/icons/icons/logo_roxa.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -379,7 +379,7 @@ border-radius:5px; /* Define o estilo da borda como sólido */
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../logo_.qrc">:/icons/pages/icons/Black Minimalist Outline Icons Icon Set (4).png</pixmap>
+        <pixmap resource="logo_.qrc">:/icons/icons/Black Minimalist Outline Icons Icon Set (4).png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -474,7 +474,7 @@ corder color: white;</string>
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="../logo_.qrc">:/icons/pages/icons/Fundo.png</pixmap>
+       <pixmap resource="logo_.qrc">:/icons/icons/Fundo.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -782,7 +782,7 @@ background-color: transparent;</string>
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="../logo_.qrc">:/icons/pages/icons/Fundo.png</pixmap>
+       <pixmap resource="logo_.qrc">:/icons/icons/Fundo.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -1091,7 +1091,7 @@ background-color: transparent;</string>
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="../logo_.qrc">:/icons/pages/icons/Fundo.png</pixmap>
+       <pixmap resource="logo_.qrc">:/icons/icons/Fundo.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -1458,6 +1458,7 @@ border-radius:10px; /* Define o estilo da borda como sólido */
   </widget>
  </widget>
  <resources>
+  <include location="logo_.qrc"/>
   <include location="../logo_.qrc"/>
  </resources>
  <connections/>
