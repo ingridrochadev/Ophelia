@@ -126,6 +126,15 @@ class Criar_bd:
         print('Tabela de histórico de embarque criada.')
 
 
+    def criar_tabela_codigos_verificacao(self):
+        self.cur.execute('''CREATE TABLE IF NOT EXISTS public.codigos_verificacao
+    (
+            codigo character varying(5) NOT NULL,
+            email character varying(150) NOT NULL,
+            PRIMARY KEY (codigo)
+    );''')
+
+
     def inserir_dados_passageiros(self):
         self.cur.execute('''INSERT INTO public.passageiros (passaporte, nome, nacionalidade, data_nascimento)
     VALUES 
@@ -208,6 +217,7 @@ class Criar_bd:
         self.criar_tabela_tipos_vistos()
         self.criar_tabela_voos()
         self.criar_tabela_historico_embarque()
+        self.criar_tabela_codigos_verificacao()
         self.conn.commit()
 
     def inserir_dados(self):
@@ -231,7 +241,7 @@ if __name__ == '__main__':
     sistema = Sistema()
 
     # Criando um usuário administrador
-    sistema.criar_usuario("Administrador", "12345678900", "admin@email.com", "admin", "ADM001", "Administrador")
+    sistema.criar_usuario("Administrador", "46590518033", "admin@email.com", "admin1@A", "ADM001", "Administrador")
 
     # Criando um usuário normal
-    sistema.criar_usuario("Usuário Normal", "98765432100", "user@email.com", "user", "USR001", "Usuário")
+    sistema.criar_usuario("Usuário Normal", "82896051023", "user@email.com", "user2@A", "USR001", "Usuário")
