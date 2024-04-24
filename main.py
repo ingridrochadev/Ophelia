@@ -21,11 +21,31 @@ class Login(QWidget, Ui_Form):
         self.tentativas = 0
         self.setupUi(self)
         self.setWindowTitle('Ophelia')
+        self.resize(900, 660)
         appIcon = QIcon(u"pages/icons/logo_branca.png")
         self.setWindowIcon(appIcon)
 
         self.btn_entrar.clicked.connect(self.open_system)
-    
+        self.stackedWidget.setCurrentWidget(self.page_login)
+        
+        self.set_up_botoes_login()
+        
+    def set_up_botoes_login(self):
+        self.btn_esquecer_senha.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pg_email_esqueci))
+        self.btn_send_email_esqueci.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pg_codigo_2))
+        self.btn_entrar.clicked.connect(self.open_system)
+        self.btn_voltar1.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_login))
+        self.btn_voltar1_2.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_login))
+        self.btn_voltar1_3.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_login))
+        # if codigo_certo:
+        #     self.btn_send_email_esqueci_2.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pg_mudar_senha))
+        # else:
+        #     msg = QMessageBox()
+        #     msg.setIcon(QMessageBox.Warning)
+        #     msg.setWindowTitle('Acesso inválido!')
+        #     msg.setText(f'Código Incorreto')
+        #     msg.exec()
+        
     def open_system(self):
         email = self.email_line.text()  # Obtém o texto digitado no campo de email
         senha = self.senha_line.text()
@@ -60,7 +80,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             # Armazenar os dados do visto
             self.dados_visto = None
             self.status_visto = None
-            self.set_up_botoes()
+            self.set_up_botoes(perfil)
             
         def leftMenu(self):
             width = self.left_container.width()
@@ -86,7 +106,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.btn_sobre.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_sobre))
             self.btn_inserir_user.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_inserir_user))
             self.btn_editarUsuario.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_alterar_usuario))
-            self.btn_logout.clicked.connect(lambda: self.Pages.setCurrentWidget(sys.exit(0)))
+            self.btn_logout.clicked.connect(lambda: self.Pages.setCurrentWidget(Login()))
             
             #Botões de importação
             self.btn_ler.clicked.connect(self.leitura_img)

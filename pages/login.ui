@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1011</width>
-    <height>761</height>
+    <width>909</width>
+    <height>655</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,23 +19,23 @@
   <widget class="QStackedWidget" name="stackedWidget">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>50</y>
+     <x>10</x>
+     <y>0</y>
      <width>901</width>
      <height>661</height>
     </rect>
    </property>
    <property name="currentIndex">
-    <number>3</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="page_login">
     <widget class="QFrame" name="frame_2">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>10</y>
-       <width>901</width>
-       <height>651</height>
+       <x>-10</x>
+       <y>0</y>
+       <width>911</width>
+       <height>661</height>
       </rect>
      </property>
      <property name="sizePolicy">
@@ -157,7 +157,7 @@ border-radius: 10px;
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../logo_.qrc">:/logo/pages/icons/logo_roxa.png</pixmap>
+        <pixmap resource="../logo_.qrc">:/icons/pages/icons/logo_roxa.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -256,6 +256,9 @@ font: 11pt &quot;Lato Heavy&quot;;</string>
        </property>
        <property name="text">
         <string/>
+       </property>
+       <property name="echoMode">
+        <enum>QLineEdit::Password</enum>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -366,17 +369,17 @@ border-radius:5px; /* Define o estilo da borda como sólido */
       <widget class="QLabel" name="label_2">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>200</y>
-         <width>411</width>
-         <height>371</height>
+         <x>40</x>
+         <y>220</y>
+         <width>351</width>
+         <height>331</height>
         </rect>
        </property>
        <property name="text">
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../logo_.qrc">:/logo/pages/icons/Black Minimalist Outline Icons Icon Set (4).png</pixmap>
+        <pixmap resource="../logo_.qrc">:/icons/pages/icons/Black Minimalist Outline Icons Icon Set (4).png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -442,14 +445,15 @@ Caso ainda não tenha um login, contate seu supervisor para criá-lo.</string>
     <widget class="QFrame" name="frame_5">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>10</y>
-       <width>881</width>
-       <height>651</height>
+       <x>-10</x>
+       <y>0</y>
+       <width>921</width>
+       <height>671</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:white;</string>
+      <string notr="true">background-color:white;
+corder color: white;</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
@@ -460,17 +464,17 @@ Caso ainda não tenha um login, contate seu supervisor para criá-lo.</string>
      <widget class="QLabel" name="label_3">
       <property name="geometry">
        <rect>
-        <x>220</x>
-        <y>10</y>
-        <width>661</width>
-        <height>641</height>
+        <x>240</x>
+        <y>0</y>
+        <width>671</width>
+        <height>661</height>
        </rect>
       </property>
       <property name="text">
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="../logo_.qrc">:/logo/pages/icons/Fundo.png</pixmap>
+       <pixmap resource="../logo_.qrc">:/icons/pages/icons/Fundo.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -750,10 +754,10 @@ background-color: transparent;</string>
     <widget class="QFrame" name="frame_7">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>881</width>
-       <height>651</height>
+       <x>-10</x>
+       <y>0</y>
+       <width>921</width>
+       <height>671</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -768,8 +772,8 @@ background-color: transparent;</string>
      <widget class="QLabel" name="label_4">
       <property name="geometry">
        <rect>
-        <x>220</x>
-        <y>10</y>
+        <x>250</x>
+        <y>20</y>
         <width>661</width>
         <height>641</height>
        </rect>
@@ -778,7 +782,7 @@ background-color: transparent;</string>
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="../logo_.qrc">:/logo/pages/icons/Fundo.png</pixmap>
+       <pixmap resource="../logo_.qrc">:/icons/pages/icons/Fundo.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -1059,10 +1063,10 @@ background-color: transparent;</string>
     <widget class="QFrame" name="frame_9">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>10</y>
-       <width>881</width>
-       <height>651</height>
+       <x>-40</x>
+       <y>0</y>
+       <width>951</width>
+       <height>671</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -1078,8 +1082,8 @@ background-color: transparent;</string>
       <property name="geometry">
        <rect>
         <x>220</x>
-        <y>10</y>
-        <width>661</width>
+        <y>20</y>
+        <width>721</width>
         <height>641</height>
        </rect>
       </property>
@@ -1087,7 +1091,7 @@ background-color: transparent;</string>
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="../logo_.qrc">:/logo/pages/icons/Fundo.png</pixmap>
+       <pixmap resource="../logo_.qrc">:/icons/pages/icons/Fundo.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -1096,8 +1100,8 @@ background-color: transparent;</string>
      <widget class="QFrame" name="frame_10">
       <property name="geometry">
        <rect>
-        <x>280</x>
-        <y>90</y>
+        <x>320</x>
+        <y>120</y>
         <width>341</width>
         <height>361</height>
        </rect>
@@ -1177,7 +1181,7 @@ border-radius: 10px;
        <property name="geometry">
         <rect>
          <x>50</x>
-         <y>130</y>
+         <y>140</y>
          <width>250</width>
          <height>35</height>
         </rect>
@@ -1217,6 +1221,9 @@ border-radius:10px; /* Define o estilo da borda como sólido */
        </property>
        <property name="text">
         <string/>
+       </property>
+       <property name="echoMode">
+        <enum>QLineEdit::Password</enum>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -1278,7 +1285,7 @@ color: #D589FF;
       <widget class="QPlainTextEdit" name="plainTextEdit_9">
        <property name="geometry">
         <rect>
-         <x>50</x>
+         <x>80</x>
          <y>20</y>
          <width>311</width>
          <height>41</height>
@@ -1306,8 +1313,8 @@ background-color: transparent;</string>
         <rect>
          <x>50</x>
          <y>70</y>
-         <width>281</width>
-         <height>31</height>
+         <width>271</width>
+         <height>51</height>
         </rect>
        </property>
        <property name="font">
@@ -1336,7 +1343,7 @@ color: #480070;</string>
        <property name="geometry">
         <rect>
          <x>50</x>
-         <y>110</y>
+         <y>120</y>
          <width>281</width>
          <height>31</height>
         </rect>
@@ -1435,6 +1442,9 @@ border-radius:10px; /* Define o estilo da borda como sólido */
        <property name="text">
         <string/>
        </property>
+       <property name="echoMode">
+        <enum>QLineEdit::Password</enum>
+       </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
        </property>
@@ -1449,7 +1459,6 @@ border-radius:10px; /* Define o estilo da borda como sólido */
  </widget>
  <resources>
   <include location="../logo_.qrc"/>
-  <include location="logo_.qrc"/>
  </resources>
  <connections/>
 </ui>
