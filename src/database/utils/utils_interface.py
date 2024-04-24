@@ -2,7 +2,7 @@ from PySide6.QtCore import Qt
 from PySide6.QtCore import QCoreApplication, QPropertyAnimation, QEasingCurve
 from PySide6.QtGui import QIcon, QPixmap
 from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QMessageBox, QFileDialog, QBoxLayout, QTableWidgetItem
-from ui_login import Ui_Form
+from ..pages.ui_logi import Ui_Form
 from ui_main import Ui_MainWindow
 from src.image_processing.Versao_Final_OCR import read_visto
 from utils_usuario import Sistema
