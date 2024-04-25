@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import psycopg2
 from os import getenv
-#from utils.utils_usuario import Sistema
+from utils.utils_usuario import Sistema
 load_dotenv()
 
 class Criar_bd:
@@ -240,8 +240,8 @@ VALUES
     def inserir_usuarios(self):
         self.cur.execute('''INSERT INTO public.usuarios (matricula, nome, email, senha, cpf, tipo_usuario) 
 VALUES
-('ADM001', 'Administrador', 'admin@ophelia.com', 'admin1@A', '46590518033', 'Administrador'),
-('USR001', 'Usuário Normal', 'user@ophelia.com', 'user2@A', '82896051023', 'Usuário');                                           
+('ADM001', 'Administrador', 'admin@ophelia.com', 'admin1@A', '46590518033', 'Supervisor'),
+('USR001', 'Usuário Normal', 'user@ophelia.com', 'user2@A', '82896051023', 'Agente de Aeroporto');                                           
 ''')
         print('Dados de usuarios inseridos')
 

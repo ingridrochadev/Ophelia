@@ -265,31 +265,54 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                             self.pop_up_success('Erro ao inserir visto', f'Erro ao inserir dados na tabela de vistos: {str(e)}')
         
         
-        def gerar_tabela(self, funcao_ordenacao):
-            result = funcao_ordenacao()
+        def gerar_tabela(self, result):
             self.tbl_vistos.clearContents()
             self.tbl_vistos.setRowCount(len(result))
 
             for row, text in enumerate(result):
                 for column, data in enumerate(text):
                     self.tbl_vistos.setItem(row, column, QTableWidgetItem(str(data)))
-        
-        
+
         def listar_vistos(self):
             ordenacao = self.cb_perfil_2.currentText()
             apenas_aprovados = self.cb_aprovados.isChecked()
             apenas_negados = self.checkBox_2.isChecked()
-            
-            if ordenacao == "Ordenar por:" and (not apenas_aprovados and not apenas_negados) or (apenas_aprovados and not apenas_negados):
-                self.gerar_tabela(func.listar_vistos_sys)
 
-            elif ordenacao == "                     A-Z" and not apenas_aprovados and not apenas_negados:
-                self.gerar_tabela(func.listar_vistos_asc)
-                
-            elif ordenacao == "                     Z-A" and not apenas_aprovados and not apenas_negados:
-                self.gerar_tabela(func.listar_vistos_desc)
-        
-        
+            if ordenacao == "Ordenar por:":
+                if apenas_aprovados:
+                    result = func.listar_vistos_aprovados()
+                    self.gerar_tabela(result)
+                elif apenas_negados:
+                    result = func.listar_vistos_reprovados()
+                    self.gerar_tabela(result)
+                    pass
+                else:
+                    result = func.listar_vistos_sys()
+                    self.gerar_tabela(result)
+
+            elif ordenacao == "                     A-Z":
+                if apenas_aprovados:
+                    # Lógica para ordenar de A-Z, apenas aprovados
+                    pass
+                elif apenas_negados:
+                    # Lógica para ordenar de A-Z, apenas negados
+                    pass
+                else:
+                    self.gerar_tabela(func.listar_vistos_asc)
+
+            elif ordenacao == "                     Z-A":
+                if apenas_aprovados:
+                    # Lógica para ordenar de Z-A, apenas aprovados
+                    pass
+                elif apenas_negados:
+                    # Lógica para ordenar de Z-A, apenas negados
+                    pass
+                else:
+                    self.gerar_tabela(func.listar_vistos_desc)
+
+                        
+                        
+            
         def criar_novo_usuario(self):
             nome = self.nome_user_line.text()
             cpf = self.cpf_line.text()

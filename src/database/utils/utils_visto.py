@@ -83,27 +83,6 @@ class Funcoes:
             self.conn.rollback()
 
 
-    def listar_vistos_all(self):
-        try:
-            sql = '''SELECT passageiros.passaporte, 
-                            passageiros.nome,
-                            passageiros.nacionalidade,
-                            passageiros.data_nascimento,
-                            vistos.numero_visto,
-                            vistos.tipo_visto,
-                            vistos.data_validade
-            FROM passageiros 
-            JOIN vistos ON passageiros.passaporte = vistos.passaporte;'''
-        
-            self.cur.execute(sql)
-            resultados = self.cur.fetchall()
-            print(resultados)
-            return resultados
-        
-        except Exception as e:
-            print(f'Ocorreu um erro: {e}')
-    
-    
     def listar_vistos_sys(self):
         try:
             sql = '''SELECT passageiros.nome,
@@ -123,13 +102,9 @@ class Funcoes:
 
     def listar_vistos_asc(self):
         try:
-            sql = '''SELECT passageiros.passaporte, 
-                            passageiros.nome,
-                            passageiros.nacionalidade,
-                            passageiros.data_nascimento,
-                            vistos.numero_visto,
-                            vistos.tipo_visto,
-                            vistos.data_validade
+            sql = '''SELECT passageiros.nome,
+                            passageiros.passaporte, 
+                            vistos.status
             FROM passageiros 
             JOIN vistos ON passageiros.passaporte = vistos.passaporte
             ORDER BY passageiros.nome;'''
@@ -144,13 +119,9 @@ class Funcoes:
 
     def listar_vistos_desc(self):
         try:
-            sql = '''SELECT passageiros.passaporte, 
-                            passageiros.nome,
-                            passageiros.nacionalidade,
-                            passageiros.data_nascimento,
-                            vistos.numero_visto,
-                            vistos.tipo_visto,
-                            vistos.data_validade
+            sql = '''SELECT passageiros.nome,
+                            passageiros.passaporte, 
+                            vistos.status
             FROM passageiros 
             JOIN vistos ON passageiros.passaporte = vistos.passaporte
             ORDER BY passageiros.nome DESC;'''
@@ -162,7 +133,41 @@ class Funcoes:
         except Exception as e:
             print(f'Ocorreu um erro: {e}')
 
+
     def listar_vistos_aprovados(self):
+        try:
+            sql = '''SELECT passageiros.nome,
+                            passageiros.passaporte,                            
+                            vistos.status
+            FROM passageiros 
+            JOIN vistos ON passageiros.passaporte = vistos.passaporte
+            WHERE vistos.status = 'Aprovado';'''
+        
+            self.cur.execute(sql)
+            resultados = self.cur.fetchall()
+            self.imprimir_resultados(resultados)
+
+        except Exception as e:
+            print(f'Ocorreu um erro: {e}')
+            
+    def listar_vistos_aprovados_asc(self):
+        try:
+            sql = '''SELECT passageiros.nome,
+                            passageiros.passaporte,                            
+                            vistos.status
+            FROM passageiros 
+            JOIN vistos ON passageiros.passaporte = vistos.passaporte
+            WHERE vistos.status = 'Aprovado'
+            ORDER BY passageiros.nome DESC;'''
+        
+            self.cur.execute(sql)
+            resultados = self.cur.fetchall()
+            self.imprimir_resultados(resultados)
+
+        except Exception as e:
+            print(f'Ocorreu um erro: {e}')
+    
+    def listar_vistos_aprovados_desc(self):
         try:
             sql = '''SELECT passageiros.nome,
                             passageiros.passaporte,                            
@@ -179,15 +184,14 @@ class Funcoes:
         except Exception as e:
             print(f'Ocorreu um erro: {e}')
 
-
-    def listar_vistos_reprovados(self):
+    def listar_vistos_negados(self):
         try:
             sql = '''SELECT passageiros.nome,
                             passageiros.passaporte,                            
                             vistos.status
             FROM passageiros 
             JOIN vistos ON passageiros.passaporte = vistos.passaporte
-            WHERE vistos.status = 'Reprovado'
+            WHERE vistos.status = 'Negado'
             ORDER BY passageiros.nome;'''
         
             self.cur.execute(sql)
@@ -197,6 +201,39 @@ class Funcoes:
         except Exception as e:
             print(f'Ocorreu um erro: {e}')
 
+    def listar_vistos_negados_asc(self):
+        try:
+            sql = '''SELECT passageiros.nome,
+                            passageiros.passaporte,                            
+                            vistos.status
+            FROM passageiros 
+            JOIN vistos ON passageiros.passaporte = vistos.passaporte
+            WHERE vistos.status = 'Negado'
+            ORDER BY passageiros.nome DESC;'''
+        
+            self.cur.execute(sql)
+            resultados = self.cur.fetchall()
+            self.imprimir_resultados(resultados)
+
+        except Exception as e:
+            print(f'Ocorreu um erro: {e}')
+    
+    def listar_vistos_negados_desc(self):
+        try:
+            sql = '''SELECT passageiros.nome,
+                            passageiros.passaporte,                            
+                            vistos.status
+            FROM passageiros 
+            JOIN vistos ON passageiros.passaporte = vistos.passaporte
+            WHERE vistos.status = 'Negado'
+            ORDER BY passageiros.nome;'''
+        
+            self.cur.execute(sql)
+            resultados = self.cur.fetchall()
+            self.imprimir_resultados(resultados)
+        
+        except Exception as e:
+            print(f'Ocorreu um erro: {e}')
     
     def alterar_status_visto(self, passaporte):
         try:
