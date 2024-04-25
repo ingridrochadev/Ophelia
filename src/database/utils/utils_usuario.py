@@ -372,6 +372,161 @@ class Sistema:
                     conn.close()
         else:
             return "Preencha todos os campos obrigatórios!"
+        
+        
+    def listar_usuarios_default(self):
+        try:
+            conn = self.estabelecer_conexao()
+            cur = conn.cursor()
+            
+            cur.execute("SELECT matricula, nome, email, cpf, tipo_usuario FROM usuarios")
+            usuarios = cur.fetchall()
+            return usuarios
+        
+        except Exception as error:
+            print(f"Ocorreu um erro ao listar os usuários: {error}")
+        
+        finally:
+            cur.close()
+            conn.close()
+    
+    
+    def listar_usuarios_asc(self):
+        try:
+            conn = self.estabelecer_conexao()
+            cur = conn.cursor()
+            
+            cur.execute("SELECT matricula, nome, email, cpf, tipo_usuario FROM usuarios ORDER BY nome")
+            usuarios = cur.fetchall()
+            return usuarios
+        
+        except Exception as error:
+            print(f"Ocorreu um erro ao listar os usuários: {error}")
+        
+        finally:
+            cur.close()
+            conn.close()
+            
+            
+    def listar_usuarios_desc(self):
+        try:
+            conn = self.estabelecer_conexao()
+            cur = conn.cursor()
+            
+            cur.execute("SELECT matricula, nome, email, cpf, tipo_usuario FROM usuarios ORDER BY nome DESC")
+            usuarios = cur.fetchall()
+            return usuarios
+        
+        except Exception as error:
+            print(f"Ocorreu um erro ao listar os usuários: {error}")
+        
+        finally:
+            cur.close()
+            conn.close()
+            
+    
+    def listar_usuarios_supervisor(self):
+        try:
+            conn = self.estabelecer_conexao()
+            cur = conn.cursor()
+            
+            cur.execute("SELECT matricula, nome, email, cpf, tipo_usuario FROM usuarios WHERE tipo_usuario = %s", ("Supervisor", ))
+            usuarios = cur.fetchall()
+            return usuarios
+        
+        except Exception as error:
+            print(f"Ocorreu um erro ao listar os usuários: {error}")
+        
+        finally:
+            cur.close()
+            conn.close()
+    
+    
+    def listar_usuarios_supervisor_asc(self):
+        try:
+            conn = self.estabelecer_conexao()
+            cur = conn.cursor()
+            
+            cur.execute("SELECT matricula, nome, email, cpf, tipo_usuario FROM usuarios WHERE tipo_usuario = %s ORDER BY nome", ("Supervisor", ))
+            usuarios = cur.fetchall()
+            return usuarios
+        
+        except Exception as error:
+            print(f"Ocorreu um erro ao listar os usuários: {error}")
+        
+        finally:
+            cur.close()
+            conn.close()
+            
+    
+    def listar_usuarios_supervisor_desc(self):
+        try:
+            conn = self.estabelecer_conexao()
+            cur = conn.cursor()
+            
+            cur.execute("SELECT matricula, nome, email, cpf, tipo_usuario FROM usuarios WHERE tipo_usuario = %s ORDER BY nome DESC", ("Supervisor", ))
+            usuarios = cur.fetchall()
+            return usuarios
+        
+        except Exception as error:
+            print(f"Ocorreu um erro ao listar os usuários: {error}")
+        
+        finally:
+            cur.close()
+            conn.close()
+    
+    
+    def listar_usuarios_agente(self):
+        try:
+            conn = self.estabelecer_conexao()
+            cur = conn.cursor()
+            
+            cur.execute("SELECT matricula, nome, email, cpf, tipo_usuario FROM usuarios WHERE tipo_usuario = %s", ("Agente de Aeroporto", ))
+            usuarios = cur.fetchall()
+            return usuarios
+        
+        except Exception as error:
+            print(f"Ocorreu um erro ao listar os usuários: {error}")
+        
+        finally:
+            cur.close()
+            conn.close()
+    
+    
+    def listar_usuarios_agente_asc(self):
+        try:
+            conn = self.estabelecer_conexao()
+            cur = conn.cursor()
+            
+            cur.execute("SELECT matricula, nome, email, cpf, tipo_usuario FROM usuarios WHERE tipo_usuario = %s ORDER BY nome", ("Agente de Aeroporto", ))
+            usuarios = cur.fetchall()
+            return usuarios
+        
+        except Exception as error:
+            print(f"Ocorreu um erro ao listar os usuários: {error}")
+        
+        finally:
+            cur.close()
+            conn.close()
+            
+    
+    def listar_usuarios_agente_desc(self):
+        try:
+            conn = self.estabelecer_conexao()
+            cur = conn.cursor()
+            
+            cur.execute("SELECT matricula, nome, email, cpf, tipo_usuario FROM usuarios WHERE tipo_usuario = %s ORDER BY nome DESC", ("Agente de Aeroporto", ))
+            usuarios = cur.fetchall()
+            return usuarios
+        
+        except Exception as error:
+            print(f"Ocorreu um erro ao listar os usuários: {error}")
+        
+        finally:
+            cur.close()
+            conn.close()    
+        
+        
 
 
 class Funcionario:
