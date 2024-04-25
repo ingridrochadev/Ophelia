@@ -250,7 +250,7 @@ class Sistema:
     
     
     def enviar_confirmacao(self, email: str):
-        conn = self.estabelecer_conexao(self)
+        conn = self.estabelecer_conexao()
         cur = conn.cursor()
         
         # Conexão com os servidores do google
@@ -267,7 +267,7 @@ class Sistema:
             conn.commit()
 
         # Gerando o código de confirmação
-        codigo = self.criar_codigo_confirmacao(self)
+        codigo = self.criar_codigo_confirmacao()
         cur.execute("INSERT INTO codigos_verificacao (codigo, email) VALUES (%s, %s)", (codigo, email))
         conn.commit()
         
@@ -351,24 +351,24 @@ class Sistema:
                             hashed_senha = self.encriptar_senha(self, nova_senha)
                             cur.execute("UPDATE usuarios SET senha = %s WHERE email = %s", (hashed_senha, email))
                             conn.commit()
-                            print("Senha alterada com sucesso!")
+                            return True
                         else:
-                            print("As senhas não correspondem. Tente novamente!")
+                            return "As senhas não correspondem. Tente novamente!"
                                 
                     else: 
-                        print("E-mail e/ou senha incorreta. Tente novamente!")
+                        return "E-mail e/ou senha incorreta. Tente novamente!"
                 else:
-                    print("Código inválido!")
+                    return "Código inválido!"
                 
             except Exception as error:
-                print(f'Ocorreu um erro ao redefinir a senha: {error}')
+                return f'Ocorreu um erro ao redefinir a senha: {error}'
                 conn.rollback()
                 
             finally:
                 cur.close()
                 conn.close()
         else:
-            print("Preencha todos os campos obrigatórios!")
+            return "Preencha todos os campos obrigatórios!"
 
 class Funcionario:
     def __init__(self):

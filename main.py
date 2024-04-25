@@ -28,41 +28,41 @@ class Login(QWidget, Ui_Form):
         self.btn_entrar.clicked.connect(self.open_system)
         self.stackedWidget.setCurrentWidget(self.page_login)
         
-        # self.email = ""
-        # self.senha= ""
-        # self.perfil = ""
-        # self.nome = ""
-        # self.email_fornecido = self.ln_email_esqueci.text()
-        # self.codigo = self.ln_codigo.text()
-        # self.nova_senha = self.ln_nova_Senha.text()
-        # self.conf_nova_senha = self.ln_conf_nova_senha.text()
+        self.email = ""
+        self.senha= ""
+        self.perfil = ""
+        self.nome = ""
+        self.email_fornecido = ""
+        self.codigo = self.ln_codigo.text()
+        self.nova_senha = self.ln_nova_Senha.text()
+        self.conf_nova_senha = self.ln_conf_nova_senha.text()
         
         self.set_up_botoes_login()
-        
+                
     def set_up_botoes_login(self):
         self.btn_esquecer_senha.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pg_email_esqueci))
         self.btn_send_email_esqueci.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pg_codigo_2))
         self.btn_voltar1.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_login))
         self.btn_voltar1_2.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_login))
-        self.btn_voltar1_3.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_login))
         
         # #Botões de importação
-        # self.btn_send_email_esqueci.clicked.connect(sistema.enviar_confirmacao(self.email_fornecido))
-        # self.btn_send_email_esqueci.clicked.connect(sistema.enviar_confirmacao(self.email_fornecido))
-        # self.btn_send_email_esqueci.clicked.connect(sistema.enviar_confirmacao(self.email_fornecido))
+        self.btn_send_email_esqueci.clicked.connect(self.enviar_email_confirmacao)
+        self.btn_redefinir_senha.clicked.connect(self.redefinir_senha)
         
-        # self.codigo_confirmado, self.msg = sistema.confirmar_codigo(self.email_fornecido, self.codigo)
+    def enviar_email_confirmacao(self):
+        self.ln_email_esqueci.text()
+        print(self.email_fornecido)
+        sistema.enviar_confirmacao(self.email_fornecido)
         
-        # if self.codigo_confirmado:
-        #     MainWindow.pop_up_success("Código Verificado", self.msg)
-        #     self.btn_send_email_esqueci_2.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pg_mudar_senha))
-        # else:
-        #     MainWindow.pop_up_error("Código incorreto",self.msg)
-        #     self.ln_codigo.clear()
-        
-        
-        
-        # self.btn_redefinir_senha.connect(self.page_login)
+    def redefinir_senha(self):
+        confirmacao_codigo = sistema.redefinir_senha(self.email_fornecido, self.codigo, self.nova_senha, self.conf_nova_senha)
+        if confirmacao_codigo:
+            MainWindow.pop_up_success("Código Verificado", "Senha alterada com sucesso!")
+            self.btn_redefinir_senha.connect(self.open_system)
+        else:
+            MainWindow.pop_up_error("Código incorreto",confirmacao_codigo)
+            self.ln_codigo.clear()
+            self.btn_redefinir_senha.connect(self.page_login)
         
     def open_system(self):
         self.email = self.email_line.text()  # Obtém o texto digitado no campo de email
@@ -278,41 +278,32 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             apenas_aprovados = self.cb_aprovados.isChecked()
             apenas_negados = self.checkBox_2.isChecked()
 
-            if ordenacao == "Ordenar por:":
-                if apenas_aprovados:
+            # Determina a função de consulta com base nos parâmetros
+            if apenas_aprovados:
+                if ordenacao == "Ordenar por:":
                     result = func.listar_vistos_aprovados()
-                    self.gerar_tabela(result)
-                elif apenas_negados:
-                    result = func.listar_vistos_reprovados()
-                    self.gerar_tabela(result)
-                    pass
-                else:
+                elif ordenacao == "                     A-Z":
+                    result = func.listar_vistos_aprovados_asc()
+                elif ordenacao == "                     Z-A":
+                    result = func.listar_vistos_aprovados_desc()
+            elif apenas_negados:
+                if ordenacao == "Ordenar por:":
+                    result = func.listar_vistos_negados()
+                elif ordenacao == "                     A-Z":
+                    result = func.listar_vistos_negados_asc()
+                elif ordenacao == "                     Z-A":
+                    result = func.listar_vistos_negados_desc()
+            else:
+                if ordenacao == "Ordenar por:":
                     result = func.listar_vistos_sys()
-                    self.gerar_tabela(result)
+                elif ordenacao == "                     A-Z":
+                    result = func.listar_vistos_asc()
+                elif ordenacao == "                     Z-A":
+                    result = func.listar_vistos_desc()
 
-            elif ordenacao == "                     A-Z":
-                if apenas_aprovados:
-                    # Lógica para ordenar de A-Z, apenas aprovados
-                    pass
-                elif apenas_negados:
-                    # Lógica para ordenar de A-Z, apenas negados
-                    pass
-                else:
-                    self.gerar_tabela(func.listar_vistos_asc)
+            # Gerar a tabela com base no resultado da consulta
+            self.gerar_tabela(result)
 
-            elif ordenacao == "                     Z-A":
-                if apenas_aprovados:
-                    # Lógica para ordenar de Z-A, apenas aprovados
-                    pass
-                elif apenas_negados:
-                    # Lógica para ordenar de Z-A, apenas negados
-                    pass
-                else:
-                    self.gerar_tabela(func.listar_vistos_desc)
-
-                        
-                        
-            
         def criar_novo_usuario(self):
             nome = self.nome_user_line.text()
             cpf = self.cpf_line.text()

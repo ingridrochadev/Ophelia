@@ -213,7 +213,7 @@ class Ui_Form(object):
         self.frame_5.setFrameShadow(QFrame.Raised)
         self.label_3 = QLabel(self.frame_5)
         self.label_3.setObjectName(u"label_3")
-        self.label_3.setGeometry(QRect(240, 0, 671, 661))
+        self.label_3.setGeometry(QRect(250, 0, 671, 661))
         self.label_3.setPixmap(QPixmap(u":/icons/icons/Fundo.png"))
         self.label_3.setScaledContents(True)
         self.frame_6 = QFrame(self.frame_5)
@@ -331,12 +331,12 @@ class Ui_Form(object):
         self.frame_7.setFrameShadow(QFrame.Raised)
         self.label_4 = QLabel(self.frame_7)
         self.label_4.setObjectName(u"label_4")
-        self.label_4.setGeometry(QRect(250, 20, 661, 641))
+        self.label_4.setGeometry(QRect(250, 0, 671, 661))
         self.label_4.setPixmap(QPixmap(u":/icons/icons/Fundo.png"))
         self.label_4.setScaledContents(True)
         self.frame_8 = QFrame(self.frame_7)
         self.frame_8.setObjectName(u"frame_8")
-        self.frame_8.setGeometry(QRect(280, 130, 361, 261))
+        self.frame_8.setGeometry(QRect(280, 40, 351, 481))
         sizePolicy1.setHeightForWidth(self.frame_8.sizePolicy().hasHeightForWidth())
         self.frame_8.setSizePolicy(sizePolicy1)
         self.frame_8.setStyleSheet(u"QFrame{\n"
@@ -352,27 +352,9 @@ class Ui_Form(object):
 "}")
         self.frame_8.setFrameShape(QFrame.StyledPanel)
         self.frame_8.setFrameShadow(QFrame.Raised)
-        self.btn_send_email_esqueci_2 = QPushButton(self.frame_8)
-        self.btn_send_email_esqueci_2.setObjectName(u"btn_send_email_esqueci_2")
-        self.btn_send_email_esqueci_2.setGeometry(QRect(100, 200, 160, 40))
-        self.btn_send_email_esqueci_2.setMinimumSize(QSize(160, 40))
-        self.btn_send_email_esqueci_2.setMaximumSize(QSize(160, 16777215))
-        self.btn_send_email_esqueci_2.setFont(font)
-        self.btn_send_email_esqueci_2.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_send_email_esqueci_2.setStyleSheet(u"QPushButton{\n"
-"background-color:#480070;\n"
-"color:rgb(255,255,255);\n"
-"border-radius: 10px;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"background-color: #D589FF;\n"
-"color: #480070;\n"
-"border-radius: 10px;\n"
-"}")
         self.ln_codigo = QLineEdit(self.frame_8)
         self.ln_codigo.setObjectName(u"ln_codigo")
-        self.ln_codigo.setGeometry(QRect(60, 150, 250, 35))
+        self.ln_codigo.setGeometry(QRect(50, 160, 250, 35))
         self.ln_codigo.setMinimumSize(QSize(250, 35))
         self.ln_codigo.setMaximumSize(QSize(250, 35))
         self.ln_codigo.setFont(font1)
@@ -404,62 +386,46 @@ class Ui_Form(object):
 "}")
         self.plainTextEdit_6 = QPlainTextEdit(self.frame_8)
         self.plainTextEdit_6.setObjectName(u"plainTextEdit_6")
-        self.plainTextEdit_6.setGeometry(QRect(50, 20, 311, 41))
+        self.plainTextEdit_6.setGeometry(QRect(40, 20, 311, 41))
         self.plainTextEdit_6.setFont(font3)
         self.plainTextEdit_6.setStyleSheet(u"border: none;\n"
 "color: #480070;\n"
 "background-color: transparent;")
-        self.plainTextEdit_7 = QPlainTextEdit(self.frame_8)
-        self.plainTextEdit_7.setObjectName(u"plainTextEdit_7")
-        self.plainTextEdit_7.setGeometry(QRect(50, 60, 291, 71))
-        self.plainTextEdit_7.setFont(font6)
-        self.plainTextEdit_7.setStyleSheet(u"border: none;\n"
-"color: #480070;")
-        self.plainTextEdit_7.setReadOnly(True)
-        self.plainTextEdit_7.setCenterOnScroll(False)
-        self.plainTextEdit_8 = QPlainTextEdit(self.frame_8)
-        self.plainTextEdit_8.setObjectName(u"plainTextEdit_8")
-        self.plainTextEdit_8.setGeometry(QRect(60, 130, 281, 31))
-        self.plainTextEdit_8.setFont(font7)
-        self.plainTextEdit_8.setStyleSheet(u"border: none;\n"
-"color: #480070;\n"
-"background-color: transparent;")
-        self.plainTextEdit_8.setReadOnly(True)
-        self.stackedWidget.addWidget(self.pg_codigo_2)
-        self.pg_mudar_senha = QWidget()
-        self.pg_mudar_senha.setObjectName(u"pg_mudar_senha")
-        self.frame_9 = QFrame(self.pg_mudar_senha)
-        self.frame_9.setObjectName(u"frame_9")
-        self.frame_9.setGeometry(QRect(-40, 0, 951, 671))
-        self.frame_9.setStyleSheet(u"background-color:white;")
-        self.frame_9.setFrameShape(QFrame.StyledPanel)
-        self.frame_9.setFrameShadow(QFrame.Raised)
-        self.label_5 = QLabel(self.frame_9)
-        self.label_5.setObjectName(u"label_5")
-        self.label_5.setGeometry(QRect(220, 20, 721, 641))
-        self.label_5.setPixmap(QPixmap(u":/icons/icons/Fundo.png"))
-        self.label_5.setScaledContents(True)
-        self.frame_10 = QFrame(self.frame_9)
-        self.frame_10.setObjectName(u"frame_10")
-        self.frame_10.setGeometry(QRect(320, 120, 341, 361))
-        sizePolicy1.setHeightForWidth(self.frame_10.sizePolicy().hasHeightForWidth())
-        self.frame_10.setSizePolicy(sizePolicy1)
-        self.frame_10.setStyleSheet(u"QFrame{\n"
-"background-color:white;\n"
+        self.ln_nova_Senha = QLineEdit(self.frame_8)
+        self.ln_nova_Senha.setObjectName(u"ln_nova_Senha")
+        self.ln_nova_Senha.setGeometry(QRect(50, 290, 250, 35))
+        self.ln_nova_Senha.setMinimumSize(QSize(250, 35))
+        self.ln_nova_Senha.setMaximumSize(QSize(250, 35))
+        self.ln_nova_Senha.setFont(font1)
+        self.ln_nova_Senha.setLayoutDirection(Qt.LeftToRight)
+        self.ln_nova_Senha.setStyleSheet(u"background-color:white;\n"
 "border-color:#480070;\n"
-"border-width:5px; /* Define a largura da borda para 2 pixels */\n"
+"color:#480070;\n"
+"border-width:2px; /* Define a largura da borda para 2 pixels */\n"
 "border-style: solid;\n"
 "border-radius:10px; /* Define o estilo da borda como s\u00f3lido */\n"
-"}\n"
-"\n"
-"QLabel{\n"
-"border-color:white;\n"
-"}")
-        self.frame_10.setFrameShape(QFrame.StyledPanel)
-        self.frame_10.setFrameShadow(QFrame.Raised)
-        self.btn_redefinir_senha = QPushButton(self.frame_10)
+"")
+        self.ln_nova_Senha.setEchoMode(QLineEdit.Password)
+        self.ln_nova_Senha.setAlignment(Qt.AlignCenter)
+        self.ln_conf_nova_senha = QLineEdit(self.frame_8)
+        self.ln_conf_nova_senha.setObjectName(u"ln_conf_nova_senha")
+        self.ln_conf_nova_senha.setGeometry(QRect(50, 350, 250, 35))
+        self.ln_conf_nova_senha.setMinimumSize(QSize(250, 35))
+        self.ln_conf_nova_senha.setMaximumSize(QSize(250, 35))
+        self.ln_conf_nova_senha.setFont(font1)
+        self.ln_conf_nova_senha.setLayoutDirection(Qt.LeftToRight)
+        self.ln_conf_nova_senha.setStyleSheet(u"background-color:white;\n"
+"border-color:#480070;\n"
+"color:#480070;\n"
+"border-width:2px; /* Define a largura da borda para 2 pixels */\n"
+"border-style: solid;\n"
+"border-radius:10px; /* Define o estilo da borda como s\u00f3lido */\n"
+"")
+        self.ln_conf_nova_senha.setEchoMode(QLineEdit.Password)
+        self.ln_conf_nova_senha.setAlignment(Qt.AlignCenter)
+        self.btn_redefinir_senha = QPushButton(self.frame_8)
         self.btn_redefinir_senha.setObjectName(u"btn_redefinir_senha")
-        self.btn_redefinir_senha.setGeometry(QRect(100, 270, 150, 40))
+        self.btn_redefinir_senha.setGeometry(QRect(100, 420, 150, 40))
         self.btn_redefinir_senha.setMinimumSize(QSize(150, 40))
         self.btn_redefinir_senha.setMaximumSize(QSize(150, 16777215))
         self.btn_redefinir_senha.setFont(font)
@@ -475,91 +441,58 @@ class Ui_Form(object):
 "color: #480070;\n"
 "border-radius: 10px;\n"
 "}")
-        self.ln_nova_Senha = QLineEdit(self.frame_10)
-        self.ln_nova_Senha.setObjectName(u"ln_nova_Senha")
-        self.ln_nova_Senha.setGeometry(QRect(50, 140, 250, 35))
-        self.ln_nova_Senha.setMinimumSize(QSize(250, 35))
-        self.ln_nova_Senha.setMaximumSize(QSize(250, 35))
-        self.ln_nova_Senha.setFont(font1)
-        self.ln_nova_Senha.setLayoutDirection(Qt.LeftToRight)
-        self.ln_nova_Senha.setStyleSheet(u"background-color:white;\n"
-"border-color:#480070;\n"
-"color:#480070;\n"
-"border-width:2px; /* Define a largura da borda para 2 pixels */\n"
-"border-style: solid;\n"
-"border-radius:10px; /* Define o estilo da borda como s\u00f3lido */\n"
+        self.label_6 = QLabel(self.frame_8)
+        self.label_6.setObjectName(u"label_6")
+        self.label_6.setGeometry(QRect(50, 270, 91, 21))
+        self.label_6.setStyleSheet(u"border: none;\n"
+"color: #480070;\n"
+"background-color: transparent;\n"
+"font-family: Lato;\n"
+"font-size: 16px;\n"
+"font-weight: bold;")
+        self.label_7 = QLabel(self.frame_8)
+        self.label_7.setObjectName(u"label_7")
+        self.label_7.setGeometry(QRect(50, 330, 181, 21))
+        self.label_7.setStyleSheet(u"border: none;\n"
+"color: #480070;\n"
+"background-color: transparent;\n"
+"font-family: Lato;\n"
+"font-size: 16px;\n"
+"font-weight: bold;")
+        self.label_8 = QLabel(self.frame_8)
+        self.label_8.setObjectName(u"label_8")
+        self.label_8.setGeometry(QRect(50, 140, 91, 21))
+        self.label_8.setStyleSheet(u"border: none;\n"
+"color: #480070;\n"
+"background-color: transparent;\n"
+"font-family: Lato;\n"
+"font-size: 16px;\n"
+"font-weight: bold;")
+        self.label_9 = QLabel(self.frame_8)
+        self.label_9.setObjectName(u"label_9")
+        self.label_9.setGeometry(QRect(50, 220, 251, 41))
+        self.label_9.setStyleSheet(u"border: none;\n"
+"color: #480070;\n"
+"background-color: transparent;\n"
+"font-family: Lato;\n"
+"font-size: 16px;\n"
 "")
-        self.ln_nova_Senha.setEchoMode(QLineEdit.Password)
-        self.ln_nova_Senha.setAlignment(Qt.AlignCenter)
-        self.btn_voltar1_3 = QPushButton(self.frame_10)
-        self.btn_voltar1_3.setObjectName(u"btn_voltar1_3")
-        self.btn_voltar1_3.setGeometry(QRect(10, 10, 40, 40))
-        self.btn_voltar1_3.setMinimumSize(QSize(40, 40))
-        self.btn_voltar1_3.setMaximumSize(QSize(40, 40))
-        self.btn_voltar1_3.setFont(font5)
-        self.btn_voltar1_3.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_voltar1_3.setStyleSheet(u"QPushButton{\n"
-"background-color: rgba(0, 0 , 0, 0);\n"
+        self.label_9.setWordWrap(True)
+        self.label_10 = QLabel(self.frame_8)
+        self.label_10.setObjectName(u"label_10")
+        self.label_10.setGeometry(QRect(50, 50, 271, 101))
+        self.label_10.setStyleSheet(u"border: none;\n"
 "color: #480070;\n"
-"border-radius: 0px;\n"
-"font: 36pt \"Lato Heavy\";\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"color: #D589FF;\n"
-"}")
-        self.plainTextEdit_9 = QPlainTextEdit(self.frame_10)
-        self.plainTextEdit_9.setObjectName(u"plainTextEdit_9")
-        self.plainTextEdit_9.setGeometry(QRect(80, 20, 311, 41))
-        self.plainTextEdit_9.setFont(font3)
-        self.plainTextEdit_9.setStyleSheet(u"border: none;\n"
-"color: #480070;\n"
-"background-color: transparent;")
-        self.plainTextEdit_10 = QPlainTextEdit(self.frame_10)
-        self.plainTextEdit_10.setObjectName(u"plainTextEdit_10")
-        self.plainTextEdit_10.setGeometry(QRect(50, 70, 271, 51))
-        self.plainTextEdit_10.setFont(font6)
-        self.plainTextEdit_10.setStyleSheet(u"border: none;\n"
-"color: #480070;")
-        self.plainTextEdit_10.setReadOnly(True)
-        self.plainTextEdit_10.setCenterOnScroll(False)
-        self.plainTextEdit_11 = QPlainTextEdit(self.frame_10)
-        self.plainTextEdit_11.setObjectName(u"plainTextEdit_11")
-        self.plainTextEdit_11.setGeometry(QRect(50, 120, 281, 31))
-        self.plainTextEdit_11.setFont(font7)
-        self.plainTextEdit_11.setStyleSheet(u"border: none;\n"
-"color: #480070;\n"
-"background-color: transparent;")
-        self.plainTextEdit_11.setReadOnly(True)
-        self.plainTextEdit_12 = QPlainTextEdit(self.frame_10)
-        self.plainTextEdit_12.setObjectName(u"plainTextEdit_12")
-        self.plainTextEdit_12.setGeometry(QRect(50, 190, 281, 31))
-        self.plainTextEdit_12.setFont(font7)
-        self.plainTextEdit_12.setStyleSheet(u"border: none;\n"
-"color: #480070;\n"
-"background-color: transparent;")
-        self.plainTextEdit_12.setReadOnly(True)
-        self.ln_conf_nova_senha = QLineEdit(self.frame_10)
-        self.ln_conf_nova_senha.setObjectName(u"ln_conf_nova_senha")
-        self.ln_conf_nova_senha.setGeometry(QRect(50, 210, 250, 35))
-        self.ln_conf_nova_senha.setMinimumSize(QSize(250, 35))
-        self.ln_conf_nova_senha.setMaximumSize(QSize(250, 35))
-        self.ln_conf_nova_senha.setFont(font1)
-        self.ln_conf_nova_senha.setLayoutDirection(Qt.LeftToRight)
-        self.ln_conf_nova_senha.setStyleSheet(u"background-color:white;\n"
-"border-color:#480070;\n"
-"color:#480070;\n"
-"border-width:2px; /* Define a largura da borda para 2 pixels */\n"
-"border-style: solid;\n"
-"border-radius:10px; /* Define o estilo da borda como s\u00f3lido */\n"
+"background-color: transparent;\n"
+"font-family: Lato;\n"
+"font-size: 16px;\n"
 "")
-        self.ln_conf_nova_senha.setEchoMode(QLineEdit.Password)
-        self.ln_conf_nova_senha.setAlignment(Qt.AlignCenter)
-        self.stackedWidget.addWidget(self.pg_mudar_senha)
+        self.label_10.setWordWrap(True)
+        self.stackedWidget.addWidget(self.pg_codigo_2)
 
         self.retranslateUi(Form)
 
-        self.stackedWidget.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(Form)
@@ -587,23 +520,19 @@ class Ui_Form(object):
         self.plainTextEdit_4.setPlainText(QCoreApplication.translate("Form", u"N\u00e3o se preocupe, vamos enviar uma mensagem para voc\u00ea redefinir sua senha.", None))
         self.plainTextEdit_5.setPlainText(QCoreApplication.translate("Form", u"E-mail", None))
         self.label_4.setText("")
-        self.btn_send_email_esqueci_2.setText(QCoreApplication.translate("Form", u"Continuar", None))
         self.ln_codigo.setText("")
         self.ln_codigo.setPlaceholderText("")
         self.btn_voltar1_2.setText(QCoreApplication.translate("Form", u"<", None))
         self.plainTextEdit_6.setPlainText(QCoreApplication.translate("Form", u"Queremos saber se \u00e9 voc\u00ea mesmo", None))
-        self.plainTextEdit_7.setPlainText(QCoreApplication.translate("Form", u"\u00daltimo passo! Para proteger a sua conta, insira o c\u00f3digo que acabamos de enviar para o seu e-mail.", None))
-        self.plainTextEdit_8.setPlainText(QCoreApplication.translate("Form", u"C\u00f3digo", None))
-        self.label_5.setText("")
-        self.btn_redefinir_senha.setText(QCoreApplication.translate("Form", u"Definir Senha", None))
         self.ln_nova_Senha.setText("")
         self.ln_nova_Senha.setPlaceholderText("")
-        self.btn_voltar1_3.setText(QCoreApplication.translate("Form", u"<", None))
-        self.plainTextEdit_9.setPlainText(QCoreApplication.translate("Form", u"Redefina a sua senha", None))
-        self.plainTextEdit_10.setPlainText(QCoreApplication.translate("Form", u"Defina uma nova senha para a sua conta.", None))
-        self.plainTextEdit_11.setPlainText(QCoreApplication.translate("Form", u"Nova senha", None))
-        self.plainTextEdit_12.setPlainText(QCoreApplication.translate("Form", u"Confirmar nova senha", None))
         self.ln_conf_nova_senha.setText("")
         self.ln_conf_nova_senha.setPlaceholderText("")
+        self.btn_redefinir_senha.setText(QCoreApplication.translate("Form", u"Definir Senha", None))
+        self.label_6.setText(QCoreApplication.translate("Form", u"Nova senha", None))
+        self.label_7.setText(QCoreApplication.translate("Form", u"Confirmar nova senha", None))
+        self.label_8.setText(QCoreApplication.translate("Form", u"C\u00f3digo", None))
+        self.label_9.setText(QCoreApplication.translate("Form", u"Defina uma nova senha para a sua conta.", None))
+        self.label_10.setText(QCoreApplication.translate("Form", u"\u00daltimo passo! Para proteger a sua conta, insira o c\u00f3digo que acabamos de enviar para o seu e-mail.", None))
     # retranslateUi
 

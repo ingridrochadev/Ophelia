@@ -17,12 +17,13 @@ instancia2 = Sistema()
 # perfil, nome = instancia2.verificar_tipo_e_nome_perfil('user@email.com')
 # print(perfil, nome)
 
-def listas(funcao):
-    lista = funcao()
-    print(lista)
+# def listas(funcao):
+#     lista = funcao()
+#     print(lista)
 
-# listas(instancia.listar_vistos_sys)
 # listas(instancia.listar_vistos_asc)
-# listas(instancia.listar_vistos_desc)
+
+instancia2.enviar_confirmacao("ingridsigaa@gmail.com")
+
 
 

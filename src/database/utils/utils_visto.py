@@ -39,8 +39,6 @@ class Funcoes:
             print(f"Erro ao inserir dados do OCR na tabela de vistos: {e}")
             self.conn.rollback()
     
-
-
     # Método para inserir dados do OCR na tabela de vistos
     def inserir_dados_ocr_vistos(self, numero_visto, passaporte, tipo_visto, pais_emitente, data_validade, status):
         try:
@@ -51,7 +49,6 @@ class Funcoes:
         except Exception as e:
             print(f"Erro ao inserir dados do OCR na tabela de vistos: {e}")
             self.conn.rollback()
-
 
     def inserir_dados(self, info_array, status):
         try:                       
@@ -72,7 +69,6 @@ class Funcoes:
         except Exception as e:
             print(f'Ocorreu um erro: {e}')
     
-    
     def inserir_status(self, status: str, passaporte):
         try:
             self.cur.execute("UPDATE vistos SET status = %s WHERE passaporte = %s", (status, passaporte))
@@ -81,7 +77,6 @@ class Funcoes:
         except Exception as e:
             print(f"Erro ao inserir status na tabela de vistos: {e}")
             self.conn.rollback()
-
 
     def listar_vistos_sys(self):
         try:
@@ -99,7 +94,6 @@ class Funcoes:
         except Exception as e:
             print(f'Ocorreu um erro: {e}')
 
-
     def listar_vistos_asc(self):
         try:
             sql = '''SELECT passageiros.nome,
@@ -115,7 +109,6 @@ class Funcoes:
         
         except Exception as e:
             print(f'Ocorreu um erro: {e}')
-
 
     def listar_vistos_desc(self):
         try:
@@ -133,7 +126,6 @@ class Funcoes:
         except Exception as e:
             print(f'Ocorreu um erro: {e}')
 
-
     def listar_vistos_aprovados(self):
         try:
             sql = '''SELECT passageiros.nome,
@@ -145,8 +137,8 @@ class Funcoes:
         
             self.cur.execute(sql)
             resultados = self.cur.fetchall()
-            self.imprimir_resultados(resultados)
-
+            return resultados
+            
         except Exception as e:
             print(f'Ocorreu um erro: {e}')
             
@@ -158,11 +150,11 @@ class Funcoes:
             FROM passageiros 
             JOIN vistos ON passageiros.passaporte = vistos.passaporte
             WHERE vistos.status = 'Aprovado'
-            ORDER BY passageiros.nome DESC;'''
+            ORDER BY passageiros.nome;'''
         
             self.cur.execute(sql)
             resultados = self.cur.fetchall()
-            self.imprimir_resultados(resultados)
+            return resultados
 
         except Exception as e:
             print(f'Ocorreu um erro: {e}')
@@ -175,11 +167,11 @@ class Funcoes:
             FROM passageiros 
             JOIN vistos ON passageiros.passaporte = vistos.passaporte
             WHERE vistos.status = 'Aprovado'
-            ORDER BY passageiros.nome;'''
+            ORDER BY passageiros.nome DESC;'''
         
             self.cur.execute(sql)
             resultados = self.cur.fetchall()
-            self.imprimir_resultados(resultados)
+            return resultados
 
         except Exception as e:
             print(f'Ocorreu um erro: {e}')
@@ -196,7 +188,7 @@ class Funcoes:
         
             self.cur.execute(sql)
             resultados = self.cur.fetchall()
-            self.imprimir_resultados(resultados)
+            return resultados
 
         except Exception as e:
             print(f'Ocorreu um erro: {e}')
@@ -209,11 +201,11 @@ class Funcoes:
             FROM passageiros 
             JOIN vistos ON passageiros.passaporte = vistos.passaporte
             WHERE vistos.status = 'Negado'
-            ORDER BY passageiros.nome DESC;'''
+            ORDER BY passageiros.nome;'''
         
             self.cur.execute(sql)
             resultados = self.cur.fetchall()
-            self.imprimir_resultados(resultados)
+            return resultados
 
         except Exception as e:
             print(f'Ocorreu um erro: {e}')
@@ -226,11 +218,11 @@ class Funcoes:
             FROM passageiros 
             JOIN vistos ON passageiros.passaporte = vistos.passaporte
             WHERE vistos.status = 'Negado'
-            ORDER BY passageiros.nome;'''
+            ORDER BY passageiros.nome DESC;'''
         
             self.cur.execute(sql)
             resultados = self.cur.fetchall()
-            self.imprimir_resultados(resultados)
+            return resultados
         
         except Exception as e:
             print(f'Ocorreu um erro: {e}')
@@ -254,7 +246,6 @@ class Funcoes:
         except Exception as e:
             self.conn.rollback()
             return f'Ocorreu um erro ao alterar o status: {e}'
-    
     
     def imprimir_resultados(self, resultados):
         for resultado in resultados:
