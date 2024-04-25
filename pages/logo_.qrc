@@ -1,16 +1,17 @@
 <RCC>
   <qresource prefix="icons">
-    <file>logo_.qrc</file>
-    <file>pages/icons/Black Minimalist Outline Icons Icon Set.png</file>
-    <file>pages/icons/Black Minimalist Outline Icons Icon Set (1).png</file>
-    <file>pages/icons/Black Minimalist Outline Icons Icon Set (2).png</file>
-    <file>pages/icons/Black Minimalist Outline Icons Icon Set (2) (cópia).png</file>
-    <file>pages/icons/Black Minimalist Outline Icons Icon Set (3).png</file>
-    <file>pages/icons/Black Minimalist Outline Icons Icon Set (4).png</file>
-    <file>pages/icons/Fundo.png</file>
-    <file>pages/icons/logo_branca.png</file>
-    <file>pages/icons/logo_nome_branco.png</file>
-    <file>pages/icons/logo_roxa.png</file>
-    <file>pages/icons/menu.png</file>
+    <file>icons/Black Minimalist Outline Icons Icon Set.png</file>
+    <file>icons/Black Minimalist Outline Icons Icon Set (1).png</file>
+    <file>icons/Black Minimalist Outline Icons Icon Set (3).png</file>
+    <file>icons/Black Minimalist Outline Icons Icon Set (6).png</file>
+    <file>icons/Icon (1).png</file>
+    <file>icons/Icon (1) (cópia).png</file>
+    <file>icons/Black Minimalist Outline Icons Icon Set (7).png</file>
+    <file>icons/Black Minimalist Outline Icons Icon Set (4).png</file>
+    <file>icons/Fundo.png</file>
+    <file>icons/logo_branca.png</file>
+    <file>icons/logo_nome_branco.png</file>
+    <file>icons/logo_roxa.png</file>
+    <file>icons/menu.png</file>
   </qresource>
 </RCC>

@@ -21,12 +21,10 @@ class Sistema:
         conn.autocommit = False  # Desativa o modo de autocommit para fazer commits manuais
         return conn
     
-    
     def encriptar_senha(self, senha):
         salt = bcrypt.gensalt()
         hash_senha = bcrypt.hashpw(senha.encode('utf-8'), salt) # Gera o hash da senha usando o salt
         return salt.decode('utf-8') + hash_senha.decode('utf-8') # Concatena o salt e o hash e retorna str
-    
     
     def validar_cpf(self, cpf: str):
         if len(cpf) == 11 and cpf.isdigit():
@@ -53,7 +51,6 @@ class Sistema:
             print("CPF inválido! Tente novamente.")
             return False
         
-    
     def validar_email(self, email: str):
         regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b'
         if re.fullmatch(regex, email):
@@ -62,7 +59,6 @@ class Sistema:
         else:
             print("O e-mail não é válido!")
             return False
-            
             
     def validar_senha(self, senha: str):
         requisitos = {
@@ -85,20 +81,19 @@ class Sistema:
             print("Senha válida")
             return True
     
-    
     def criar_usuario(self, nome: str, cpf: str, email: str, senha: str, matricula: str, tipo_usuario: str):
         if nome and cpf and email and senha and matricula and tipo_usuario:
             try:
-                conn = self.estabelecer_conexao(self)
+                conn = self.estabelecer_conexao()
                 cur = conn.cursor()
-                hashed_senha = self.encriptar_senha(self, senha)
+                hashed_senha = self.encriptar_senha( senha)
                 
                 # Verificar se o usuário já existe
                 cur.execute("SELECT COUNT(*) FROM usuarios WHERE email = %s", (email, ))
                 count = cur.fetchone()[0]
                 verificacao = count > 0
                 
-                if not verificacao and self.validar_cpf(self, cpf) and self.validar_email(self, email) and self.validar_senha(self, senha):
+                if not verificacao and self.validar_cpf(cpf) and self.validar_email(email) and self.validar_senha(senha):
                     cur.execute("INSERT INTO usuarios (nome, cpf, email, senha, matricula, tipo_usuario) VALUES (%s, %s, %s, %s, %s, %s)", 
                                 (nome, cpf, email, hashed_senha, matricula, tipo_usuario))
                     conn.commit()
@@ -114,7 +109,6 @@ class Sistema:
                 conn.close()
         else:
             print("Preencha todos os campos obrigatórios!")
-        
         
     def excluir_usuario(self, matricula: str):
         if matricula:
@@ -172,31 +166,33 @@ class Sistema:
             print("Preencha todos os campos obrigatórios.")
             return False
     
-    def verificar_tipo_perfil(self, email):
+    def verificar_tipo_e_nome_perfil(self, email):
         if email:
             try:
                 conn = self.estabelecer_conexao()
                 cur = conn.cursor()
                 
-                cur.execute("SELECT tipo_usuario FROM usuarios WHERE email = %s", (email, ))
-                perfil = cur.fetchone()
-                if perfil[0] == "Administrador":
-                    return 'admin'
-                elif perfil[0] == "Usuário":
-                    return 'user'
+                cur.execute("SELECT tipo_usuario, nome FROM usuarios WHERE email = %s", (email, ))
+                perfil, nome = cur.fetchone()
+                
+                if perfil == "Supervisor":
+                    return 'admin', nome
+                elif perfil == "Agente de Aeroporto":
+                    return 'user', nome
                 else:
                     pass
                     
             except Exception as error:
                 print(f"Ocorreu um erro na tentativa de login. Motivo: {error}")
-                return "Sem Acesso"
+                return "Sem Acesso", None
             
             finally:
                 cur.close()
                 conn.close()
                 
         else:
-            return "Preencha todos os campos obrigatórios."
+            return "Preencha todos os campos obrigatórios.", None
+        
             
     def alterar_senha(self, email: str, senha_armazenada: str, nova_senha: str, nova_senha2: str):
         if email and senha_armazenada and nova_senha and nova_senha2:
@@ -239,12 +235,10 @@ class Sistema:
         else:
             return "Preencha todos os campos obrigatórios!"
             
-            
     def criar_codigo_confirmacao(self):
         caracteres = string.ascii_uppercase + string.digits
         codigo = ''.join(random.choice(caracteres) for _ in range(4))
         return codigo
-    
     
     def enviar_confirmacao(self, email: str):
         conn = self.estabelecer_conexao(self)
@@ -303,7 +297,6 @@ class Sistema:
                 cur.close()
                 conn.close()
             
-    
     def confirmar_codigo(self, email: str, codigo_recebido: str):
         try:
             conn = self.estabelecer_conexao(self)
@@ -328,7 +321,6 @@ class Sistema:
         finally:
                 cur.close()
                 conn.close()
-                
                 
     def redefinir_senha(self, email, codigo_confirmacao, nova_senha, nova_senha2):
         if email and codigo_confirmacao and nova_senha and nova_senha2:
@@ -403,20 +395,6 @@ class Funcionario:
             
             except Exception as error:
                 print(f"Ocorreu um erro ao alterar os dados: {error}")
-    
-    
-    def verificar_visto(self, nome: str, nacionalidade: str, data_nascimento: str, numero_visto: int, passaporte: int, tipo_visto: str, data_validade: str, pais_emitente: str):
-        if nome and nacionalidade and data_nascimento and numero_visto and passaporte and tipo_visto and data_validade and pais_emitente:
-            try:
-                self.cur.execute("INSERT INTO passageiros (passaporte, nome, nacionalidade, data_nascimento) VALUES (%s, %s, %s, %s)", (passaporte, nome, nacionalidade, data_nascimento))
-                self.cur.execute("INSERT INTO vistos (numero_visto, passaporte, tipo_visto, pais_emitente, data_validade) VALUES (%s, %s, %s, %s, %s)", (numero_visto, passaporte, tipo_visto, pais_emitente, data_validade))
-                self.conn.commit()
-
-            except Exception as error:
-                print(f"Houve um erro ao validar o visto. Motivo: {error}")
-                self.conn.rollback()
-        else:
-            print("Preencha todos os campos obrigatórios!")
             
     # -> Método ainda falta ser finalizado
     def editar_visto(self, novo_nome: None, nova_nacionalidade: None, nova_data_nascimento: None, novo_numero_visto: None, novo_passaporte: None, novo_tipo_visto: None, nova_data_validade: None, novo_pais_emitente):
@@ -442,7 +420,6 @@ class Funcionario:
         except Exception as error:
             print(f"Ocorreu um erro: {error}")
                 
-     
     def excluir_visto(self, numero_visto: str):
         if numero_visto:
             try:
