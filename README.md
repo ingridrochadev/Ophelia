@@ -51,3 +51,56 @@ Executar o sistema:
 Contribuição:
 
 Contribuições são bem-vindas! Sinta-se à vontade para abrir issues relatando problemas ou sugestões de melhorias. Pull requests também são aceitos.
+
+
+
+
+# Ophelia - Leitor de vistos
+
+> Status: Finalizado✔️
+
+### A Ophelia é um sistema com o intuito de automatizar a leitura de vistos estadunidenses.
+
+## Tecnologias:
+
++ Python
++ Postgres
++ Qt Designer
+
+## Aprensentação do Projeto
+Link: Video?????
+
+## Documentação
+Como Rodar o Projeto: Link?????
+
+## Telas:
+
+### Login
+![Login](https://github.com/BlackthornY/Login_html_css/assets/88779496/4279dbe6-1356-4dcc-bc99-bcbc9853960e)
+
+### Home
+![Home](https://github.com/BlackthornY/Login_html_css/assets/88779496/3b2b0831-7e9f-4518-b204-21d852408682)
+
+### Vistos
+![Vistos](https://github.com/BlackthornY/Login_html_css/assets/88779496/d6888168-7604-4971-9d0a-6534f4b03323)
+
+### Passageiros
+![Passageiros](https://github.com/BlackthornY/Login_html_css/assets/88779496/b2a3590f-446f-4823-a725-84e91ae8e86a)
+
+### Alterar Passageiros
+![Alterar_Passageiros](https://github.com/BlackthornY/Login_html_css/assets/88779496/7e5c916b-886b-403a-b7b7-12a8b89b49a6)
+
+### Sobre
+![Sobre](https://github.com/BlackthornY/Login_html_css/assets/88779496/a4756ee4-d19d-4dab-b1c5-f9a4fcf0ee18)
+
+### Cadastro de Usuários
+![cadastro_usuario](https://github.com/BlackthornY/Login_html_css/assets/88779496/0ab8ab7d-c492-459d-9589-b1259831d641)
+
+### Listagem dos Colaboradores
+![listar_colaboradores](https://github.com/BlackthornY/Login_html_css/assets/88779496/cdb51ab8-3f1c-4f42-9046-dd87b01ede66)
+
+### Alteração de Usuários
+![alterar_usuarios](https://github.com/BlackthornY/Login_html_css/assets/88779496/eeb81e05-3dd5-4149-8573-ceec801f6506)
+
+### Alteração de Senha
+![alteracao_senha](https://github.com/BlackthornY/Login_html_css/assets/88779496/142f5594-3dd4-4aad-9fa8-509db1bf790b)

@@ -306,4 +306,4 @@ if __name__ == '__main__':
     #tipo = 'c1'.lower()
     #regra = funcoes.verificar_regras_embarque(tipo)
     #print(regra)
-    
+      
