@@ -413,12 +413,4 @@ class Funcionario:
                 print(f"Houve um erro ao excluir o visto. Motivo: {error}")
                 self.conn.rollback()
         else:
-<<<<<<< HEAD
             print("Preencha todos os campos obrigatórios!")
-
-
-    
->>>>>>> 2639d415dab463d257f8fad8110c33d02d34ba94:src/database/utils/utils_usuario.py
-=======
-            print("Preencha todos os campos obrigatórios!")
->>>>>>> e75bc545efe59ead7571b057ec322ed9337e8b8f
