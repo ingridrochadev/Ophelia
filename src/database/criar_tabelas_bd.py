@@ -1,14 +1,13 @@
 from dotenv import load_dotenv
 import psycopg2
 from os import getenv
-from utils.utils_usuario import Sistema
+#from utils.utils_usuario import Sistema
 load_dotenv()
 
 class Criar_bd:
     def __init__(self):
         self.estabelecer_conexao()             
         self.cur = self.conn.cursor()
-
 
     def estabelecer_conexao(self):
         try:
@@ -70,7 +69,7 @@ class Criar_bd:
         email character varying(150) NOT NULL,
         senha character varying(150) NOT NULL,
         cpf character varying(15) NOT NULL,
-        tipo_usuario character varying(30) NOT NULL,
+        tipo_usuario character varying(15) NOT NULL,
         PRIMARY KEY (matricula)
     ); ''')
 
@@ -156,8 +155,7 @@ class Criar_bd:
     ('QRS567890', 'Ryan Chen', 'TWN', '1984-03-24');
     ''')
         print('Dados de passageiros inseridos')
-
-
+    
     def inserir_dados_vistos(self):
         self.cur.execute('''INSERT INTO public.vistos (numero_visto, passaporte, tipo_visto, local_emissor, data_validade, status)
     VALUES 
@@ -181,36 +179,71 @@ class Criar_bd:
 
 
     def inserir_tipos_vistos(self):
-        self.cur.execute('''INSERT INTO public.tipos_vistos (tipo, descricao, regras) VALUES
-    ('b1', 'Visto de embarque para turismo, visitas a amigos ou parentes, tratamento médico, etc.', 'Para o tipo B1, verificar se o empregado doméstico está acompanhado do seu empregador.'),
-    ('c1', 'Visto de trânsito.', 'Verificar se o destino final do passageiro é fora dos EUA.'),
-    ('f1', 'Visto de embarque para estudantes matriculados em instituições acadêmicas ou estudantes não acadêmicos. Limitado a instituições educacionais específicas.', 'Verificar o documento de Formulário I-20 da instituição educacional.'),
-    ('m1', 'Visto de embarque para estudantes matriculados em instituições acadêmicas ou estudantes não acadêmicos. Limitado a instituições educacionais específicas.', 'Verificar o documento de Formulário I-20 da instituição educacional.'),
-    ('m', 'Visto de embarque para estudantes matriculados em instituições acadêmicas ou estudantes não acadêmicos. Limitado a instituições educacionais específicas.', 'Verificar o documento de Formulário I-20 da instituição educacional.'),
-    ('j1', 'Visto de embarque para participantes de programas de intercâmbio.', 'Verificar o documento: carta do programa de intercâmbio.'),
-    ('h1b', 'Visto de embarque para profissionais estrangeiros em ocupações especializadas.', 'Verificar o documento de contrato de trabalho ou oferta de emprego válida.'),
-    ('l1', 'Visto de embarque para funcionários de empresas multinacionais transferidos.', 'Verificar o documento: carta de transferência da empresa multinacional.'),
-    ('o1', 'Visto de embarque para pessoas com habilidades extraordinárias ou realizações notáveis.', 'Verificar o documento de comprovante de habilidades extraordinárias.'),
-    ('e1', 'Visto de embarque para comerciantes de países com tratados de comércio.', 'Verificar o documento: provas de comércio.'),
-    ('e2', 'Visto de embarque para investidores de países com tratados de comércio.', 'Verificar o documento: provas de investimento.'),
-    ('k1', 'Visto de embarque para noivos ou noivas de cidadãos americanos para casar em 90 dias.', 'Verificar o documento: processo de casamento.'),
-    ('a1', 'Visto de embarque para diplomatas e funcionários de governos estrangeiros.', 'Verificar o documento: diploma diplomático.'),
-    ('a2', 'Visto de embarque para diplomatas e funcionários de governos estrangeiros.', 'Verificar o documento: diploma diplomático.'),
-    ('g1', 'Visto de embarque para funcionários de organizações internacionais.', 'Verificar o documento: carta da organização internacional.'),
-    ('g2', 'Visto de embarque para funcionários de organizações internacionais.', 'Verificar o documento: carta da organização internacional.'),
-    ('g3', 'Visto de embarque para funcionários de organizações internacionais.', 'Verificar o documento: carta da organização internacional.'),
-    ('g4', 'Visto de embarque para funcionários de organizações internacionais.', 'Verificar o documento: carta da organização internacional.'),
-    ('g5', 'Visto de embarque para funcionários de organizações internacionais.', 'Verificar o documento: carta da organização internacional.'),
-    ('r1', 'Visto de embarque para trabalhadores religiosos.', 'Verificar o documento: provas de afiliação religiosa.'),
-    ('t', 'Visto de embarque para vítimas de tráfico humano.', 'Verificar o documento: provas de vítima de tráfico humano.'),
-    ('to', 'Visto de embarque para vítimas de tráfico humano.', 'Verificar o documento: provas de vítima de tráfico humano.'),
-    ('u', 'Visto de embarque para vítimas de crimes.', 'Verificar o documento: provas de vítima de crime.'),
-    ('v', 'Visto de embarque para cônjuges ou filhos de residentes legais permanentes.', 'Verificar o documento: provas de relacionamento.'),
-    ('d', 'Visto de embarque para tripulantes de navios ou aeronaves.', 'Verificar o documento de licença de tripulação.'),
-    ('nato', 'Visto de embarque para membros da OTAN e suas famílias.', 'Verificar o documento de identificação da OTAN.'),
-    ('p1', 'Visto de atleta/artista de destaque.', 'Verificar documentação que comprove o status de atleta ou artista de destaque.')
+        self.cur.execute('''INSERT INTO public.tipos_vistos (tipo, descricao, regras) 
+VALUES
+('b1', 'Visto de embarque para turismo, visitas a amigos ou parentes, tratamento médico, etc.', 'Para o tipo B1, verificar se o empregado doméstico está acompanhado do seu empregador.'),
+('b2', 'Visto de embarque para turismo, visitas a amigos ou parentes, tratamento médico, etc.', NULL),
+('b3', 'Visto de embarque para turismo, visitas a amigos ou parentes, tratamento médico, etc.', NULL),
+('c1', 'Visto de trânsito.', NULL),
+('f1', 'Visto de embarque para estudantes matriculados em instituições acadêmicas ou estudantes não acadêmicos. Limitado a instituições educacionais específicas.', 'Verificar o documento de Formulário I-20 da instituição educacional.'),
+('m1', 'Visto de embarque para estudantes matriculados em instituições acadêmicas ou estudantes não acadêmicos. Limitado a instituições educacionais específicas.', 'Verificar o documento de Formulário I-20 da instituição educacional.'),
+('m', 'Visto de embarque para estudantes matriculados em instituições acadêmicas ou estudantes não acadêmicos. Limitado a instituições educacionais específicas.', 'Verificar o documento de Formulário I-20 da instituição educacional.'),
+('j1', 'Visto de embarque para participantes de programas de intercâmbio.', 'Verificar o documento: carta do programa de intercâmbio.'),
+('h1b', 'Visto de embarque para profissionais estrangeiros em ocupações especializadas.', 'Verificar o documento de contrato de trabalho ou oferta de emprego válida.'),
+('l1', 'Visto de embarque para funcionários de empresas multinacionais transferidos.', 'Verificar o documento: carta de transferência da empresa multinacional.'),
+('o1', 'Visto de embarque para pessoas com habilidades extraordinárias ou realizações notáveis.', 'Verificar o documento de comprovante de habilidades extraordinárias.'),
+('e1', 'Visto de embarque para comerciantes de países com tratados de comércio.', 'Verificar o documento: provas de comércio.'),
+('e2', 'Visto de embarque para investidores de países com tratados de comércio.', 'Verificar o documento: provas de investimento.'),
+('k1', 'Visto de embarque para noivos ou noivas de cidadãos americanos para casar em 90 dias.', 'Verificar o documento: processo de casamento.'),
+('a1', 'Visto de embarque para diplomatas e funcionários de governos estrangeiros.', 'Verificar o documento: diploma diplomático.'),
+('a2', 'Visto de embarque para diplomatas e funcionários de governos estrangeiros.', 'Verificar o documento: diploma diplomático.'),
+('g1', 'Visto de embarque para funcionários de organizações internacionais.', 'Verificar o documento: carta da organização internacional.'),
+('g2', 'Visto de embarque para funcionários de organizações internacionais.', 'Verificar o documento: carta da organização internacional.'),
+('g3', 'Visto de embarque para funcionários de organizações internacionais.', 'Verificar o documento: carta da organização internacional.'),
+('g4', 'Visto de embarque para funcionários de organizações internacionais.', 'Verificar o documento: carta da organização internacional.'),
+('g5', 'Visto de embarque para funcionários de organizações internacionais.', 'Verificar o documento: carta da organização internacional.'),
+('r1', 'Visto de embarque para trabalhadores religiosos.', 'Verificar o documento: provas de afiliação religiosa.'),
+('t', 'Visto de embarque para vítimas de tráfico humano.', 'Verificar o documento: provas de vítima de tráfico humano.'),
+('to', 'Visto de embarque para vítimas de tráfico humano.', 'Verificar o documento: provas de vítima de tráfico humano.'),
+('u', 'Visto de embarque para vítimas de crimes.', 'Verificar o documento: provas de vítima de crime.'),
+('v', 'Visto de embarque para cônjuges ou filhos de residentes legais permanentes.', 'Verificar o documento: provas de relacionamento.'),
+('d', 'Visto de embarque para tripulantes de navios ou aeronaves.', 'Verificar o documento de licença de tripulação.'),
+('nato', 'Visto de embarque para membros da OTAN e suas famílias.', 'Verificar o documento de identificação da OTAN.'),
+('p1', 'Visto de atleta/artista de destaque.', 'Verificar documentação que comprove o status de atleta ou artista de destaque.'),
+('tn', 'Visto do Acordo de Livre Comércio da América do Norte (NAFTA).', NULL);
     ''')
+        print('Tipos de vistos inseridos')
 
+
+    def inserir_voos(self):
+        self.cur.execute('''INSERT INTO public.voos (numero_voo, origem, destino, data, horario_previsto) 
+VALUES 
+('V1111', 'São Paulo', 'Nova York', '2024-04-27', '09:00:00'),
+('V2222', 'Rio de Janeiro', 'Los Angeles', '2024-04-28', '11:30:00'),
+('V3333', 'Brasília', 'Miami', '2024-04-29', '13:45:00'),
+('V4444', 'Salvador', 'Orlando', '2024-04-30', '16:20:00'),
+('V5555', 'Recife', 'Chicago', '2024-05-01', '19:00:00'),
+('V6666', 'Fortaleza', 'Atlanta', '2024-05-02', '08:30:00'),
+('V7777', 'Manaus', 'San Francisco', '2024-05-03', '10:45:00'),
+('V8888', 'Porto Alegre', 'Washington D.C.', '2024-05-04', '12:15:00'),
+('V9999', 'Curitiba', 'Houston', '2024-05-05', '14:30:00'),
+('V1010', 'Belém', 'Las Vegas', '2024-05-06', '16:45:00'),
+('V1112', 'Florianópolis', 'Nova York', '2024-05-07', '08:00:00'),
+('V2223', 'Goiânia', 'Los Angeles', '2024-05-08', '10:30:00'),
+('V3334', 'Natal', 'Miami', '2024-05-09', '13:45:00'),
+('V4445', 'Vitória', 'Orlando', '2024-05-10', '16:20:00'),
+('V5556', 'Campo Grande', 'Chicago', '2024-05-11', '19:00:00')                         
+''')
+
+
+
+    def inserir_usuarios(self):
+        self.cur.execute('''INSERT INTO public.usuarios (matricula, nome, email, senha, cpf, tipo_usuario) 
+VALUES
+('ADM001', 'Administrador', 'admin@ophelia.com', 'admin1@A', '46590518033', 'Administrador'),
+('USR001', 'Usuário Normal', 'user@ophelia.com', 'user2@A', '82896051023', 'Usuário');                                           
+''')
+        print('Dados de usuarios inseridos')
 
     def criar_tabelas(self):
         self.criar_tabela_passageiros()
@@ -222,11 +255,12 @@ class Criar_bd:
         self.criar_tabela_codigos_verificacao()
         self.conn.commit()
 
-
     def inserir_dados(self):
         self.inserir_dados_passageiros()
         self.inserir_dados_vistos()
         self.inserir_tipos_vistos()
+        self.inserir_voos()
+        self.inserir_usuarios()
         self.conn.commit()
 
 # Restante do código...
@@ -241,10 +275,10 @@ if __name__ == '__main__':
     bd.cur.close()
     bd.conn.close()
     
-    sistema = Sistema()
+    # sistema = Sistema()
 
-    # Criando um usuário administrador
-    sistema.criar_usuario("Administrador", "46590518033", "admin@email.com", "admin1@A", "ADM001", "Supervisor")
+    # # Criando um usuário administrador
+    # sistema.criar_usuario("Administrador", "46590518033", "admin@email.com", "admin1@A", "ADM001", "Administrador")
 
-    # Criando um usuário normal
-    sistema.criar_usuario("Usuário Normal", "82896051023", "user@email.com", "user2@A", "USR001", "Agente de Aeroporto")
+    # # Criando um usuário normal
+    # sistema.criar_usuario("Usuário Normal", "82896051023", "user@email.com", "user2@A", "USR001", "Usuário")
