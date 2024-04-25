@@ -359,23 +359,6 @@ class Sistema:
         else:
             print("Preencha todos os campos obrigatórios!")
 
-<<<<<<< HEAD:pages/utils_usuario.py
-sistema = Sistema()
-
-<<<<<<< HEAD:pages/utils.py
-# Criando um usuário administrador
-sistema.criar_usuario("Administrador", "12345678900", "admin@email.com", "admin", "ADM001", "Administrador")
-
-# Criando um usuário normal
-sistema.criar_usuario("Usuário Normal", "98765432100", "user@email.com", "user", "USR001", "Usuário")
-=======
-# # Criando um usuário administrador
-# sistema.criar_usuario("Administrador", "12345678900", "admin@email.com", "admin", "ADM001", "Administrador")
-
-# # Criando um usuário normal
-# sistema.criar_usuario("Usuário Normal", "98765432100", "user@email.com", "user", "USR001", "Usuário")
->>>>>>> 25a93fa3c9eeee8b69a4ef3061088b0c0e11dbd1:pages/utils_usuario.py
-=======
 class Funcionario:
     def __init__(self):
         self.sistema = Sistema()
