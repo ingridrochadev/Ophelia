@@ -78,6 +78,34 @@ class Funcoes:
             print(f"Erro ao inserir status na tabela de vistos: {e}")
             self.conn.rollback()
 
+    def editar_dados(self, passaporte, nome = None, nacionalidade = None, data_nascimento = None, numero_visto = None, tipo_visto = None, local_emissor = None, data_validade = None, status = None):
+        try:
+            if nome:
+                self.cur.execute("UPDATE public.passageiros SET nome = %s WHERE passaporte = %s", (nome, passaporte))
+            if nacionalidade:
+                self.cur.execute("UPDATE public.passageiros SET nacionalidade = %s WHERE passaporte = %s", (nacionalidade, passaporte))
+            if data_nascimento:
+                self.cur.execute("UPDATE public.passageiros SET data_nascimento = %s WHERE passaporte = %s", (data_nascimento, passaporte))
+            if numero_visto:
+                self.cur.execute("UPDATE public.vistos SET numero_visto = %s WHERE passaporte = %s", (numero_visto, passaporte))
+            if tipo_visto:
+                self.cur.execute("UPDATE public.vistos SET tipo_visto = %s WHERE passaporte = %s", (tipo_visto, passaporte))
+            if local_emissor:
+                self.cur.execute("UPDATE public.vistos SET local_emissor = %s WHERE passaporte = %s", (local_emissor, passaporte))
+            if data_validade:
+                self.cur.execute("UPDATE public.vistos SET data_validade = %s WHERE passaporte = %s", (data_validade, passaporte))
+            if status:
+                self.cur.execute("UPDATE public.vistos SET status = %s WHERE passaporte = %s", (status, passaporte))
+            self.conn.commit()
+
+            return 'Dados alterados com sucesso!'
+        
+        except Exception as e:
+            return f"Erro ao editar dados: {e}"
+
+
+    
+
     def listar_vistos_sys(self):
         try:
             sql = '''SELECT passageiros.nome,
@@ -251,36 +279,46 @@ class Funcoes:
         for resultado in resultados:
             print(resultado)
 
-    def verificar_regras_embarque(self, tipo_visto, dob, expiracao):
+
+    def verificar_regras_embarque(self, tipo_visto, dob, expiracao, numero_visto):
         current_date = dt.datetime.now().date()  # Obtém apenas a data de hoje
         dob_date = dt.datetime.combine(dob, dt.datetime.min.time())  # Converte dob para datetime
         age = current_date.year - dob_date.year - ((current_date.month, current_date.day) < (dob_date.month, dob_date.day))
         tipo_encontrado = None  # Defina tipo_encontrado como None inicialmente
         
-        # Verifique o tipo de visto
-        if tipo_visto:
-            self.cur.execute("SELECT tipo, regras FROM tipos_vistos WHERE tipo = %s", (tipo_visto.lower(),))
-            tipo_encontrado = self.cur.fetchone()  # Busca apenas um registro
+        self.cur.execute("SELECT numero_visto FROM vistos WHERE numero_visto = %s", (numero_visto, ))
+        visto_existe = self.cur.fetchone() 
 
-        if tipo_encontrado == None:
-            mensagem = 'Tipo de visto inválido'
-            return mensagem
-        
+        if visto_existe:
+            return 'O visto informado já existe no banco de dados'
+
         else:
-            if expiracao < current_date: # Verifica se a data de expiração do visto está na validade
-                mensagem = "O visto está vencido!"
-                return mensagem 
+            # Verifique o tipo de visto
+            if tipo_visto:
+                self.cur.execute("SELECT tipo, regras FROM tipos_vistos WHERE tipo = %s", (tipo_visto.lower(),))
+                tipo_encontrado = self.cur.fetchone()  # Busca apenas um registro
+
+            if tipo_encontrado == None:
+                mensagem = 'Tipo de visto inválido'
+                return False, mensagem
             
-            if age < 18:  # Verifica se é menor de idade
-                mensagem = "O passageiro é menor de idade. Verificar autorização dos responsáveis."
-                return mensagem
+            else:
+                if expiracao < current_date: # Verifica se a data de expiração do visto está na validade
+                    mensagem = "O visto está vencido!"
+                    return False, mensagem 
+                
+                if age < 18:  # Verifica se é menor de idade
+                    mensagem = "O passageiro é menor de idade. Verificar autorização dos responsáveis."
+                    return False, mensagem
+                
+                if tipo_encontrado[1]:
+                    return False, tipo_encontrado[1] # Retorna a regra correspondente ao tipo de visto
+                else: 
+                    mensagem = "Sem regras adicionais"
+                    return True, mensagem
             
-            if tipo_encontrado[1]:
-                return tipo_encontrado[1] # Retorna a regra correspondente ao tipo de visto
-            else: 
-                mensagem = "Sem regras adicionais"
-                return mensagem
-            
+
+
 
 
 if __name__ == '__main__':
