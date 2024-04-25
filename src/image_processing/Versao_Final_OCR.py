@@ -10,10 +10,10 @@ def read_visto(image_path):
     # Faz a cópia dessa imagem
     img_copy = img.copy() 
 
-    # Aplica Canny edge detection
+    # Aplica Canny edge detection para detectar as bordas
     img_canny = d.cv2.Canny(img_gray, 30, 80, apertureSize=3)
 
-    # Detecta linhas usando a transformada de Hough
+    # Aplica a transformada de Hough para detectar as linhas
     img_hough = d.cv2.HoughLinesP(img_canny, 1, d.math.pi / 180, 100, minLineLength=100, maxLineGap=10)
 
     # Recorta a região de interesse (ROI)
@@ -23,7 +23,7 @@ def read_visto(image_path):
     img_roi = img_copy[y:y+h, x:x+w]
 
     # Pré-processamento da ROI para OCR
-    height, width, _ = img_roi.shape  # Obter as dimensões da imagem ROI
+    height, width, _ = img_roi.shape  # Obtem as dimensões da imagem ROI
     x = 1
     y = round(height * 0.8)
     w = width - 3
@@ -32,10 +32,10 @@ def read_visto(image_path):
     # Extrai o ROI
     img_mrz = img_roi[y:y+h, x:x+w]
 
-    # Suavizar a imagem com filtro Gaussiano
+    # Suaviza a imagem com filtro Gaussiano
     img_mrz_blurred = d.cv2.GaussianBlur(img_mrz, (3, 3), 0)
 
-    # Aplicar limiar para binarizar a imagem
+    # Aplica limiar para binarizar a imagem
     _, img_mrz_thresh = d.cv2.threshold(img_mrz_blurred, 127, 255, d.cv2.THRESH_TOZERO)
 
     # Realiza OCR na ROI pré-processada para extrair informações do MRZ
@@ -54,6 +54,7 @@ def read_visto(image_path):
     issuing_country = ''
     visa_number = ''
 
+    # Manipulação de strings
     if mrz:  # Verifica se a lista mrz não está vazia
         if mrz[0].startswith('VNUSA'):  # Verifica se o MRZ começa com 'VNUSA'
             parts = mrz[0][5:25].split('<')
@@ -95,26 +96,25 @@ def read_visto(image_path):
     # Salva o texto extraído da região do número do visto (MRZ) em uma variável
     visa_number = d.pytesseract.image_to_string(cropped_img)
 
-    # Formate as datas para remover as partes de hora e minuto e a representação "datetime.datetime"
+    # Formata as datas para remover as partes de hora e minuto
     dob_str = dob.strftime('%Y-%m-%d') if dob else None
     dia_n = int(dob_str[-2:])
     mes_n = int(dob_str[5:7])
     ano_n = int(dob_str[:4])
     dob = d.date(ano_n, mes_n, dia_n)
-    
     expiry_date_str = expiry_date.strftime('%Y-%m-%d') if expiry_date else None
     dia = int(expiry_date_str[-2:])
     mes = int(expiry_date_str[5:7])
     ano = int(expiry_date_str[:4])
     expiry_date = d.date(ano, mes, dia)
-
-    # Remove o caractere de nova linha (\n) da última string
     visa_number = visa_number.rstrip('\n')
 
+    # Array das variáveis coletadas
     infor = [name, passport_number, nationality, dob, expiry_date, passport_type, issuing_country, visa_number]
 
     return infor
 
+    
 # image_path = 'docs/visto1.jpg'
 # infor = read_visto(image_path)
 # print(infor)
