@@ -1,5 +1,5 @@
 from Ophelia.src.database.utils.utils_visto import Funcoes
-from Ophelia.src.database.utils.utils_usuario import Sistema
+from src.database.utils.utils_usuario import Sistema
 
 instancia = Funcoes()
 instancia2 = Sistema()
@@ -8,3 +8,7 @@ instancia2 = Sistema()
 
 print(instancia.listar_vistos())
 print(instancia.listar_vistos_sys())
+
+# pyside6-uic cadastro.ui -o ui_main.py
+# pyside6-rcc logo_.qrc -o logo_rc.py
+# pyside6-uic login.ui -o ui_login.py

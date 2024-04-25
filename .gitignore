@@ -3,3 +3,7 @@
 .venv
 .my_new_venv
 testes.py
+__pycache__
+pages/__pycache__
+src/database/__pycache__
+src/database/utils/__pycache__

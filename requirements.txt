@@ -7,3 +7,4 @@ pyside6
 requests
 pandas
 bcrypt
+openpyxl

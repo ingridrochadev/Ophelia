@@ -17,10 +17,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QGridLayout,
     QHBoxLayout, QHeaderView, QLabel, QLineEdit,
-    QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
-    QStackedWidget, QTableWidget, QTableWidgetItem, QToolBox,
-    QVBoxLayout, QWidget)
-import logo_rc
+    QMainWindow, QPushButton, QRadioButton, QSizePolicy,
+    QSpacerItem, QStackedWidget, QTableWidget, QTableWidgetItem,
+    QToolBox, QVBoxLayout, QWidget)
+import pages.logo_rc as logo_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -217,7 +217,7 @@ class Ui_MainWindow(object):
         self.btn_toggle = QPushButton(self.top_frame)
         self.btn_toggle.setObjectName(u"btn_toggle")
         icon = QIcon()
-        icon.addFile(u":/logo/pages/icons/menu.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u":/icons/pages/icons/menu.png", QSize(), QIcon.Normal, QIcon.Off)
         self.btn_toggle.setIcon(icon)
         self.btn_toggle.setIconSize(QSize(32, 32))
 
@@ -258,17 +258,20 @@ class Ui_MainWindow(object):
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
         self.frame_4 = QFrame(self.pg_adicionar)
         self.frame_4.setObjectName(u"frame_4")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.frame_4.sizePolicy().hasHeightForWidth())
+        self.frame_4.setSizePolicy(sizePolicy1)
         self.frame_4.setStyleSheet(u"QLineEdit{\n"
-"background-color: rgb(255,255,255);\n"
+"background-color: #F4E7FF;\n"
 "font: 11pt \"Lato Heavy\"\n"
 "}\n"
 "\n"
 "QFrame{\n"
-"background-color: rgb(231,231,231);	\n"
-"border-radius: 8px\n"
-"}\n"
-"\n"
-"")
+"background-color:white;\n"
+"border-radius:10px;\n"
+"}")
         self.frame_4.setFrameShape(QFrame.StyledPanel)
         self.frame_4.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_4 = QHBoxLayout(self.frame_4)
@@ -282,6 +285,15 @@ class Ui_MainWindow(object):
         self.frame_11 = QFrame(self.frame_3)
         self.frame_11.setObjectName(u"frame_11")
         self.frame_11.setMinimumSize(QSize(400, 60))
+        self.frame_11.setStyleSheet(u"QFrame{\n"
+"background-color:#F4E7FF;\n"
+"border-radius:10px;\n"
+"}\n"
+"\n"
+"QLabel{\n"
+"background-color: white ;\n"
+"font: 11pt \"Lato Heavy\"\n"
+"}")
         self.frame_11.setFrameShape(QFrame.StyledPanel)
         self.frame_11.setFrameShadow(QFrame.Raised)
         self.verticalLayout_8 = QVBoxLayout(self.frame_11)
@@ -294,8 +306,7 @@ class Ui_MainWindow(object):
         self.img_space.setObjectName(u"img_space")
         self.img_space.setMinimumSize(QSize(0, 300))
         self.img_space.setMaximumSize(QSize(600, 300))
-        self.img_space.setStyleSheet(u"background-color:rgb(255,255,255);\n"
-"frame-radius:10px;")
+        self.img_space.setStyleSheet(u"frame-radius:10px;")
 
         self.verticalLayout_8.addWidget(self.img_space)
 
@@ -310,6 +321,7 @@ class Ui_MainWindow(object):
         self.btn_ler.setFont(font4)
         self.btn_ler.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_ler.setStyleSheet(u"QPushButton {\n"
+"color: white;\n"
 "    background-color: rgb(190, 190, 190);\n"
 "    border-radius: 20px;\n"
 "	font-family: \"Lato Bold\", sans-serif;\n"
@@ -322,7 +334,7 @@ class Ui_MainWindow(object):
 "	color: #fff\n"
 "}")
         icon1 = QIcon()
-        icon1.addFile(u":/logo/pages/icons/Black Minimalist Outline Icons Icon Set (2).png", QSize(), QIcon.Normal, QIcon.Off)
+        icon1.addFile(u":/icons/pages/icons/Black Minimalist Outline Icons Icon Set (2).png", QSize(), QIcon.Normal, QIcon.Off)
         self.btn_ler.setIcon(icon1)
         self.btn_ler.setIconSize(QSize(70, 70))
 
@@ -337,6 +349,8 @@ class Ui_MainWindow(object):
 
         self.frame_8 = QFrame(self.frame_3)
         self.frame_8.setObjectName(u"frame_8")
+        sizePolicy1.setHeightForWidth(self.frame_8.sizePolicy().hasHeightForWidth())
+        self.frame_8.setSizePolicy(sizePolicy1)
         font5 = QFont()
         font5.setBold(False)
         self.frame_8.setFont(font5)
@@ -428,11 +442,7 @@ class Ui_MainWindow(object):
         font6.setItalic(False)
         self.nome_line.setFont(font6)
         self.nome_line.setLayoutDirection(Qt.LeftToRight)
-        self.nome_line.setStyleSheet(u"QFrame {\n"
-"    background-color: transparent;\n"
-"    border-radius: 8px;\n"
-"    border: 2px solid white;\n"
-"}")
+        self.nome_line.setStyleSheet(u"")
 
         self.gridLayout.addWidget(self.nome_line, 0, 1, 1, 2)
 
@@ -469,7 +479,7 @@ class Ui_MainWindow(object):
 
         self.btn_add_2 = QPushButton(self.frame_8)
         self.btn_add_2.setObjectName(u"btn_add_2")
-        self.btn_add_2.setMinimumSize(QSize(100, 30))
+        self.btn_add_2.setMinimumSize(QSize(150, 40))
         self.btn_add_2.setMaximumSize(QSize(200, 16777215))
         self.btn_add_2.setFont(font4)
         self.btn_add_2.setCursor(QCursor(Qt.PointingHandCursor))
@@ -477,13 +487,13 @@ class Ui_MainWindow(object):
         self.btn_add_2.setAutoFillBackground(False)
         self.btn_add_2.setStyleSheet(u"QPushButton {\n"
 "    background-color: rgb(190, 190, 190);\n"
-"    border-radius: 15px;\n"
+"    border-radius: 20px;\n"
 "	font-family: \"Lato Bold\", sans-serif;\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
 "    background-color: rgb(115, 0, 200);\n"
-"    border-radius: 15px;\n"
+"    border-radius: 20px;\n"
 "	font-family: \"Lato Bold\", sans-serif;\n"
 "	color: #fff\n"
 "}")
@@ -506,6 +516,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
         self.logo = QLabel(self.pg_home)
         self.logo.setObjectName(u"logo")
+        self.logo.setPixmap(QPixmap(u":/icons/pages/icons/logo_nome_branco.png"))
+        self.logo.setScaledContents(False)
+        self.logo.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_7.addWidget(self.logo)
 
@@ -531,24 +544,22 @@ class Ui_MainWindow(object):
         __qtablewidgetitem2.setTextAlignment(Qt.AlignLeading|Qt.AlignVCenter);
         self.tbl_vistos.setHorizontalHeaderItem(2, __qtablewidgetitem2)
         self.tbl_vistos.setObjectName(u"tbl_vistos")
-        self.tbl_vistos.setGeometry(QRect(0, 70, 821, 558))
-        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
+        self.tbl_vistos.setGeometry(QRect(10, 110, 811, 521))
         sizePolicy1.setHeightForWidth(self.tbl_vistos.sizePolicy().hasHeightForWidth())
         self.tbl_vistos.setSizePolicy(sizePolicy1)
         self.tbl_vistos.setStyleSheet(u"QHeaderView::section{\n"
-"background-color:rgb(148, 148, 148);\n"
-"color:rgb(255,255,255);\n"
-"font: 11pt \"Lato Heavy\";\n"
+"color:white;\n"
+"color:#fff;\n"
+"font-size: 15px;\n"
 "}\n"
 "QTableWidget{\n"
 "background-color:rgb(252, 252, 252);\n"
+"color:#430B78;\n"
 "}")
         self.tbl_vistos.horizontalHeader().setDefaultSectionSize(274)
         self.frame_7 = QFrame(self.frame_5)
         self.frame_7.setObjectName(u"frame_7")
-        self.frame_7.setGeometry(QRect(840, 70, 100, 558))
+        self.frame_7.setGeometry(QRect(830, 110, 100, 521))
         self.frame_7.setStyleSheet(u"QPushButton{\n"
 "border-radius: 15px;\n"
 "background-color: rgb(255,255,255);\n"
@@ -558,6 +569,7 @@ class Ui_MainWindow(object):
 "\n"
 "QFrame{\n"
 "background-color: rgb(230,230,230);\n"
+"border-radius: 4px;\n"
 "}")
         self.frame_7.setFrameShape(QFrame.StyledPanel)
         self.frame_7.setFrameShadow(QFrame.Raised)
@@ -626,10 +638,10 @@ class Ui_MainWindow(object):
 
         self.ttl_vistos = QLabel(self.frame_5)
         self.ttl_vistos.setObjectName(u"ttl_vistos")
-        self.ttl_vistos.setGeometry(QRect(350, 10, 250, 50))
+        self.ttl_vistos.setGeometry(QRect(330, 20, 321, 51))
         font7 = QFont()
         font7.setFamilies([u"Lato"])
-        font7.setPointSize(12)
+        font7.setPointSize(14)
         font7.setBold(True)
         font7.setKerning(True)
         self.ttl_vistos.setFont(font7)
@@ -640,6 +652,51 @@ class Ui_MainWindow(object):
         self.ttl_vistos.setLineWidth(1)
         self.ttl_vistos.setAlignment(Qt.AlignCenter)
         self.ttl_vistos.setIndent(-1)
+        self.cb_perfil_2 = QComboBox(self.frame_5)
+        self.cb_perfil_2.addItem("")
+        self.cb_perfil_2.addItem("")
+        self.cb_perfil_2.setObjectName(u"cb_perfil_2")
+        self.cb_perfil_2.setGeometry(QRect(10, 70, 241, 30))
+        self.cb_perfil_2.setMaximumSize(QSize(16777215, 35))
+        font8 = QFont()
+        font8.setBold(False)
+        font8.setItalic(False)
+        self.cb_perfil_2.setFont(font8)
+        self.cb_perfil_2.setStyleSheet(u"color:rgb(70,70,70);\n"
+"background-color:white;\n"
+"border-radius:5px;\n"
+"font: \"Lato Heavy\"")
+        self.cb_perfil_2.setIconSize(QSize(16, 16))
+        self.btn_aprovados = QRadioButton(self.frame_5)
+        self.btn_aprovados.setObjectName(u"btn_aprovados")
+        self.btn_aprovados.setGeometry(QRect(550, 80, 141, 21))
+        font9 = QFont()
+        font9.setFamilies([u"Lato"])
+        font9.setPointSize(10)
+        font9.setBold(True)
+        self.btn_aprovados.setFont(font9)
+        self.btn_aprovados.setStyleSheet(u"QRadioButton {\n"
+"    background-color: transparent;\n"
+"color:white;\n"
+"}\n"
+"\n"
+"QRadioButton::indicator {\n"
+"    background-color: white;\n"
+"border-radius: 6px;\n"
+"}")
+        self.btn_negados = QRadioButton(self.frame_5)
+        self.btn_negados.setObjectName(u"btn_negados")
+        self.btn_negados.setGeometry(QRect(700, 80, 131, 21))
+        self.btn_negados.setFont(font9)
+        self.btn_negados.setStyleSheet(u"QRadioButton {\n"
+"    background-color: transparent;\n"
+"color:white;\n"
+"}\n"
+"\n"
+"QRadioButton::indicator {\n"
+"    background-color: white;\n"
+"border-radius: 6px;\n"
+"}")
 
         self.horizontalLayout_8.addWidget(self.frame_5)
 
@@ -650,22 +707,23 @@ class Ui_MainWindow(object):
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.frame_6 = QFrame(self.pg_sobre)
         self.frame_6.setObjectName(u"frame_6")
-        self.frame_6.setStyleSheet(u"background-color:white;")
+        self.frame_6.setStyleSheet(u"background-color:white;\n"
+"border-radius:10px;")
         self.frame_6.setFrameShape(QFrame.StyledPanel)
         self.frame_6.setFrameShadow(QFrame.Raised)
         self.txt_sobre = QLabel(self.frame_6)
         self.txt_sobre.setObjectName(u"txt_sobre")
-        self.txt_sobre.setGeometry(QRect(240, 90, 500, 210))
+        self.txt_sobre.setGeometry(QRect(190, 120, 611, 210))
         sizePolicy.setHeightForWidth(self.txt_sobre.sizePolicy().hasHeightForWidth())
         self.txt_sobre.setSizePolicy(sizePolicy)
         self.txt_sobre.setMinimumSize(QSize(0, 210))
-        self.txt_sobre.setMaximumSize(QSize(500, 16777215))
-        font8 = QFont()
-        font8.setFamilies([u"Lato"])
-        font8.setPointSize(15)
-        font8.setBold(False)
-        font8.setItalic(False)
-        self.txt_sobre.setFont(font8)
+        self.txt_sobre.setMaximumSize(QSize(800, 16777215))
+        font10 = QFont()
+        font10.setFamilies([u"Lato"])
+        font10.setPointSize(15)
+        font10.setBold(False)
+        font10.setItalic(False)
+        self.txt_sobre.setFont(font10)
         self.txt_sobre.setStyleSheet(u"color:purple;")
         self.txt_sobre.setAlignment(Qt.AlignCenter)
         self.txt_sobre.setWordWrap(True)
@@ -674,37 +732,38 @@ class Ui_MainWindow(object):
         self.txt_desenvolvedoras.setGeometry(QRect(310, 263, 371, 400))
         self.txt_desenvolvedoras.setMinimumSize(QSize(0, 400))
         self.txt_desenvolvedoras.setMaximumSize(QSize(800, 400))
-        font9 = QFont()
-        font9.setFamilies([u"Lato"])
-        font9.setPointSize(25)
-        font9.setBold(False)
-        font9.setItalic(False)
-        self.txt_desenvolvedoras.setFont(font9)
+        font11 = QFont()
+        font11.setFamilies([u"Lato"])
+        font11.setPointSize(25)
+        font11.setBold(False)
+        font11.setItalic(False)
+        self.txt_desenvolvedoras.setFont(font11)
         self.txt_desenvolvedoras.setStyleSheet(u"color:purple;\n"
 "background-color:transparent;")
         self.ttl_sobre = QLabel(self.frame_6)
         self.ttl_sobre.setObjectName(u"ttl_sobre")
-        self.ttl_sobre.setGeometry(QRect(410, 20, 161, 71))
+        self.ttl_sobre.setGeometry(QRect(410, 30, 161, 71))
         self.ttl_sobre.setMinimumSize(QSize(100, 30))
-        font10 = QFont()
-        font10.setFamilies([u"Lato"])
-        font10.setPointSize(16)
-        font10.setBold(False)
-        font10.setItalic(False)
-        self.ttl_sobre.setFont(font10)
+        font12 = QFont()
+        font12.setFamilies([u"Lato"])
+        font12.setPointSize(16)
+        font12.setBold(False)
+        font12.setItalic(False)
+        self.ttl_sobre.setFont(font12)
         self.ttl_sobre.setAutoFillBackground(False)
         self.ttl_sobre.setStyleSheet(u"color:purple;")
         self.label_7 = QLabel(self.frame_6)
         self.label_7.setObjectName(u"label_7")
-        self.label_7.setGeometry(QRect(200, -150, 761, 801))
-        self.label_7.setPixmap(QPixmap(u":/logo/pages/icons/Fundo.png"))
+        self.label_7.setGeometry(QRect(200, -130, 761, 771))
+        self.label_7.setStyleSheet(u"border-radius:10px;")
+        self.label_7.setPixmap(QPixmap(u":/icons/pages/icons/Fundo.png"))
         self.label_7.setScaledContents(True)
         self.label_7.raise_()
         self.txt_desenvolvedoras.raise_()
         self.txt_sobre.raise_()
         self.ttl_sobre.raise_()
 
-        self.gridLayout_2.addWidget(self.frame_6, 0, 0, 2, 1)
+        self.gridLayout_2.addWidget(self.frame_6, 0, 0, 1, 1)
 
         self.Pages.addWidget(self.pg_sobre)
         self.pg_alterar_usuario = QWidget()
@@ -718,17 +777,17 @@ class Ui_MainWindow(object):
         self.label_5 = QLabel(self.frame_15)
         self.label_5.setObjectName(u"label_5")
         self.label_5.setGeometry(QRect(270, 50, 471, 51))
-        font11 = QFont()
-        font11.setFamilies([u"Lato"])
-        font11.setPointSize(34)
-        font11.setBold(False)
-        font11.setItalic(False)
-        self.label_5.setFont(font11)
+        font13 = QFont()
+        font13.setFamilies([u"Lato"])
+        font13.setPointSize(34)
+        font13.setBold(False)
+        font13.setItalic(False)
+        self.label_5.setFont(font13)
         self.label_5.setStyleSheet(u"background-color: transparent;")
         self.label_6 = QLabel(self.frame_15)
         self.label_6.setObjectName(u"label_6")
         self.label_6.setGeometry(QRect(40, 150, 431, 431))
-        self.label_6.setPixmap(QPixmap(u":/logo/pages/icons/Black Minimalist Outline Icons Icon Set (1).png"))
+        self.label_6.setPixmap(QPixmap(u":/icons/pages/icons/Black Minimalist Outline Icons Icon Set (1).png"))
         self.label_6.setScaledContents(True)
         self.frame_12 = QFrame(self.frame_15)
         self.frame_12.setObjectName(u"frame_12")
@@ -773,7 +832,7 @@ class Ui_MainWindow(object):
         self.senha_atual_line = QLineEdit(self.frame_13)
         self.senha_atual_line.setObjectName(u"senha_atual_line")
         self.senha_atual_line.setMinimumSize(QSize(0, 40))
-        self.senha_atual_line.setEchoMode(QLineEdit.PasswordEchoOnEdit)
+        self.senha_atual_line.setEchoMode(QLineEdit.Password)
         self.senha_atual_line.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_15.addWidget(self.senha_atual_line)
@@ -781,7 +840,7 @@ class Ui_MainWindow(object):
         self.senha_line = QLineEdit(self.frame_13)
         self.senha_line.setObjectName(u"senha_line")
         self.senha_line.setMinimumSize(QSize(0, 40))
-        self.senha_line.setEchoMode(QLineEdit.PasswordEchoOnEdit)
+        self.senha_line.setEchoMode(QLineEdit.Password)
         self.senha_line.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_15.addWidget(self.senha_line)
@@ -789,7 +848,7 @@ class Ui_MainWindow(object):
         self.senha_line_2 = QLineEdit(self.frame_13)
         self.senha_line_2.setObjectName(u"senha_line_2")
         self.senha_line_2.setMinimumSize(QSize(0, 40))
-        self.senha_line_2.setEchoMode(QLineEdit.PasswordEchoOnEdit)
+        self.senha_line_2.setEchoMode(QLineEdit.Password)
         self.senha_line_2.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_15.addWidget(self.senha_line_2)
@@ -846,12 +905,12 @@ class Ui_MainWindow(object):
         self.label_3 = QLabel(self.frame_9)
         self.label_3.setObjectName(u"label_3")
         self.label_3.setGeometry(QRect(260, 50, 471, 51))
-        self.label_3.setFont(font11)
+        self.label_3.setFont(font13)
         self.label_3.setStyleSheet(u"background-color: transparent;")
         self.label_4 = QLabel(self.frame_9)
         self.label_4.setObjectName(u"label_4")
         self.label_4.setGeometry(QRect(10, 140, 501, 481))
-        self.label_4.setPixmap(QPixmap(u":/logo/pages/icons/Black Minimalist Outline Icons Icon Set.png"))
+        self.label_4.setPixmap(QPixmap(u":/icons/pages/icons/Black Minimalist Outline Icons Icon Set.png"))
         self.label_4.setScaledContents(True)
         self.frame_14 = QFrame(self.frame_9)
         self.frame_14.setObjectName(u"frame_14")
@@ -890,11 +949,11 @@ class Ui_MainWindow(object):
         self.nome_user_line.setGeometry(QRect(9, 9, 400, 40))
         self.nome_user_line.setMinimumSize(QSize(400, 40))
         self.nome_user_line.setMaximumSize(QSize(500, 16777215))
-        font12 = QFont()
-        font12.setFamilies([u"Lato Heavy"])
-        font12.setBold(False)
-        font12.setItalic(False)
-        self.nome_user_line.setFont(font12)
+        font14 = QFont()
+        font14.setFamilies([u"Lato Heavy"])
+        font14.setBold(False)
+        font14.setItalic(False)
+        self.nome_user_line.setFont(font14)
         self.nome_user_line.setLayoutDirection(Qt.LeftToRight)
         self.nome_user_line.setStyleSheet(u"QFrame {\n"
 "    background-color: transparent;\n"
@@ -911,10 +970,10 @@ class Ui_MainWindow(object):
         self.btn_add_user.setGeometry(QRect(130, 340, 150, 50))
         self.btn_add_user.setMinimumSize(QSize(100, 30))
         self.btn_add_user.setMaximumSize(QSize(200, 16777215))
-        font13 = QFont()
-        font13.setFamilies([u"Lato Bold"])
-        font13.setPointSize(15)
-        self.btn_add_user.setFont(font13)
+        font15 = QFont()
+        font15.setFamilies([u"Lato Bold"])
+        font15.setPointSize(15)
+        self.btn_add_user.setFont(font15)
         self.btn_add_user.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_add_user.setLayoutDirection(Qt.LeftToRight)
         self.btn_add_user.setAutoFillBackground(False)
@@ -966,10 +1025,10 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.label_2 = QLabel(self.footer_frame)
         self.label_2.setObjectName(u"label_2")
-        font14 = QFont()
-        font14.setFamilies([u"Lato"])
-        font14.setBold(True)
-        self.label_2.setFont(font14)
+        font16 = QFont()
+        font16.setFamilies([u"Lato"])
+        font16.setBold(True)
+        self.label_2.setFont(font16)
 
         self.verticalLayout_2.addWidget(self.label_2)
 
@@ -1004,7 +1063,7 @@ class Ui_MainWindow(object):
         self.toolBox.setItemText(self.toolBox.indexOf(self.Usuario), QCoreApplication.translate("MainWindow", u"Usu\u00e1rio", None))
         self.btn_toggle.setText("")
         self.label.setText(QCoreApplication.translate("MainWindow", u"Sistema de leitura de Documentos de Viagem", None))
-        self.img_space.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.img_space.setText("")
         self.btn_ler.setText("")
         self.nacionalidade_line.setText("")
         self.nacionalidade_line.setPlaceholderText("")
@@ -1025,7 +1084,7 @@ class Ui_MainWindow(object):
         self.num_visto_line.setPlaceholderText("")
         self.lbl_num_visto.setText(QCoreApplication.translate("MainWindow", u"N\u00famero do visto", None))
         self.btn_add_2.setText(QCoreApplication.translate("MainWindow", u"     Adicionar     ", None))
-        self.logo.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><img src=\":/logo/pages/icons/logo_nome_branco.png\"/></p></body></html>", None))
+        self.logo.setText("")
         ___qtablewidgetitem = self.tbl_vistos.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"Nome", None));
         ___qtablewidgetitem1 = self.tbl_vistos.horizontalHeaderItem(1)
@@ -1039,9 +1098,14 @@ class Ui_MainWindow(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Lato'; font-size:12pt; font-weight:600; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:28pt;\">VISTOS</span></p></body></html>", None))
-        self.txt_sobre.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:22pt;\"><br/>Esse sistema l\u00ea as informa\u00e7\u00f5es contidas nos vistos de passageiros viajando para os EUA e libera ou nega o embarque desses passageiros nos voos das companhias a\u00e9reas.</span></p></body></html>", None))
-        self.txt_desenvolvedoras.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:28pt; font-weight:600;\">DESENVOLVEDORAS:</span></p><p align=\"center\"><span style=\" font-size:22pt; font-weight:600;\">BIANCA YURI</span></p><p align=\"center\"><span style=\" font-size:22pt; font-weight:600;\">DJULLIE CAROLINE</span></p><p align=\"center\"><span style=\" font-size:22pt; font-weight:600;\">INGRID ROCHA</span></p><p align=\"center\"><span style=\" font-size:22pt; font-weight:600;\">TAYNARA MORAIS</span></p><p align=\"center\"><span style=\" font-size:22pt; font-weight:600;\">YASMIM FERREIRA</span></p></body></html>", None))
+"<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:28pt;\">PASSAGEIROS</span></p></body></html>", None))
+        self.cb_perfil_2.setItemText(0, QCoreApplication.translate("MainWindow", u"Ordenar por: A-Z", None))
+        self.cb_perfil_2.setItemText(1, QCoreApplication.translate("MainWindow", u"                     Z-A", None))
+
+        self.btn_aprovados.setText(QCoreApplication.translate("MainWindow", u"Apenas Aprovados", None))
+        self.btn_negados.setText(QCoreApplication.translate("MainWindow", u"Apenas Negados", None))
+        self.txt_sobre.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:20pt;\">Esse sistema l\u00ea os dados do visto e, al\u00e9m de salv\u00e1-los para envio \u00e0 imigra\u00e7\u00e3o dos EUA por parte da companhia a\u00e9rea, ele tamb\u00e9m emite um alerta para o agente de aeroporto informando se o passageiro est\u00e1 apto a viajar com aquele visto ou se \u00e9 necess\u00e1rio alguma documenta\u00e7\u00e3o extra.</span></p></body></html>", None))
+        self.txt_desenvolvedoras.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:600;\">DESENVOLVEDORAS:</span></p><p align=\"center\"><span style=\" font-size:16pt; font-weight:600;\">BIANCA YURI</span></p><p align=\"center\"><span style=\" font-size:16pt; font-weight:600;\">DJULLIE CAROLINE</span></p><p align=\"center\"><span style=\" font-size:16pt; font-weight:600;\">INGRID ROCHA</span></p><p align=\"center\"><span style=\" font-size:16pt; font-weight:600;\">TAYNARA MORAIS</span></p><p align=\"center\"><span style=\" font-size:16pt; font-weight:600;\">YASMIM FERREIRA</span></p></body></html>", None))
         self.ttl_sobre.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:36pt;\">SOBRE</span></p></body></html>", None))
         self.label_7.setText("")
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:36pt;\">Alterar Senha</span></p></body></html>", None))

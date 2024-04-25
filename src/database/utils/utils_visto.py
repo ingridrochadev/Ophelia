@@ -38,7 +38,6 @@ class Funcoes:
             print(f"Erro ao inserir dados do OCR na tabela de vistos: {e}")
             self.conn.rollback()
 
-
     # Método para inserir dados do OCR na tabela de vistos
     def inserir_dados_ocr_vistos(self, numero_visto, passaporte, tipo_visto, pais_emitente, data_validade, status):
         try:
@@ -178,7 +177,6 @@ class Funcoes:
         except Exception as e:
             print(f'Ocorreu um erro: {e}')
 
-
     def verificar_regras_embarque(self, tipo_visto, dob, expiracao):
         current_date = dt.datetime.now().date()  # Obtém apenas a data de hoje
         dob_date = dt.datetime.combine(dob, dt.datetime.min.time())  # Converte dob para datetime
@@ -201,6 +199,10 @@ class Funcoes:
         else:
             return "Tipo de visto não corresponde a nenhum que conhecemos"
 
+
+#####################################################################
+# TESTES:
+
 # if __name__ == '__main__':
             
 #     funcoes = Funcoes()
@@ -213,9 +215,8 @@ class Funcoes:
     #regra = funcoes.verificar_regras_embarque(tipo)
     #print(regra)
     
-    # funcoes.listar_vistos_asc()
+    #funcoes.listar_vistos_asc()
     #funcoes.listar_vistos_desc()
-
 
     #funcoes.cur.close()
     #funcoes.conn.close()

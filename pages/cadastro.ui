@@ -430,7 +430,7 @@ font-weight: bold
             </property>
             <property name="icon">
              <iconset resource="../logo_.qrc">
-              <normaloff>:/logo/pages/icons/menu.png</normaloff>:/logo/pages/icons/menu.png</iconset>
+              <normaloff>:/icons/pages/icons/menu.png</normaloff>:/icons/pages/icons/menu.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -498,18 +498,22 @@ font-weight: bold
              <layout class="QVBoxLayout" name="verticalLayout_10">
               <item>
                <widget class="QFrame" name="frame_4">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="styleSheet">
                  <string notr="true">QLineEdit{
-background-color: rgb(255,255,255);
+background-color: #F4E7FF;
 font: 11pt &quot;Lato Heavy&quot;
 }
 
 QFrame{
-background-color: rgb(231,231,231);	
-border-radius: 8px
-}
-
-</string>
+background-color:white;
+border-radius:10px;
+}</string>
                 </property>
                 <property name="frameShape">
                  <enum>QFrame::StyledPanel</enum>
@@ -534,6 +538,17 @@ border-radius: 8px
                         <width>400</width>
                         <height>60</height>
                        </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QFrame{
+background-color:#F4E7FF;
+border-radius:10px;
+}
+
+QLabel{
+background-color: white ;
+font: 11pt &quot;Lato Heavy&quot;
+}</string>
                       </property>
                       <property name="frameShape">
                        <enum>QFrame::StyledPanel</enum>
@@ -570,11 +585,10 @@ border-radius: 8px
                           </size>
                          </property>
                          <property name="styleSheet">
-                          <string notr="true">background-color:rgb(255,255,255);
-frame-radius:10px;</string>
+                          <string notr="true">frame-radius:10px;</string>
                          </property>
                          <property name="text">
-                          <string>TextLabel</string>
+                          <string/>
                          </property>
                         </widget>
                        </item>
@@ -609,6 +623,7 @@ frame-radius:10px;</string>
                          </property>
                          <property name="styleSheet">
                           <string notr="true">QPushButton {
+color: white;
     background-color: rgb(190, 190, 190);
     border-radius: 20px;
 	font-family: &quot;Lato Bold&quot;, sans-serif;
@@ -626,7 +641,7 @@ QPushButton:hover {
                          </property>
                          <property name="icon">
                           <iconset resource="../logo_.qrc">
-                           <normaloff>:/logo/pages/icons/Black Minimalist Outline Icons Icon Set (2).png</normaloff>:/logo/pages/icons/Black Minimalist Outline Icons Icon Set (2).png</iconset>
+                           <normaloff>:/icons/pages/icons/Black Minimalist Outline Icons Icon Set (2).png</normaloff>:/icons/pages/icons/Black Minimalist Outline Icons Icon Set (2).png</iconset>
                          </property>
                          <property name="iconSize">
                           <size>
@@ -654,6 +669,12 @@ QPushButton:hover {
                     </item>
                     <item>
                      <widget class="QFrame" name="frame_8">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
                       <property name="font">
                        <font>
                         <weight>50</weight>
@@ -839,11 +860,7 @@ border-radius:5px;
                           <enum>Qt::LeftToRight</enum>
                          </property>
                          <property name="styleSheet">
-                          <string notr="true">QFrame {
-    background-color: transparent;
-    border-radius: 8px;
-    border: 2px solid white;
-}</string>
+                          <string notr="true"/>
                          </property>
                          <property name="placeholderText">
                           <string/>
@@ -925,8 +942,8 @@ border-radius:5px;
                         <widget class="QPushButton" name="btn_add_2">
                          <property name="minimumSize">
                           <size>
-                           <width>100</width>
-                           <height>30</height>
+                           <width>150</width>
+                           <height>40</height>
                           </size>
                          </property>
                          <property name="maximumSize">
@@ -953,13 +970,13 @@ border-radius:5px;
                          <property name="styleSheet">
                           <string notr="true">QPushButton {
     background-color: rgb(190, 190, 190);
-    border-radius: 15px;
+    border-radius: 20px;
 	font-family: &quot;Lato Bold&quot;, sans-serif;
 }
 
 QPushButton:hover {
     background-color: rgb(115, 0, 200);
-    border-radius: 15px;
+    border-radius: 20px;
 	font-family: &quot;Lato Bold&quot;, sans-serif;
 	color: #fff
 }</string>
@@ -985,7 +1002,16 @@ QPushButton:hover {
               <item>
                <widget class="QLabel" name="logo">
                 <property name="text">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;img src=&quot;:/logo/pages/icons/logo_nome_branco.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 <string/>
+                </property>
+                <property name="pixmap">
+                 <pixmap resource="../logo_.qrc">:/icons/pages/icons/logo_nome_branco.png</pixmap>
+                </property>
+                <property name="scaledContents">
+                 <bool>false</bool>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
                 </property>
                </widget>
               </item>
@@ -1004,10 +1030,10 @@ QPushButton:hover {
                 <widget class="QTableWidget" name="tbl_vistos">
                  <property name="geometry">
                   <rect>
-                   <x>0</x>
-                   <y>70</y>
-                   <width>821</width>
-                   <height>558</height>
+                   <x>10</x>
+                   <y>110</y>
+                   <width>811</width>
+                   <height>521</height>
                   </rect>
                  </property>
                  <property name="sizePolicy">
@@ -1018,12 +1044,13 @@ QPushButton:hover {
                  </property>
                  <property name="styleSheet">
                   <string notr="true">QHeaderView::section{
-background-color:rgb(148, 148, 148);
-color:rgb(255,255,255);
-font: 11pt &quot;Lato Heavy&quot;;
+color:white;
+color:#fff;
+font-size: 15px;
 }
 QTableWidget{
 background-color:rgb(252, 252, 252);
+color:#430B78;
 }</string>
                  </property>
                  <attribute name="horizontalHeaderDefaultSectionSize">
@@ -1057,10 +1084,10 @@ background-color:rgb(252, 252, 252);
                 <widget class="QFrame" name="frame_7">
                  <property name="geometry">
                   <rect>
-                   <x>840</x>
-                   <y>70</y>
+                   <x>830</x>
+                   <y>110</y>
                    <width>100</width>
-                   <height>558</height>
+                   <height>521</height>
                   </rect>
                  </property>
                  <property name="styleSheet">
@@ -1073,6 +1100,7 @@ color: rgb(0,24,74)
 
 QFrame{
 background-color: rgb(230,230,230);
+border-radius: 4px;
 }</string>
                  </property>
                  <property name="frameShape">
@@ -1190,16 +1218,16 @@ QPushButton:hover {
                 <widget class="QLabel" name="ttl_vistos">
                  <property name="geometry">
                   <rect>
-                   <x>350</x>
-                   <y>10</y>
-                   <width>250</width>
-                   <height>50</height>
+                   <x>330</x>
+                   <y>20</y>
+                   <width>321</width>
+                   <height>51</height>
                   </rect>
                  </property>
                  <property name="font">
                   <font>
                    <family>Lato</family>
-                   <pointsize>12</pointsize>
+                   <pointsize>14</pointsize>
                    <weight>75</weight>
                    <bold>true</bold>
                    <kerning>true</kerning>
@@ -1221,7 +1249,7 @@ border-radius:10px;</string>
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Lato'; font-size:12pt; font-weight:600; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:28pt;&quot;&gt;VISTOS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:28pt;&quot;&gt;PASSAGEIROS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>
@@ -1230,16 +1258,126 @@ p, li { white-space: pre-wrap; }
                   <number>-1</number>
                  </property>
                 </widget>
+                <widget class="QComboBox" name="cb_perfil_2">
+                 <property name="geometry">
+                  <rect>
+                   <x>10</x>
+                   <y>70</y>
+                   <width>241</width>
+                   <height>30</height>
+                  </rect>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>35</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <weight>50</weight>
+                   <italic>false</italic>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color:rgb(70,70,70);
+background-color:white;
+border-radius:5px;
+font: &quot;Lato Heavy&quot;</string>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>16</width>
+                   <height>16</height>
+                  </size>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>Ordenar por: A-Z</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>                     Z-A</string>
+                  </property>
+                 </item>
+                </widget>
+                <widget class="QRadioButton" name="btn_aprovados">
+                 <property name="geometry">
+                  <rect>
+                   <x>550</x>
+                   <y>80</y>
+                   <width>141</width>
+                   <height>21</height>
+                  </rect>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Lato</family>
+                   <pointsize>10</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QRadioButton {
+    background-color: transparent;
+color:white;
+}
+
+QRadioButton::indicator {
+    background-color: white;
+border-radius: 6px;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>Apenas Aprovados</string>
+                 </property>
+                </widget>
+                <widget class="QRadioButton" name="btn_negados">
+                 <property name="geometry">
+                  <rect>
+                   <x>700</x>
+                   <y>80</y>
+                   <width>131</width>
+                   <height>21</height>
+                  </rect>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Lato</family>
+                   <pointsize>10</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QRadioButton {
+    background-color: transparent;
+color:white;
+}
+
+QRadioButton::indicator {
+    background-color: white;
+border-radius: 6px;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>Apenas Negados</string>
+                 </property>
+                </widget>
                </widget>
               </item>
              </layout>
             </widget>
             <widget class="QWidget" name="pg_sobre">
              <layout class="QGridLayout" name="gridLayout_2">
-              <item row="0" column="0" rowspan="2">
+              <item row="0" column="0">
                <widget class="QFrame" name="frame_6">
                 <property name="styleSheet">
-                 <string notr="true">background-color:white;</string>
+                 <string notr="true">background-color:white;
+border-radius:10px;</string>
                 </property>
                 <property name="frameShape">
                  <enum>QFrame::StyledPanel</enum>
@@ -1250,9 +1388,9 @@ p, li { white-space: pre-wrap; }
                 <widget class="QLabel" name="txt_sobre">
                  <property name="geometry">
                   <rect>
-                   <x>240</x>
-                   <y>90</y>
-                   <width>500</width>
+                   <x>190</x>
+                   <y>120</y>
+                   <width>611</width>
                    <height>210</height>
                   </rect>
                  </property>
@@ -1270,7 +1408,7 @@ p, li { white-space: pre-wrap; }
                  </property>
                  <property name="maximumSize">
                   <size>
-                   <width>500</width>
+                   <width>800</width>
                    <height>16777215</height>
                   </size>
                  </property>
@@ -1287,7 +1425,7 @@ p, li { white-space: pre-wrap; }
                   <string notr="true">color:purple;</string>
                  </property>
                  <property name="text">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt;&quot;&gt;&lt;br/&gt;Esse sistema lê as informações contidas nos vistos de passageiros viajando para os EUA e libera ou nega o embarque desses passageiros nos voos das companhias aéreas.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;Esse sistema lê os dados do visto e, além de salvá-los para envio à imigração dos EUA por parte da companhia aérea, ele também emite um alerta para o agente de aeroporto informando se o passageiro está apto a viajar com aquele visto ou se é necessário alguma documentação extra.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>
@@ -1331,14 +1469,14 @@ p, li { white-space: pre-wrap; }
 background-color:transparent;</string>
                  </property>
                  <property name="text">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:28pt; font-weight:600;&quot;&gt;DESENVOLVEDORAS:&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt; font-weight:600;&quot;&gt;BIANCA YURI&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt; font-weight:600;&quot;&gt;DJULLIE CAROLINE&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt; font-weight:600;&quot;&gt;INGRID ROCHA&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt; font-weight:600;&quot;&gt;TAYNARA MORAIS&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt; font-weight:600;&quot;&gt;YASMIM FERREIRA&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600;&quot;&gt;DESENVOLVEDORAS:&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;BIANCA YURI&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;DJULLIE CAROLINE&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;INGRID ROCHA&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;TAYNARA MORAIS&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;YASMIM FERREIRA&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                 </widget>
                 <widget class="QLabel" name="ttl_sobre">
                  <property name="geometry">
                   <rect>
                    <x>410</x>
-                   <y>20</y>
+                   <y>30</y>
                    <width>161</width>
                    <height>71</height>
                   </rect>
@@ -1372,16 +1510,19 @@ background-color:transparent;</string>
                  <property name="geometry">
                   <rect>
                    <x>200</x>
-                   <y>-150</y>
+                   <y>-130</y>
                    <width>761</width>
-                   <height>801</height>
+                   <height>771</height>
                   </rect>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">border-radius:10px;</string>
                  </property>
                  <property name="text">
                   <string/>
                  </property>
                  <property name="pixmap">
-                  <pixmap resource="../logo_.qrc">:/logo/pages/icons/Fundo.png</pixmap>
+                  <pixmap resource="../logo_.qrc">:/icons/pages/icons/Fundo.png</pixmap>
                  </property>
                  <property name="scaledContents">
                   <bool>true</bool>
@@ -1452,7 +1593,7 @@ background-color:transparent;</string>
                 <string/>
                </property>
                <property name="pixmap">
-                <pixmap resource="../logo_.qrc">:/logo/pages/icons/Black Minimalist Outline Icons Icon Set (1).png</pixmap>
+                <pixmap resource="../logo_.qrc">:/icons/pages/icons/Black Minimalist Outline Icons Icon Set (1).png</pixmap>
                </property>
                <property name="scaledContents">
                 <bool>true</bool>
@@ -1551,7 +1692,7 @@ QLineEdit {
                       <string/>
                      </property>
                      <property name="echoMode">
-                      <enum>QLineEdit::PasswordEchoOnEdit</enum>
+                      <enum>QLineEdit::Password</enum>
                      </property>
                      <property name="alignment">
                       <set>Qt::AlignCenter</set>
@@ -1573,7 +1714,7 @@ QLineEdit {
                       <string/>
                      </property>
                      <property name="echoMode">
-                      <enum>QLineEdit::PasswordEchoOnEdit</enum>
+                      <enum>QLineEdit::Password</enum>
                      </property>
                      <property name="alignment">
                       <set>Qt::AlignCenter</set>
@@ -1595,7 +1736,7 @@ QLineEdit {
                       <string/>
                      </property>
                      <property name="echoMode">
-                      <enum>QLineEdit::PasswordEchoOnEdit</enum>
+                      <enum>QLineEdit::Password</enum>
                      </property>
                      <property name="alignment">
                       <set>Qt::AlignCenter</set>
@@ -1748,7 +1889,7 @@ QPushButton:hover {
                 <string/>
                </property>
                <property name="pixmap">
-                <pixmap resource="../logo_.qrc">:/logo/pages/icons/Black Minimalist Outline Icons Icon Set.png</pixmap>
+                <pixmap resource="../logo_.qrc">:/icons/pages/icons/Black Minimalist Outline Icons Icon Set.png</pixmap>
                </property>
                <property name="scaledContents">
                 <bool>true</bool>
