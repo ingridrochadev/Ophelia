@@ -69,7 +69,7 @@ class Criar_bd:
         email character varying(150) NOT NULL,
         senha character varying(150) NOT NULL,
         cpf character varying(15) NOT NULL,
-        tipo_usuario character varying(15) NOT NULL,
+        tipo_usuario character varying(20) NOT NULL,
         PRIMARY KEY (matricula)
     ); ''')
 
@@ -238,11 +238,9 @@ VALUES
 
 
     def inserir_usuarios(self):
-        self.cur.execute('''INSERT INTO public.usuarios (matricula, nome, email, senha, cpf, tipo_usuario) 
-VALUES
-('ADM001', 'Administrador', 'admin@ophelia.com', 'admin1@A', '46590518033', 'Supervisor'),
-('USR001', 'Usuário Normal', 'user@ophelia.com', 'user2@A', '82896051023', 'Agente de Aeroporto');                                           
-''')
+        sistema = Sistema()
+        sistema.criar_usuario("Administrador", "46590518033", "admin@ophelia.com", "admin1@A", "ADM001", "Supervisor")
+        sistema.criar_usuario("Usuário Normal", "82896051023", "user@ophelia.com", "user2@A", "USR001", "Agente de Aeroporto")
         print('Dados de usuarios inseridos')
 
     def criar_tabelas(self):
@@ -274,11 +272,3 @@ if __name__ == '__main__':
         
     bd.cur.close()
     bd.conn.close()
-    
-    # sistema = Sistema()
-
-    # # Criando um usuário administrador
-    # sistema.criar_usuario("Administrador", "46590518033", "admin@email.com", "admin1@A", "ADM001", "Administrador")
-
-    # # Criando um usuário normal
-    # sistema.criar_usuario("Usuário Normal", "82896051023", "user@email.com", "user2@A", "USR001", "Usuário")
