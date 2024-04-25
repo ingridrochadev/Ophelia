@@ -1,8 +1,8 @@
 import src.image_processing.dependencies as d
 
 # Para a Bianca conseguir rodar sem problemas
-caminho = r"C:\Program Files\Tesseract-OCR" 
-d.pytesseract.pytesseract.tesseract_cmd = caminho + r"\tesseract.exe"
+# caminho = r"C:\Program Files\Tesseract-OCR" 
+# d.pytesseract.pytesseract.tesseract_cmd = caminho + r"\tesseract.exe"
 
 def read_visto(image_path):
     # Carrega a imagem

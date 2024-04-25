@@ -336,24 +336,24 @@ class Sistema:
     def redefinir_senha(self, email, codigo_confirmacao, nova_senha, nova_senha2):
         if email and codigo_confirmacao and nova_senha and nova_senha2:
             try:
-                conn = self.estabelecer_conexao(self)
+                conn = self.estabelecer_conexao()
                 cur = conn.cursor()
                 
-                codigo_confirmado = self.confirmar_codigo(self, email, codigo_confirmacao)
+                codigo_confirmado = self.confirmar_codigo(email, codigo_confirmacao)
                 
                 if codigo_confirmado:    
                     # Verifica se o email está cadastrado
                     cur.execute("SELECT senha FROM usuarios WHERE email = %s", (email, ))
                     usuario = cur.fetchone()
                     if usuario:
-                        if nova_senha == nova_senha2 and self.validar_senha(self, nova_senha):
+                        if nova_senha == nova_senha2 and self.validar_senha(nova_senha):
                             # Senhas correspondem, parte pra alteração
-                            hashed_senha = self.encriptar_senha(self, nova_senha)
+                            hashed_senha = self.encriptar_senha(nova_senha)
                             cur.execute("UPDATE usuarios SET senha = %s WHERE email = %s", (hashed_senha, email))
                             conn.commit()
-                            return True
+                            return "Senha alterada com sucesso!"
                         else:
-                            return "As senhas não correspondem. Tente novamente!"
+                            return "Senha inválida! A senha deve conter letras minúsculas, maiúsculas, números e símbolos e ter no minimo 8 caracteres."
                                 
                     else: 
                         return "E-mail e/ou senha incorreta. Tente novamente!"
@@ -361,14 +361,18 @@ class Sistema:
                     return "Código inválido!"
                 
             except Exception as error:
+                if conn:
+                    conn.rollback()
                 return f'Ocorreu um erro ao redefinir a senha: {error}'
-                conn.rollback()
                 
             finally:
-                cur.close()
-                conn.close()
+                if cur:
+                    cur.close()
+                if conn:
+                    conn.close()
         else:
             return "Preencha todos os campos obrigatórios!"
+
 
 class Funcionario:
     def __init__(self):

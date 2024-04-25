@@ -14,7 +14,6 @@ import openpyxl
 
 sistema = Sistema()
 func = Funcoes()
-
 class Login(QWidget, Ui_Form):
     def __init__(self):
         super(Login, self).__init__()
@@ -33,9 +32,9 @@ class Login(QWidget, Ui_Form):
         self.perfil = ""
         self.nome = ""
         self.email_fornecido = ""
-        self.codigo = self.ln_codigo.text()
-        self.nova_senha = self.ln_nova_Senha.text()
-        self.conf_nova_senha = self.ln_conf_nova_senha.text()
+        self.codigo = ""
+        self.nova_senha = ""
+        self.conf_nova_senha = ""
         
         self.set_up_botoes_login()
                 
@@ -50,17 +49,26 @@ class Login(QWidget, Ui_Form):
         self.btn_redefinir_senha.clicked.connect(self.redefinir_senha)
         
     def enviar_email_confirmacao(self):
-        self.ln_email_esqueci.text()
-        print(self.email_fornecido)
+        self.email_fornecido = self.ln_email_esqueci.text()
         sistema.enviar_confirmacao(self.email_fornecido)
         
     def redefinir_senha(self):
+        self.codigo = self.ln_codigo.text()
+        self.nova_senha = self.ln_nova_Senha.text()
+        self.conf_nova_senha = self.ln_conf_nova_senha.text()
+        print(self.email_fornecido)
+        print(self.nova_senha)
+        print(self.codigo)
+        print(self.conf_nova_senha)
+        
         confirmacao_codigo = sistema.redefinir_senha(self.email_fornecido, self.codigo, self.nova_senha, self.conf_nova_senha)
-        if confirmacao_codigo:
-            MainWindow.pop_up_success("Código Verificado", "Senha alterada com sucesso!")
-            self.btn_redefinir_senha.connect(self.open_system)
+        mw = MainWindow(self.perfil, self.nome)
+        
+        if confirmacao_codigo == "Senha alterada com sucesso!":
+            mw.pop_up_success("Código Verificado", confirmacao_codigo)
+            self.btn_redefinir_senha.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_login))
         else:
-            MainWindow.pop_up_error("Código incorreto",confirmacao_codigo)
+            mw.pop_up_error("Código incorreto", confirmacao_codigo)
             self.ln_codigo.clear()
             self.btn_redefinir_senha.connect(self.page_login)
         
@@ -251,7 +259,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 regra = func.verificar_regras_embarque(self.dados_visto[5].lower(), self.dados_visto[3], self.dados_visto[4])
                 
                 # Se Visto estiver ok
-                if regra:
+                if regra != "Sem regras adicionais":
                     self.pop_up_restricoes(regra)
                 else:
                     self.dados_atualizados("Aprovado")
@@ -273,6 +281,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 for column, data in enumerate(text):
                     self.tbl_vistos.setItem(row, column, QTableWidgetItem(str(data)))
 
+        
         def listar_vistos(self):
             ordenacao = self.cb_perfil_2.currentText()
             apenas_aprovados = self.cb_aprovados.isChecked()
@@ -304,6 +313,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             # Gerar a tabela com base no resultado da consulta
             self.gerar_tabela(result)
 
+        
         def criar_novo_usuario(self):
             nome = self.nome_user_line.text()
             cpf = self.cpf_line.text()

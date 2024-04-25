@@ -26,7 +26,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="page_login">
     <widget class="QFrame" name="frame_2">
@@ -662,89 +662,73 @@ color: #D589FF;
         <string>&lt;</string>
        </property>
       </widget>
-      <widget class="QPlainTextEdit" name="plainTextEdit_3">
-       <property name="geometry">
-        <rect>
-         <x>50</x>
-         <y>20</y>
-         <width>221</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Lato</family>
-         <pointsize>14</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border: none;
-color: #480070;</string>
-       </property>
-       <property name="plainText">
-        <string>Esqueceu sua senha?</string>
-       </property>
-      </widget>
-      <widget class="QPlainTextEdit" name="plainTextEdit_4">
+      <widget class="QLabel" name="label_11">
        <property name="geometry">
         <rect>
          <x>60</x>
-         <y>60</y>
-         <width>271</width>
-         <height>71</height>
+         <y>0</y>
+         <width>251</width>
+         <height>51</height>
         </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Lato</family>
-         <pointsize>11</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border: none;
-color: #480070;</string>
-       </property>
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
-       <property name="plainText">
-        <string>Não se preocupe, vamos enviar uma mensagem para você redefinir sua senha.</string>
-       </property>
-       <property name="centerOnScroll">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <widget class="QPlainTextEdit" name="plainTextEdit_5">
-       <property name="geometry">
-        <rect>
-         <x>60</x>
-         <y>130</y>
-         <width>281</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Lato</family>
-         <pointsize>11</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
        </property>
        <property name="styleSheet">
         <string notr="true">border: none;
 color: #480070;
-background-color: transparent;</string>
+background-color: transparent;
+font-family: Lato;
+font-size: 20px;
+font-weight: bold;</string>
        </property>
-       <property name="readOnly">
+       <property name="text">
+        <string>Esqueceu sua senha?</string>
+       </property>
+       <property name="wordWrap">
         <bool>true</bool>
        </property>
-       <property name="plainText">
-        <string>E-mail</string>
+      </widget>
+      <widget class="QLabel" name="label_12">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>50</y>
+         <width>271</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: none;
+color: #480070;
+background-color: transparent;
+font-family: Lato;
+font-size: 16px;
+</string>
+       </property>
+       <property name="text">
+        <string>Não se preocupe, vamos enviar uma mensagem para você redefinir sua senha.</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_13">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>130</y>
+         <width>91</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: none;
+color: #480070;
+background-color: transparent;
+font-family: Lato;
+font-size: 16px;
+font-weight: bold;</string>
+       </property>
+       <property name="text">
+        <string>Email</string>
        </property>
       </widget>
      </widget>
@@ -922,32 +906,6 @@ color: #D589FF;
        </property>
        <property name="text">
         <string>&lt;</string>
-       </property>
-      </widget>
-      <widget class="QPlainTextEdit" name="plainTextEdit_6">
-       <property name="geometry">
-        <rect>
-         <x>40</x>
-         <y>20</y>
-         <width>311</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Lato</family>
-         <pointsize>14</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border: none;
-color: #480070;
-background-color: transparent;</string>
-       </property>
-       <property name="plainText">
-        <string>Queremos saber se é você mesmo</string>
        </property>
       </widget>
       <widget class="QLineEdit" name="ln_nova_Senha">
@@ -1217,6 +1175,30 @@ font-size: 16px;
         <bool>true</bool>
        </property>
       </widget>
+      <widget class="QLabel" name="label_5">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>10</y>
+         <width>251</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: none;
+color: #480070;
+background-color: transparent;
+font-family: Lato;
+font-size: 20px;
+font-weight: bold;</string>
+       </property>
+       <property name="text">
+        <string>Queremos saber se é você mesmo</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
      </widget>
     </widget>
    </widget>
@@ -1225,6 +1207,7 @@ font-size: 16px;
  <resources>
   <include location="logo_.qrc"/>
   <include location="../logo_.qrc"/>
+  <include location="../../../../../../../.designer/backup/logo_.qrc"/>
  </resources>
  <connections/>
 </ui>
