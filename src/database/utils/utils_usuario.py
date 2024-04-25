@@ -21,10 +21,12 @@ class Sistema:
         conn.autocommit = False  # Desativa o modo de autocommit para fazer commits manuais
         return conn
     
+    
     def encriptar_senha(self, senha):
         salt = bcrypt.gensalt()
         hash_senha = bcrypt.hashpw(senha.encode('utf-8'), salt) # Gera o hash da senha usando o salt
         return salt.decode('utf-8') + hash_senha.decode('utf-8') # Concatena o salt e o hash e retorna str
+    
     
     def validar_cpf(self, cpf: str):
         if len(cpf) == 11 and cpf.isdigit():
@@ -50,7 +52,8 @@ class Sistema:
         else:
             print("CPF inválido! Tente novamente.")
             return False
-        
+    
+    
     def validar_email(self, email: str):
         regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b'
         if re.fullmatch(regex, email):
@@ -59,7 +62,8 @@ class Sistema:
         else:
             print("O e-mail não é válido!")
             return False
-            
+    
+    
     def validar_senha(self, senha: str):
         requisitos = {
             "min_numero": 1,
@@ -80,6 +84,7 @@ class Sistema:
         else:
             print("Senha válida")
             return True
+    
     
     def criar_usuario(self, nome: str, cpf: str, email: str, senha: str, matricula: str, tipo_usuario: str):
         if nome and cpf and email and senha and matricula and tipo_usuario:
@@ -109,7 +114,8 @@ class Sistema:
                 conn.close()
         else:
             print("Preencha todos os campos obrigatórios!")
-        
+    
+    
     def excluir_usuario(self, matricula: str):
         if matricula:
             try:
@@ -166,6 +172,7 @@ class Sistema:
             print("Preencha todos os campos obrigatórios.")
             return False
     
+    
     def verificar_tipo_e_nome_perfil(self, email):
         if email:
             try:
@@ -192,8 +199,8 @@ class Sistema:
                 
         else:
             return "Preencha todos os campos obrigatórios.", None
-        
-            
+    
+    
     def alterar_senha(self, email: str, senha_armazenada: str, nova_senha: str, nova_senha2: str):
         if email and senha_armazenada and nova_senha and nova_senha2:
             try:
@@ -234,11 +241,13 @@ class Sistema:
                 conn.close()
         else:
             return "Preencha todos os campos obrigatórios!"
-            
+    
+    
     def criar_codigo_confirmacao(self):
         caracteres = string.ascii_uppercase + string.digits
         codigo = ''.join(random.choice(caracteres) for _ in range(4))
         return codigo
+    
     
     def enviar_confirmacao(self, email: str):
         conn = self.estabelecer_conexao(self)
@@ -296,7 +305,8 @@ class Sistema:
         finally:
                 cur.close()
                 conn.close()
-            
+    
+    
     def confirmar_codigo(self, email: str, codigo_recebido: str):
         try:
             conn = self.estabelecer_conexao(self)
@@ -306,22 +316,23 @@ class Sistema:
             codigo_armazenado = cur.fetchone()[0]
             
             if codigo_recebido == codigo_armazenado:
-                print("Código verificado com sucesso!")
+                msg = "Código verificado com sucesso!"
                 cur.execute("DELETE FROM codigos_verificacao WHERE codigo = %s", (codigo_recebido, ))
                 conn.commit()
-                return True
+                return True, msg
             else:
-                print("O código não coincide!")
-                return False
+                msg = "O código não coincide!"
+                return False, msg
                 
         except Exception as e:
-            print(f"Erro ao confirmar código: {e}")
+            return False, f"Erro ao confirmar código: {e}"
             conn.rollback()
             
         finally:
                 cur.close()
                 conn.close()
-                
+    
+    
     def redefinir_senha(self, email, codigo_confirmacao, nova_senha, nova_senha2):
         if email and codigo_confirmacao and nova_senha and nova_senha2:
             try:

@@ -24,12 +24,20 @@ class Login(QWidget, Ui_Form):
         self.resize(900, 660)
         appIcon = QIcon(u"pages/icons/logo_branca.png")
         self.setWindowIcon(appIcon)
-
+        
         self.btn_entrar.clicked.connect(self.open_system)
         self.stackedWidget.setCurrentWidget(self.page_login)
         
-        self.set_up_botoes_login()
+        # self.email = ""
+        # self.senha= ""
+        # self.perfil = ""
+        # self.nome = ""
+        # self.email_fornecido = self.ln_email_esqueci.text()
+        # self.codigo = self.ln_codigo.text()
+        # self.nova_senha = self.ln_nova_Senha.text()
+        # self.conf_nova_senha = self.ln_conf_nova_senha.text()
         
+        self.set_up_botoes_login()
         
     def set_up_botoes_login(self):
         self.btn_esquecer_senha.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pg_email_esqueci))
@@ -37,24 +45,33 @@ class Login(QWidget, Ui_Form):
         self.btn_voltar1.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_login))
         self.btn_voltar1_2.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_login))
         self.btn_voltar1_3.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_login))
-        # if codigo_certo:
+        
+        # #Botões de importação
+        # self.btn_send_email_esqueci.clicked.connect(sistema.enviar_confirmacao(self.email_fornecido))
+        # self.btn_send_email_esqueci.clicked.connect(sistema.enviar_confirmacao(self.email_fornecido))
+        # self.btn_send_email_esqueci.clicked.connect(sistema.enviar_confirmacao(self.email_fornecido))
+        
+        # self.codigo_confirmado, self.msg = sistema.confirmar_codigo(self.email_fornecido, self.codigo)
+        
+        # if self.codigo_confirmado:
+        #     MainWindow.pop_up_success("Código Verificado", self.msg)
         #     self.btn_send_email_esqueci_2.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pg_mudar_senha))
         # else:
-        #     msg = QMessageBox()
-        #     msg.setIcon(QMessageBox.Warning)
-        #     msg.setWindowTitle('Acesso inválido!')
-        #     msg.setText(f'Código Incorreto')
-        #     msg.exec()
+        #     MainWindow.pop_up_error("Código incorreto",self.msg)
+        #     self.ln_codigo.clear()
         
+        
+        
+        # self.btn_redefinir_senha.connect(self.page_login)
         
     def open_system(self):
-        email = self.email_line.text()  # Obtém o texto digitado no campo de email
-        senha = self.senha_line.text()
-        usuario_verificado = sistema.fazer_login(email, senha)
-        perfil, nome = sistema.verificar_tipo_e_nome_perfil(email)
+        self.email = self.email_line.text()  # Obtém o texto digitado no campo de email
+        self.senha = self.senha_line.text()
+        usuario_verificado = sistema.fazer_login(self.email, self.senha)
+        self.perfil, self.nome = sistema.verificar_tipo_e_nome_perfil(self.email)
         
         if usuario_verificado:
-            self.w = MainWindow(perfil, nome)
+            self.w = MainWindow(self.perfil, self.nome)
             self.w.show()
             self.close()
             return usuario_verificado
@@ -68,6 +85,7 @@ class Login(QWidget, Ui_Form):
                 self.tentativas += 1
             if self.tentativas == 3:
                 sys.exit(0)
+
     
 class MainWindow(QMainWindow, Ui_MainWindow):
         def __init__(self, perfil, nome):
@@ -262,7 +280,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             apenas_aprovados = self.cb_aprovados.isChecked()
             apenas_negados = self.checkBox_2.isChecked()
             
-            if ordenacao == "Ordenar por:" and not apenas_aprovados and not apenas_negados:
+            if ordenacao == "Ordenar por:" and (not apenas_aprovados and not apenas_negados) or (apenas_aprovados and not apenas_negados):
                 self.gerar_tabela(func.listar_vistos_sys)
 
             elif ordenacao == "                     A-Z" and not apenas_aprovados and not apenas_negados:
@@ -270,8 +288,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 
             elif ordenacao == "                     Z-A" and not apenas_aprovados and not apenas_negados:
                 self.gerar_tabela(func.listar_vistos_desc)
-        
-        
         
         
         def criar_novo_usuario(self):
@@ -284,6 +300,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             
             sistema.criar_usuario(nome, cpf, email, senha, matricula, tipo_usuario)
             self.pop_up_success('Usuário inserido', 'Usuário inserido com sucesso!')
+        
         
         def alterar_senha(self):
             email = self.emial_line.text()
@@ -301,6 +318,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.pop_up_success('Senha alterada', 'Senha alterada com sucesso!')
             else:
                 self.pop_up_error('Erro ao alterar senha', verificacao)
+        
         
         def exportar_excel(self):
             try:
