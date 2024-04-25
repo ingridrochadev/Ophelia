@@ -27,6 +27,7 @@ class Funcoes:
            
         except Exception as e:
             print(f'\nOcorreu um erro ao conectar ao banco de dados: {e}')
+    
     # Método para inserir dados do OCR na tabela de vistos
     def inserir_dados_ocr_passageiros(self, passaporte, nome, nacionalidade, data_nascimento):
         try:
@@ -37,7 +38,7 @@ class Funcoes:
         except Exception as e:
             print(f"Erro ao inserir dados do OCR na tabela de vistos: {e}")
             self.conn.rollback()
-
+    
     # Método para inserir dados do OCR na tabela de vistos
     def inserir_dados_ocr_vistos(self, numero_visto, passaporte, tipo_visto, pais_emitente, data_validade, status):
         try:
@@ -48,6 +49,7 @@ class Funcoes:
         except Exception as e:
             print(f"Erro ao inserir dados do OCR na tabela de vistos: {e}")
             self.conn.rollback()
+
 
     def inserir_dados(self, info_array, status):
         try:                       
@@ -67,7 +69,8 @@ class Funcoes:
 
         except Exception as e:
             print(f'Ocorreu um erro: {e}')
-        
+    
+    
     def inserir_status(self, status: str, passaporte):
         try:
             self.cur.execute("UPDATE vistos SET status = %s WHERE passaporte = %s", (status, passaporte))
@@ -77,7 +80,8 @@ class Funcoes:
             print(f"Erro ao inserir status na tabela de vistos: {e}")
             self.conn.rollback()
 
-    def listar_vistos(self):
+
+    def listar_vistos_all(self):
         try:
             sql = '''SELECT passageiros.passaporte, 
                             passageiros.nome,
@@ -96,7 +100,8 @@ class Funcoes:
         
         except Exception as e:
             print(f'Ocorreu um erro: {e}')
-            
+    
+    
     def listar_vistos_sys(self):
         try:
             sql = '''SELECT passageiros.nome,
@@ -112,6 +117,7 @@ class Funcoes:
 
         except Exception as e:
             print(f'Ocorreu um erro: {e}')
+
 
     def listar_vistos_asc(self):
         try:
@@ -133,6 +139,7 @@ class Funcoes:
         except Exception as e:
             print(f'Ocorreu um erro: {e}')
 
+
     def listar_vistos_desc(self):
         try:
             sql = '''SELECT passageiros.passaporte, 
@@ -152,6 +159,7 @@ class Funcoes:
 
         except Exception as e:
             print(f'Ocorreu um erro: {e}')
+
 
     def verificar_regras_embarque(self, tipo_visto, dob, expiracao):
         current_date = dt.datetime.now().date()  # Obtém apenas a data de hoje
