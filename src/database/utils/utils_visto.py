@@ -79,7 +79,9 @@ class Funcoes:
             self.conn.rollback()
 
     def editar_dados(self, passaporte, dados):
-        nome, nacionalidade, data_nascimento, numero_visto, tipo_visto, local_emissor, data_validade, status = dados
+        nome, nascimento, nacionalidade, tipo_visto, numero_visto, validade, local_emissor, status = dados  # Obtém apenas a data de hoje
+        data_nascimento = dt.datetime.strptime(nascimento, "%d-%m-%Y").date()
+        data_validade = dt.datetime.strptime(validade, "%d-%m-%Y").date()
         try:
             if nome:
                 self.cur.execute("UPDATE public.passageiros SET nome = %s WHERE passaporte = %s", (nome, passaporte))
@@ -315,13 +317,13 @@ class Funcoes:
                     return mensagem
             
     def buscar_por_passaporte(self, passaporte):    
-        self.cur.execute("SELECT * FROM public.passageiros WHERE passaporte = %s", (passaporte,))
+        self.cur.execute("SELECT nome, data_nascimento, nacionalidade FROM public.passageiros WHERE passaporte = %s", (passaporte,))
         dados_passageiro = self.cur.fetchone()  # Retorna a primeira linha encontrada ou None
     
         if dados_passageiro is None:
             return "Passaporte não encontrado no banco de dados"  
     
-        self.cur.execute("SELECT * FROM public.vistos WHERE passaporte = %s", (passaporte,))
+        self.cur.execute("SELECT tipo_visto, numero_visto, data_validade, local_emissor, status FROM public.vistos WHERE passaporte = %s", (passaporte,))
         dados_vistos = self.cur.fetchall()  
     
         resultado = list(dados_passageiro)

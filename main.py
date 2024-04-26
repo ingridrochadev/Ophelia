@@ -407,7 +407,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             except Exception as e:
                 print(f'Ocorreu um erro: {e}')
                 result = func.listar_vistos_sys()
-                
+        
         
         def exportar_excel_usuarios(self):
             try:
@@ -422,24 +422,27 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             except Exception as e:
                 print(f'Ocorreu um erro: {e}')
                 result = sistema.listar_usuarios_default()
-            
-            
+        
+        
         def buscar_pax(self):
             self.passaporte = self.search_ln.text()
             if self.passaporte:
                 self.dados_pax = list(func.buscar_por_passaporte(self.passaporte))
+                dob_formatada = self.dados_pax[1].strftime("%d-%m-%Y")
+                validade_formatada = self.dados_pax[5].strftime("%d-%m-%Y")
                 
                 self.nome_line_2.setText(self.dados_pax[0])
-                self.date_nasc_line_2.setText(self.dados_pax[1])
+                self.date_nasc_line_2.setText(dob_formatada)
                 self.nacionalidade_line_2.setText(self.dados_pax[2])
                 self.tipo_visto_line_3.setText(self.dados_pax[3])
                 self.num_visto_line_2.setText(self.dados_pax[4])
-                self.validade_line_2.setText(self.dados_pax[5])
+                self.validade_line_2.setText(validade_formatada)
                 self.city_line_2.setText(self.dados_pax[6])
-            
+
             else:
                 self.pop_up_error("Campo inválido", "Digite um número de passaporte válido.")
-                                
+                
+        
         def editar_pax(self):
             #Tranforma o conteúdo das linhas editáveis em um array de retorno:
             self.dados_pax[0] = self.nome_line_2.text()
@@ -452,7 +455,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.dados_pax[7] = self.cb_perfil_3.currentText()
 
             self.alterar_user_btn.clicked.connect(lambda: func.editar_dados(self.passaporte, self.dados_pax))
+            print(self.dados_pax)
             retorno = func.editar_dados(self.passaporte, self.dados_pax)
+            
             if retorno == 'Dados alterados com sucesso!':
                 self.pop_up_success("Dados alterados", "Passageiro alterado com sucesso.")
             else:
@@ -478,6 +483,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             
             else:
                 self.pop_up_error("Campo inválido", "Digite um número de matrícula válido.")
+        
         
         def editar_user(self):
             #Tranforma o conteúdo das linhas editáveis em um array de retorno:
