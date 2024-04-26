@@ -9,6 +9,7 @@ class Criar_bd:
         self.estabelecer_conexao()             
         self.cur = self.conn.cursor()
 
+
     def estabelecer_conexao(self):
         try:
             self.conn = psycopg2.connect(
@@ -156,6 +157,7 @@ class Criar_bd:
     ''')
         print('Dados de passageiros inseridos')
     
+    
     def inserir_dados_vistos(self):
         self.cur.execute('''INSERT INTO public.vistos (numero_visto, passaporte, tipo_visto, local_emissor, data_validade, status)
     VALUES 
@@ -236,12 +238,17 @@ VALUES
 ''')
 
 
-
     def inserir_usuarios(self):
         sistema = Sistema()
         sistema.criar_usuario("Administrador", "46590518033", "admin@ophelia.com", "admin1@A", "ADM001", "Supervisor")
         sistema.criar_usuario("Usuário Normal", "82896051023", "user@ophelia.com", "user2@A", "USR001", "Agente de Aeroporto")
-        print('Dados de usuarios inseridos')
+        sistema.criar_usuario("João Silva", "76454264033", "joao.silva@ophelia.com", "Senha123@", "USR002", "Agente de Aeroporto")
+        sistema.criar_usuario("Ana Santos", "19975090087", "ana.santos@ophelia.com", "Senha456@", "USR003", "Supervisor")
+        sistema.criar_usuario("Pedro Oliveira", "49368067066", "pedro.oliveira@ophelia.com", "Senha789@", "USR004", "Agente de Aeroporto")
+        sistema.criar_usuario("Maria Pereira", "78512404094", "maria.pereira@ophelia.com", "Senha147@", "USR005", "Agente de Aeroporto")
+        sistema.criar_usuario("Carlos Ferreira", "62183463074", "carlos.ferreira@ophelia.com", "Senha258@", "USR006", "Agente de Aeroporto")
+        sistema.criar_usuario("Eduardo Souza", "65004417024", "eduardo.souza@ophelia.com", "Senha369@", "USR007", "Agente de Aeroporto")
+
 
     def criar_tabelas(self):
         self.criar_tabela_passageiros()
@@ -253,22 +260,23 @@ VALUES
         self.criar_tabela_codigos_verificacao()
         self.conn.commit()
 
+
     def inserir_dados(self):
         self.inserir_dados_passageiros()
         self.inserir_dados_vistos()
-        self.inserir_tipos_vistos()
-        self.inserir_voos()
-        self.inserir_usuarios()
-        self.conn.commit()
+        # self.inserir_tipos_vistos()
+        # self.inserir_voos()
+        # self.inserir_usuarios()
+        # self.conn.commit()
 
 # Restante do código...
 
 if __name__ == '__main__':
     bd = Criar_bd()
 
-    bd.apagar_tabelas()
-    bd.criar_tabelas()
+    # bd.apagar_tabelas()
+    # bd.criar_tabelas()
     bd.inserir_dados()
-        
+    
     bd.cur.close()
     bd.conn.close()

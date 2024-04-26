@@ -95,22 +95,38 @@ class Sistema:
                 count = cur.fetchone()[0]
                 verificacao = count > 0
                 
-                if not verificacao and self.validar_cpf(cpf) and self.validar_email(email) and self.validar_senha(senha):
-                    cur.execute("INSERT INTO usuarios (nome, cpf, email, senha, matricula, tipo_usuario) VALUES (%s, %s, %s, %s, %s, %s)", 
-                                (nome, cpf, email, hashed_senha, matricula, tipo_usuario))
-                    conn.commit()
+                # Verifica se o CPF já existe
+                if not verificacao:
+                    # Verifica se o CPF é válido
+                    if self.validar_cpf(cpf):
+                        # Verifica se o e-mail é válido
+                        if self.validar_email(email):
+                            # Verifica se a senha é válida
+                            if self.validar_senha(senha):
+                                # Insere o usuário no banco de dados
+                                cur.execute("INSERT INTO usuarios (nome, cpf, email, senha, matricula, tipo_usuario) VALUES (%s, %s, %s, %s, %s, %s)", 
+                                            (nome, cpf, email, hashed_senha, matricula, tipo_usuario))
+                                conn.commit()
+                                return "Usuário inserido com sucesso!"
+                            else:
+                                return "A senha informada não é válida! Tente novamente."
+                        else:
+                            return "O e-mail informado não é válido! Tente novamente."
+                    else:
+                        return "O CPF informado não é válido! Tente novamente."
                 else:
-                    print("Os dados informados não são válidos ou o usuário já existe! Tente novamente.")
+                    return "Usuário já existe!"
+
 
             except Exception as error:
-                print(f"Houve um erro ao inserir usuário. Motivo: {error}")
                 conn.rollback()
+                return f"Houve um erro ao inserir usuário. Motivo: {error}"
                 
             finally:
                 cur.close()
                 conn.close()
         else:
-            print("Preencha todos os campos obrigatórios!")
+            return "Preencha todos os campos obrigatórios!"
     
     
     def excluir_usuario(self, matricula: str):
@@ -121,16 +137,19 @@ class Sistema:
                 
                 cur.execute("DELETE FROM usuarios WHERE matricula = %s", [matricula])
                 conn.commit()
+                
+                # Indicando sucesso
+                return "Usuário excluído do sistema."
 
             except Exception as error:
-                print(f"Houve um erro ao excluir usuário. Motivo: {error}")
                 conn.rollback()
+                return f"Houve um erro ao excluir usuário. Motivo: {error}"
                 
             finally:
                 cur.close()
                 conn.close()
         else:
-            print("Preencha todos os campos obrigatórios!")
+            return "Preencha todos os campos obrigatórios!"
     
     
     def fazer_login(self, email: str, senha: str):

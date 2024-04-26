@@ -279,9 +279,13 @@ class Funcoes:
         for resultado in resultados:
             print(resultado)
 
-    def verificar_regras_embarque(self, tipo_visto, dob, expiracao, numero_visto):
+    def verificar_regras_embarque(self, tipo_visto, dob, expiracao_str, numero_visto):
+        dob_date = dt.datetime.strptime(dob, "%d-%m-%Y").date()
+        expiracao_date = dt.datetime.strptime(expiracao_str, "%d-%m-%Y").date()
+        
         current_date = dt.datetime.now().date()  # Obtém apenas a data de hoje
-        dob_date = dt.datetime.combine(dob, dt.datetime.min.time())  # Converte dob para datetime
+        
+        # Converta dob para datetime
         age = current_date.year - dob_date.year - ((current_date.month, current_date.day) < (dob_date.month, dob_date.day))
         tipo_encontrado = None  # Defina tipo_encontrado como None inicialmente
         
@@ -302,7 +306,7 @@ class Funcoes:
                 return mensagem
             
             else:
-                if expiracao < current_date: # Verifica se a data de expiração do visto está na validade
+                if expiracao_date < current_date: # Verifica se a data de expiração do visto está na validade
                     mensagem = "O visto está vencido!"
                     return mensagem 
                 
@@ -315,6 +319,7 @@ class Funcoes:
                 else: 
                     mensagem = "Sem regras adicionais"
                     return mensagem
+
             
     def buscar_por_passaporte(self, passaporte):    
         self.cur.execute("SELECT nome, data_nascimento, nacionalidade FROM public.passageiros WHERE passaporte = %s", (passaporte,))
@@ -332,6 +337,22 @@ class Funcoes:
     
         return resultado 
 
+
+    def excluir_por_passaporte(self, num_passaporte):
+        try:
+            #excluir primeiro da tabela de visto pra não ter problema com as FK
+            self.cur.execute("DELETE FROM public.vistos WHERE passaporte = %s", (num_passaporte,))
+        
+            #depois excluir de passageiros
+            self.cur.execute("DELETE FROM public.passageiros WHERE passaporte = %s", (num_passaporte,))
+        
+            self.conn.commit()
+        
+            return "Dados do passaporte excluídos com sucesso."
+    
+        except Exception as e:
+            self.conn.rollback()
+            return "Erro ao excluir dados do passaporte"
 
 
 
