@@ -21,7 +21,7 @@ class Login(QWidget, Ui_Form):
         self.setupUi(self)
         self.setWindowTitle('Ophelia')
         self.resize(900, 660)
-        appIcon = QIcon(u"pages/icons/logo_roxa.png")
+        appIcon = QIcon(u"pages/icons/logo_branca.png")
         self.setWindowIcon(appIcon)
         
         self.btn_entrar.clicked.connect(self.open_system)
@@ -61,10 +61,11 @@ class Login(QWidget, Ui_Form):
         
         confirmacao_codigo = sistema.redefinir_senha(self.email_fornecido, self.codigo, self.nova_senha, self.conf_nova_senha)
         mw = MainWindow(self.perfil, self.nome)
-        
+
         if confirmacao_codigo == "Senha alterada com sucesso!":
-            self.btn_redefinir_senha.connect(self.page_login)
             mw.pop_up_success("Código Verificado", confirmacao_codigo)
+            self.stackedWidget.setCurrentWidget(self.page_login)
+            self.ln_codigo.clear()
         else:
             mw.pop_up_error("Código incorreto", confirmacao_codigo)
             self.ln_codigo.clear()
@@ -101,7 +102,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.setupUi(self)
             self.setWindowTitle("Ophelia")
             self.resize(1222, 794)
-            appIcon = QIcon(u"pages/icons/logo_roxa.png")
+            appIcon = QIcon(u"pages/icons/logo_branca.png")
             self.setWindowIcon(appIcon)
             self.txt_bemvindo.setText(QCoreApplication.translate("MainWindow", f"Bem-vindo(a), {nome}!", None))
             # Define a página inicial como 'pg_home'
@@ -110,6 +111,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.dados_visto = None
             self.status_visto = None
             self.set_up_botoes(perfil)
+        
         
         def set_up_botoes(self, perfil):
             #Páginas do sistema
@@ -133,12 +135,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.btn_exportar.clicked.connect(self.exportar_excel)
             self.btn_listar_vistos_2.clicked.connect(self.listar_usuarios)
             self.btn_exportar_2.clicked.connect(self.exportar_excel_usuarios)
+            # self.search_btn.clicked.connect(self.buscar_pax)
+            # self.search_btn_2.clicked.connect(self.buscar_user)
             
             if perfil == "user":
                 self.btn_inserir_user.setVisible(False)
                 self.btn_listar_usuarios.setVisible(False)
                 self.btn_alterar_usuario.setVisible(False)
                 self.excluir_pax_btn.setVisible(False)
+        
         
         def pop_up_success(self,titulo,texto):
             msg = QMessageBox()
@@ -289,6 +294,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 for column, data in enumerate(text):
                     self.tbl_vistos_2.setItem(row, column, QTableWidgetItem(str(data)))
                     
+                    
         def gerar_tabela_users(self, result):
             self.tbl_vistos_2.clearContents()
             self.tbl_vistos_2.setRowCount(len(result))
@@ -419,6 +425,43 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 print(f'Ocorreu um erro: {e}')
                 result = sistema.listar_usuarios_default()
             
+            
+        # def buscar_pax(self):
+        #     self.passaporte = self.search_ln.text()
+        #     self.dados_pax = "array da funcao"
+        #     # Preenche os QLineEdit com os dados obtidos do OCR
+        #     self.nome_line_2.setText(self.dados_pax[0])
+        #     self.date_nasc_line_2.setText(self.dados_pax[1])
+        #     self.nacionalidade_line_2.setText(self.dados_pax[2])
+        #     self.tipo_visto_line_3.setText(self.dados_pax[3])
+        #     self.num_visto_line_2.setText(self.dados_pax[4])
+        #     self.validade_line_2.setText(self.dados_pax[5])
+        #     self.city_line_2.setText(self.dados_pax[6])
+        #     self.status_embarque_line.setText(self.dados_pax[7])
+            
+        # def editar_pax(self):
+        #     #Tranforma o conteúdo das linhas editáveis em um array de retorno:
+        #     self.dados_pax[1] = self.nome_line_2.text()
+        #     self.dados_pax[1] = self.date_nasc_line_2.text()
+        #     self.dados_pax[1] = self.nacionalidade_line_2.text()
+        #     self.dados_pax[1] = self.tipo_visto_line_3.text()
+        #     self.dados_pax[1] = self.num_visto_line_2.text()
+        #     self.dados_pax[1] = self.validade_line_2.text()                
+        #     self.dados_pax[1] = self.city_line_2.text()
+        #     self.dados_pax[1] = self.status_embarque_line.text()
+
+        #     self.alterar_user_btn.clicked.connect(func.editar_dados( self.passaporte, self.nome_line_2.text(), nacionalidade = None, data_nascimento = None, numero_visto = None, tipo_visto = None, local_emissor = None, data_validade = None, status = None))
+        
+        # def buscar_user(self):
+        #     self.dados_user = "array da funcao"
+        #     # Preenche os QLineEdit com os dados obtidos do OCR
+        #     self.nome_user_line_2.setText(self.dados_user[0])
+        #     self.cpf_line_2.setText(self.dados_user[1])
+        #     self.email_user_line_2.setText(self.dados_user[2])
+        #     self.senha_add_user_ln_2.setText(self.dados_user[3])
+        #     pass
+        
+        
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

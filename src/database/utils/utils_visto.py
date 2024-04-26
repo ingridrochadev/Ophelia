@@ -78,7 +78,8 @@ class Funcoes:
             print(f"Erro ao inserir status na tabela de vistos: {e}")
             self.conn.rollback()
 
-    def editar_dados(self, passaporte, nome = None, nacionalidade = None, data_nascimento = None, numero_visto = None, tipo_visto = None, local_emissor = None, data_validade = None, status = None):
+    def editar_dados(self, passaporte, status):
+        nome, nacionalidade, data_nascimento, numero_visto, tipo_visto, local_emissor, data_validade, status = dados
         try:
             if nome:
                 self.cur.execute("UPDATE public.passageiros SET nome = %s WHERE passaporte = %s", (nome, passaporte))
@@ -102,10 +103,7 @@ class Funcoes:
         
         except Exception as e:
             return f"Erro ao editar dados: {e}"
-
-
     
-
     def listar_vistos_sys(self):
         try:
             sql = '''SELECT passageiros.nome,
@@ -278,7 +276,6 @@ class Funcoes:
     def imprimir_resultados(self, resultados):
         for resultado in resultados:
             print(resultado)
-
 
     def verificar_regras_embarque(self, tipo_visto, dob, expiracao, numero_visto):
         current_date = dt.datetime.now().date()  # Obtém apenas a data de hoje
