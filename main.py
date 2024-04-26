@@ -27,16 +27,8 @@ class Login(QWidget, Ui_Form):
         self.btn_entrar.clicked.connect(self.open_system)
         self.stackedWidget.setCurrentWidget(self.page_login)
         
-        self.email = ""
-        self.senha= ""
-        self.perfil = ""
-        self.nome = ""
-        self.email_fornecido = ""
-        self.codigo = ""
-        self.nova_senha = ""
-        self.conf_nova_senha = ""
-        
         self.set_up_botoes_login()
+        self.set_initial_fields()
                 
     def set_up_botoes_login(self):
         self.btn_esquecer_senha.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.pg_email_esqueci))
@@ -48,6 +40,16 @@ class Login(QWidget, Ui_Form):
         self.btn_send_email_esqueci.clicked.connect(self.enviar_email_confirmacao)
         self.btn_redefinir_senha.clicked.connect(self.redefinir_senha)
         
+    def set_initial_fields(self):
+        self.email = ""
+        self.senha= ""
+        self.perfil = ""
+        self.nome = ""
+        self.email_fornecido = ""
+        self.codigo = ""
+        self.nova_senha = ""
+        self.conf_nova_senha = ""
+        
     def enviar_email_confirmacao(self):
         self.email_fornecido = self.ln_email_esqueci.text()
         sistema.enviar_confirmacao(self.email_fornecido)
@@ -56,10 +58,6 @@ class Login(QWidget, Ui_Form):
         self.codigo = self.ln_codigo.text()
         self.nova_senha = self.ln_nova_Senha.text()
         self.conf_nova_senha = self.ln_conf_nova_senha.text()
-        print(self.email_fornecido)
-        print(self.nova_senha)
-        print(self.codigo)
-        print(self.conf_nova_senha)
         
         confirmacao_codigo = sistema.redefinir_senha(self.email_fornecido, self.codigo, self.nova_senha, self.conf_nova_senha)
         mw = MainWindow(self.perfil, self.nome)
@@ -77,6 +75,7 @@ class Login(QWidget, Ui_Form):
         self.senha = self.senha_line.text()
         usuario_verificado = sistema.fazer_login(self.email, self.senha)
         self.perfil, self.nome = sistema.verificar_tipo_e_nome_perfil(self.email)
+        mw = MainWindow(self.perfil, self.nome)
         
         if usuario_verificado:
             self.w = MainWindow(self.perfil, self.nome)
@@ -85,6 +84,7 @@ class Login(QWidget, Ui_Form):
             return usuario_verificado
         else:
             if self.tentativas < 3:
+                mw.pop_up_warning("Acesso inválido!" f'Verifique se o email e/ou senha estão corretos. \n \n Tentativa: {self.tentativas +1} de 3.')
                 msg = QMessageBox()
                 msg.setIcon(QMessageBox.Warning)
                 msg.setWindowTitle('Acesso inválido!')
@@ -109,16 +109,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             # Armazenar os dados do visto
             self.dados_visto = None
             self.status_visto = None
-            self.set_up_botoes()
-
-
-            if perfil == "user":
-                self.btn_inserir_user.setVisible(False)
-                self.btn_listar_usuarios.setVisible(False)
-                self.btn_alterar_usuario.setVisible(False)
-                self.excluir_pax_btn.setVisible(False)
+            self.set_up_botoes(perfil)
         
-        def set_up_botoes(self):
+        def set_up_botoes(self, perfil):
             #Páginas do sistema
             self.btn_home.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_home))
             self.btn_add.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_adicionar))
@@ -138,7 +131,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.btn_alterar_senha.clicked.connect(self.alterar_senha)
             self.btn_listar_vistos.clicked.connect(self.listar_vistos)
             self.btn_exportar.clicked.connect(self.exportar_excel)
-        
+            self.btn_listar_vistos_2.clicked.connect(self.listar_usuarios)
+            self.btn_exportar_2.clicked.connect(self.exportar_excel_usuarios)
+            
+            if perfil == "user":
+                self.btn_inserir_user.setVisible(False)
+                self.btn_listar_usuarios.setVisible(False)
+                self.btn_alterar_usuario.setVisible(False)
+                self.excluir_pax_btn.setVisible(False)
         
         def pop_up_success(self,titulo,texto):
             msg = QMessageBox()
@@ -151,6 +151,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         def pop_up_error(self,titulo,texto):
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Critical)
+            msg.setWindowTitle(titulo)
+            msg.setText(texto)
+            msg.exec()
+        
+        
+        def pop_up_warning(self,titulo,texto):
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Warning)
             msg.setWindowTitle(titulo)
             msg.setText(texto)
             msg.exec()
@@ -179,7 +187,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             resp = msg.exec()
             
             if resp == QMessageBox.Ok:
-                self.dados_atualizados("Aprovado")
+                self.atualizar_dados("Aprovado")
                 try:
                     func.inserir_dados(self.dados_visto, self.status_visto)
                     self.limpar_tela_visto()
@@ -189,7 +197,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     self.pop_up_success('Erro ao inserir visto', f'Erro ao inserir dados na tabela de vistos: {str(e)}')
             
             elif resp == QMessageBox.Discard:
-                self.dados_atualizados("Negado")
+                self.atualizar_dados("Negado")
 
                 try:
                     func.inserir_dados(self.dados_visto, self.status_visto)
@@ -241,7 +249,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.img_space.setPixmap(pixmap.scaled(self.img_space.size(), Qt.KeepAspectRatio))
         
         
-        def dados_atualizados(self, status):
+        def atualizar_dados(self, status):
         #Atualizar dados lidos com as edições feitas
             self.dados_visto[0] = self.nome_line.text()
             self.dados_visto[1] = self.passport_line.text()
@@ -256,18 +264,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
         def inserir_dados_bd(self):
             if self.dados_visto:
-                regra = func.verificar_regras_embarque(self.dados_visto[5].lower(), self.dados_visto[3], self.dados_visto[4])
+                regra = func.verificar_regras_embarque(self.dados_visto[5].lower(), self.dados_visto[3], self.dados_visto[4], self.dados_visto[7])
                 
-                # Se Visto estiver ok
-                if regra != "Sem regras adicionais":
+                if regra == "O visto informado já existe no banco de dados": # Se já existe -> não será inserido
+                    self.pop_up_warning("Visto já adicionado", "O visto informado já existe no banco de dados")
+                elif regra != "Sem regras adicionais": # Se há algum tipo de restrição -> Vai ser inserido, mas com o status Negado
                     self.pop_up_restricoes(regra)
                 else:
-                    self.dados_atualizados("Aprovado")
+                    self.atualizar_dados("Aprovado")
                     try:
                         func.inserir_dados(self.dados_visto, self.status_visto)
-                        print(self.status_visto)
                         self.limpar_tela_visto()
-                        self.pop_up_success('Visto inserido', 'Visto salvo com sucesso!')
+                        self.pop_up_success('Visto inserido', 'Visto não possui restrições. Salvo com sucesso!')
                         
                     except Exception as e:
                             self.pop_up_success('Erro ao inserir visto', f'Erro ao inserir dados na tabela de vistos: {str(e)}')
@@ -276,6 +284,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         def gerar_tabela(self, result):
             self.tbl_vistos.clearContents()
             self.tbl_vistos.setRowCount(len(result))
+
+            for row, text in enumerate(result):
+                for column, data in enumerate(text):
+                    self.tbl_vistos_2.setItem(row, column, QTableWidgetItem(str(data)))
+                    
+        def gerar_tabela_users(self, result):
+            self.tbl_vistos_2.clearContents()
+            self.tbl_vistos_2.setRowCount(len(result))
 
             for row, text in enumerate(result):
                 for column, data in enumerate(text):
@@ -309,10 +325,40 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     result = func.listar_vistos_asc()
                 elif ordenacao == "                     Z-A":
                     result = func.listar_vistos_desc()
-
             # Gerar a tabela com base no resultado da consulta
             self.gerar_tabela(result)
 
+        
+        def listar_usuarios(self):
+            ordenacao = self.cb_perfil_listar.currentText()
+            apenas_supervisores = self.cb_supervisores.isChecked()
+            apenas_agentes = self.cb_agentes.isChecked()
+
+            # Determina a função de consulta com base nos parâmetros
+            if apenas_supervisores:
+                if ordenacao == "Ordenar por:":
+                    result = sistema.listar_usuarios_supervisor()
+                elif ordenacao == "                     A-Z":
+                    result = sistema.listar_usuarios_supervisor_asc()
+                elif ordenacao == "                     Z-A":
+                    result = sistema.listar_usuarios_supervisor_desc()
+            elif apenas_agentes:
+                if ordenacao == "Ordenar por:":
+                    result = sistema.listar_usuarios_agente()
+                elif ordenacao == "                     A-Z":
+                    result = sistema.listar_usuarios_agente_asc()
+                elif ordenacao == "                     Z-A":
+                    result = sistema.listar_usuarios_agente_desc()
+            else:
+                if ordenacao == "Ordenar por:":
+                    result = sistema.listar_usuarios_default()
+                elif ordenacao == "                     A-Z":
+                    result = sistema.listar_usuarios_asc()
+                elif ordenacao == "                     Z-A":
+                    result = sistema.listar_usuarios_desc()
+            # Gerar a tabela com base no resultado da consulta
+            self.gerar_tabela_users(result)
+        
         
         def criar_novo_usuario(self):
             nome = self.nome_user_line.text()
@@ -341,7 +387,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.senha_line_2.clear()
                 self.pop_up_success('Senha alterada', 'Senha alterada com sucesso!')
             else:
-                self.pop_up_error('Erro ao alterar senha', verificacao)
+                self.pop_up_warning('Erro ao alterar senha', verificacao)
         
         
         def exportar_excel(self):
@@ -357,6 +403,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             except Exception as e:
                 print(f'Ocorreu um erro: {e}')
                 result = func.listar_vistos_sys()
+                
+        
+        def exportar_excel_usuarios(self):
+            try:
+                resultados = sistema.listar_usuarios_default()
+                # Converter os resultados para um DataFrame pandas
+                df = pd.DataFrame(resultados, columns=['Nome', 'Passaporte', 'Status'])
+                # Exportar para Excel
+                df.to_excel('Lista_de_Vistos.xlsx', sheet_name='Vistos', index=False)
+
+                self.pop_up_success('Download','Download efetuado com sucesso!')
+                
+            except Exception as e:
+                print(f'Ocorreu um erro: {e}')
+                result = sistema.listar_usuarios_default()
             
 
 if __name__ == "__main__":

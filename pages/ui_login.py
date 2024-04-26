@@ -290,36 +290,35 @@ class Ui_Form(object):
 "QPushButton:hover {\n"
 "color: #D589FF;\n"
 "}")
-        self.plainTextEdit_3 = QPlainTextEdit(self.frame_6)
-        self.plainTextEdit_3.setObjectName(u"plainTextEdit_3")
-        self.plainTextEdit_3.setGeometry(QRect(50, 20, 221, 41))
-        self.plainTextEdit_3.setFont(font3)
-        self.plainTextEdit_3.setStyleSheet(u"border: none;\n"
-"color: #480070;")
-        self.plainTextEdit_4 = QPlainTextEdit(self.frame_6)
-        self.plainTextEdit_4.setObjectName(u"plainTextEdit_4")
-        self.plainTextEdit_4.setGeometry(QRect(60, 60, 271, 71))
-        font6 = QFont()
-        font6.setFamilies([u"Lato"])
-        font6.setPointSize(11)
-        font6.setBold(False)
-        self.plainTextEdit_4.setFont(font6)
-        self.plainTextEdit_4.setStyleSheet(u"border: none;\n"
-"color: #480070;")
-        self.plainTextEdit_4.setReadOnly(True)
-        self.plainTextEdit_4.setCenterOnScroll(False)
-        self.plainTextEdit_5 = QPlainTextEdit(self.frame_6)
-        self.plainTextEdit_5.setObjectName(u"plainTextEdit_5")
-        self.plainTextEdit_5.setGeometry(QRect(60, 130, 281, 31))
-        font7 = QFont()
-        font7.setFamilies([u"Lato"])
-        font7.setPointSize(11)
-        font7.setBold(True)
-        self.plainTextEdit_5.setFont(font7)
-        self.plainTextEdit_5.setStyleSheet(u"border: none;\n"
+        self.label_11 = QLabel(self.frame_6)
+        self.label_11.setObjectName(u"label_11")
+        self.label_11.setGeometry(QRect(60, 0, 251, 51))
+        self.label_11.setStyleSheet(u"border: none;\n"
 "color: #480070;\n"
-"background-color: transparent;")
-        self.plainTextEdit_5.setReadOnly(True)
+"background-color: transparent;\n"
+"font-family: Lato;\n"
+"font-size: 20px;\n"
+"font-weight: bold;")
+        self.label_11.setWordWrap(True)
+        self.label_12 = QLabel(self.frame_6)
+        self.label_12.setObjectName(u"label_12")
+        self.label_12.setGeometry(QRect(60, 50, 271, 71))
+        self.label_12.setStyleSheet(u"border: none;\n"
+"color: #480070;\n"
+"background-color: transparent;\n"
+"font-family: Lato;\n"
+"font-size: 16px;\n"
+"")
+        self.label_12.setWordWrap(True)
+        self.label_13 = QLabel(self.frame_6)
+        self.label_13.setObjectName(u"label_13")
+        self.label_13.setGeometry(QRect(60, 130, 91, 21))
+        self.label_13.setStyleSheet(u"border: none;\n"
+"color: #480070;\n"
+"background-color: transparent;\n"
+"font-family: Lato;\n"
+"font-size: 16px;\n"
+"font-weight: bold;")
         self.stackedWidget.addWidget(self.pg_email_esqueci)
         self.pg_codigo_2 = QWidget()
         self.pg_codigo_2.setObjectName(u"pg_codigo_2")
@@ -384,13 +383,6 @@ class Ui_Form(object):
 "QPushButton:hover {\n"
 "color: #D589FF;\n"
 "}")
-        self.plainTextEdit_6 = QPlainTextEdit(self.frame_8)
-        self.plainTextEdit_6.setObjectName(u"plainTextEdit_6")
-        self.plainTextEdit_6.setGeometry(QRect(40, 20, 311, 41))
-        self.plainTextEdit_6.setFont(font3)
-        self.plainTextEdit_6.setStyleSheet(u"border: none;\n"
-"color: #480070;\n"
-"background-color: transparent;")
         self.ln_nova_Senha = QLineEdit(self.frame_8)
         self.ln_nova_Senha.setObjectName(u"ln_nova_Senha")
         self.ln_nova_Senha.setGeometry(QRect(50, 290, 250, 35))
@@ -488,11 +480,21 @@ class Ui_Form(object):
 "font-size: 16px;\n"
 "")
         self.label_10.setWordWrap(True)
+        self.label_5 = QLabel(self.frame_8)
+        self.label_5.setObjectName(u"label_5")
+        self.label_5.setGeometry(QRect(50, 10, 251, 51))
+        self.label_5.setStyleSheet(u"border: none;\n"
+"color: #480070;\n"
+"background-color: transparent;\n"
+"font-family: Lato;\n"
+"font-size: 20px;\n"
+"font-weight: bold;")
+        self.label_5.setWordWrap(True)
         self.stackedWidget.addWidget(self.pg_codigo_2)
 
         self.retranslateUi(Form)
 
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(Form)
@@ -516,14 +518,13 @@ class Ui_Form(object):
         self.ln_email_esqueci.setText("")
         self.ln_email_esqueci.setPlaceholderText("")
         self.btn_voltar1.setText(QCoreApplication.translate("Form", u"<", None))
-        self.plainTextEdit_3.setPlainText(QCoreApplication.translate("Form", u"Esqueceu sua senha?", None))
-        self.plainTextEdit_4.setPlainText(QCoreApplication.translate("Form", u"N\u00e3o se preocupe, vamos enviar uma mensagem para voc\u00ea redefinir sua senha.", None))
-        self.plainTextEdit_5.setPlainText(QCoreApplication.translate("Form", u"E-mail", None))
+        self.label_11.setText(QCoreApplication.translate("Form", u"Esqueceu sua senha?", None))
+        self.label_12.setText(QCoreApplication.translate("Form", u"N\u00e3o se preocupe, vamos enviar uma mensagem para voc\u00ea redefinir sua senha.", None))
+        self.label_13.setText(QCoreApplication.translate("Form", u"Email", None))
         self.label_4.setText("")
         self.ln_codigo.setText("")
         self.ln_codigo.setPlaceholderText("")
         self.btn_voltar1_2.setText(QCoreApplication.translate("Form", u"<", None))
-        self.plainTextEdit_6.setPlainText(QCoreApplication.translate("Form", u"Queremos saber se \u00e9 voc\u00ea mesmo", None))
         self.ln_nova_Senha.setText("")
         self.ln_nova_Senha.setPlaceholderText("")
         self.ln_conf_nova_senha.setText("")
@@ -534,5 +535,6 @@ class Ui_Form(object):
         self.label_8.setText(QCoreApplication.translate("Form", u"C\u00f3digo", None))
         self.label_9.setText(QCoreApplication.translate("Form", u"Defina uma nova senha para a sua conta.", None))
         self.label_10.setText(QCoreApplication.translate("Form", u"\u00daltimo passo! Para proteger a sua conta, insira o c\u00f3digo que acabamos de enviar para o seu e-mail.", None))
+        self.label_5.setText(QCoreApplication.translate("Form", u"Queremos saber se \u00e9 voc\u00ea mesmo", None))
     # retranslateUi
 

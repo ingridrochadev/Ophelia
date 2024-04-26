@@ -17,13 +17,22 @@ instancia2 = Sistema()
 # perfil, nome = instancia2.verificar_tipo_e_nome_perfil('user@email.com')
 # print(perfil, nome)
 
-# def listas(funcao):
-#     lista = funcao()
-#     print(lista)
+def listas(funcao):
+    lista = funcao()
+    print(lista)
 
 # listas(instancia.listar_vistos_asc)
+listas(instancia2.listar_usuarios_default)
+listas(instancia2.listar_usuarios_asc)
+listas(instancia2.listar_usuarios_desc)
+# listas(instancia2.listar_usuarios_supervisor)
+# listas(instancia2.listar_usuarios_supervisor_asc)
+# listas(instancia2.listar_usuarios_supervisor_desc)
+# listas(instancia2.listar_usuarios_agente)
+# listas(instancia2.listar_usuarios_agente_asc)
+# listas(instancia2.listar_usuarios_agente_desc)
 
-instancia2.enviar_confirmacao("ingridsigaa@gmail.com")
+# instancia2.enviar_confirmacao("ingridsigaa@gmail.com")
 
 
 

@@ -550,7 +550,7 @@ font-weight: bold
              </sizepolicy>
             </property>
             <property name="currentIndex">
-             <number>3</number>
+             <number>7</number>
             </property>
             <widget class="QWidget" name="pg_home">
              <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -1864,7 +1864,7 @@ border-radius:5px;
                   <property name="geometry">
                    <rect>
                     <x>530</x>
-                    <y>50</y>
+                    <y>120</y>
                     <width>340</width>
                     <height>40</height>
                    </rect>
@@ -1892,7 +1892,7 @@ border-radius:5px;
                   <property name="geometry">
                    <rect>
                     <x>530</x>
-                    <y>30</y>
+                    <y>100</y>
                     <width>100</width>
                     <height>17</height>
                    </rect>
@@ -1937,19 +1937,6 @@ border-radius:5px;
                   </property>
                   <property name="text">
                    <string>Nome</string>
-                  </property>
-                 </widget>
-                 <widget class="QLabel" name="lbl_passaporte_2">
-                  <property name="geometry">
-                   <rect>
-                    <x>530</x>
-                    <y>100</y>
-                    <width>77</width>
-                    <height>17</height>
-                   </rect>
-                  </property>
-                  <property name="text">
-                   <string>Passaporte</string>
                   </property>
                  </widget>
                  <widget class="QLabel" name="lbl_city_2">
@@ -2052,7 +2039,7 @@ border-radius:5px;
                    <rect>
                     <x>70</x>
                     <y>50</y>
-                    <width>340</width>
+                    <width>801</width>
                     <height>40</height>
                    </rect>
                   </property>
@@ -2064,7 +2051,7 @@ border-radius:5px;
                   </property>
                   <property name="maximumSize">
                    <size>
-                    <width>500</width>
+                    <width>16777215</width>
                     <height>16777215</height>
                    </size>
                   </property>
@@ -2098,31 +2085,6 @@ border-radius:5px;
                   </property>
                   <property name="text">
                    <string>Data de nascimento  </string>
-                  </property>
-                 </widget>
-                 <widget class="QLineEdit" name="passport_line_2">
-                  <property name="geometry">
-                   <rect>
-                    <x>530</x>
-                    <y>120</y>
-                    <width>340</width>
-                    <height>40</height>
-                   </rect>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>340</width>
-                    <height>40</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>500</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="placeholderText">
-                   <string/>
                   </property>
                  </widget>
                  <widget class="QLineEdit" name="validade_line_2">
@@ -3113,16 +3075,8 @@ QScrollBar::sub-line:horizontal {
 }</string>
                 </property>
                 <attribute name="horizontalHeaderDefaultSectionSize">
-                 <number>274</number>
+                 <number>200</number>
                 </attribute>
-                <column>
-                 <property name="text">
-                  <string>Nome</string>
-                 </property>
-                 <property name="textAlignment">
-                  <set>AlignLeading|AlignVCenter</set>
-                 </property>
-                </column>
                 <column>
                  <property name="text">
                   <string>Matrícula</string>
@@ -3133,7 +3087,31 @@ QScrollBar::sub-line:horizontal {
                 </column>
                 <column>
                  <property name="text">
-                  <string>Função</string>
+                  <string>Nome</string>
+                 </property>
+                 <property name="textAlignment">
+                  <set>AlignLeading|AlignVCenter</set>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>Email</string>
+                 </property>
+                 <property name="textAlignment">
+                  <set>AlignLeading|AlignVCenter</set>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>CPF</string>
+                 </property>
+                 <property name="textAlignment">
+                  <set>AlignLeading|AlignVCenter</set>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>Cargo</string>
                  </property>
                  <property name="textAlignment">
                   <set>AlignLeading|AlignVCenter</set>
@@ -3787,7 +3765,7 @@ QPushButton:hover {
                   <property name="geometry">
                    <rect>
                     <x>300</x>
-                    <y>320</y>
+                    <y>310</y>
                     <width>111</width>
                     <height>40</height>
                    </rect>
@@ -3812,7 +3790,7 @@ border:2px solid white;</string>
                   <property name="geometry">
                    <rect>
                     <x>410</x>
-                    <y>320</y>
+                    <y>310</y>
                     <width>241</width>
                     <height>30</height>
                    </rect>
@@ -3857,7 +3835,7 @@ height: 16px; /* Altura da seta */
                   <property name="geometry">
                    <rect>
                     <x>300</x>
-                    <y>20</y>
+                    <y>30</y>
                     <width>350</width>
                     <height>40</height>
                    </rect>
@@ -3901,7 +3879,7 @@ height: 16px; /* Altura da seta */
                   <property name="geometry">
                    <rect>
                     <x>300</x>
-                    <y>80</y>
+                    <y>100</y>
                     <width>350</width>
                     <height>40</height>
                    </rect>
@@ -3922,39 +3900,11 @@ height: 16px; /* Altura da seta */
                    <string> CPF</string>
                   </property>
                  </widget>
-                 <widget class="QLineEdit" name="matricula_line_2">
-                  <property name="geometry">
-                   <rect>
-                    <x>300</x>
-                    <y>140</y>
-                    <width>350</width>
-                    <height>40</height>
-                   </rect>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>350</width>
-                    <height>40</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>350</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="placeholderText">
-                   <string> Matrícula</string>
-                  </property>
-                 </widget>
                  <widget class="QLineEdit" name="email_user_line_2">
                   <property name="geometry">
                    <rect>
                     <x>300</x>
-                    <y>200</y>
+                    <y>170</y>
                     <width>350</width>
                     <height>40</height>
                    </rect>
@@ -3979,7 +3929,7 @@ height: 16px; /* Altura da seta */
                   <property name="geometry">
                    <rect>
                     <x>300</x>
-                    <y>260</y>
+                    <y>240</y>
                     <width>350</width>
                     <height>40</height>
                    </rect>
@@ -4367,6 +4317,7 @@ QPushButton:hover {
  </widget>
  <resources>
   <include location="logo_.qrc"/>
+  <include location="../../../../../../../.designer/backup/logo_.qrc"/>
  </resources>
  <connections/>
 </ui>

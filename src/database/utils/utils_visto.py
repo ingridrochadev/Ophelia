@@ -300,22 +300,22 @@ class Funcoes:
 
             if tipo_encontrado == None:
                 mensagem = 'Tipo de visto inválido'
-                return False, mensagem
+                return mensagem
             
             else:
                 if expiracao < current_date: # Verifica se a data de expiração do visto está na validade
                     mensagem = "O visto está vencido!"
-                    return False, mensagem 
+                    return mensagem 
                 
                 if age < 18:  # Verifica se é menor de idade
                     mensagem = "O passageiro é menor de idade. Verificar autorização dos responsáveis."
-                    return False, mensagem
+                    return mensagem
                 
                 if tipo_encontrado[1]:
-                    return False, tipo_encontrado[1] # Retorna a regra correspondente ao tipo de visto
+                    return tipo_encontrado[1] # Retorna a regra correspondente ao tipo de visto
                 else: 
                     mensagem = "Sem regras adicionais"
-                    return True, mensagem
+                    return mensagem
             
 
 
