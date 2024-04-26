@@ -21,7 +21,7 @@ class Login(QWidget, Ui_Form):
         self.setupUi(self)
         self.setWindowTitle('Ophelia')
         self.resize(900, 660)
-        appIcon = QIcon(u"pages/icons/logo_branca.png")
+        appIcon = QIcon(u"pages/icons/logo_roxa.png")
         self.setWindowIcon(appIcon)
         
         self.btn_entrar.clicked.connect(self.open_system)
@@ -101,7 +101,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.setupUi(self)
             self.setWindowTitle("Ophelia")
             self.resize(1222, 794)
-            appIcon = QIcon(u"pages/icons/logo_branca.png")
+            appIcon = QIcon(u"pages/icons/logo_roxa.png")
             self.setWindowIcon(appIcon)
             self.txt_bemvindo.setText(QCoreApplication.translate("MainWindow", f"Bem-vindo(a), {nome}!", None))
             # Define a página inicial como 'pg_home'
