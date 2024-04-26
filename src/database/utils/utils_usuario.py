@@ -78,11 +78,8 @@ class Sistema:
             len(re.findall(r"[a-z]", senha)) < requisitos["min_minuscula"] or
             len(re.findall(r"[0-9]", senha)) < requisitos["min_numero"] or
             len(re.findall(r"[@#$]", senha)) < requisitos["min_simbolo"]):
-            
-            print("Senha inválida! A senha deve conter letras minúsculas, maiúsculas, números e símbolos e ter no minimo 8 caracteres.")
             return False
         else:
-            print("Senha válida")
             return True
     
     
@@ -299,8 +296,6 @@ class Sistema:
         
         except Exception as e:
             print(f"Erro ao enviar e-mail: {e}")
-            import traceback
-            traceback.print_exc()
             
         finally:
                 cur.close()
@@ -309,24 +304,21 @@ class Sistema:
     
     def confirmar_codigo(self, email: str, codigo_recebido: str):
         try:
-            conn = self.estabelecer_conexao(self)
+            conn = self.estabelecer_conexao()
             cur = conn.cursor()
         
             cur.execute("SELECT codigo FROM codigos_verificacao WHERE email = %s", (email,))
             codigo_armazenado = cur.fetchone()[0]
             
             if codigo_recebido == codigo_armazenado:
-                msg = "Código verificado com sucesso!"
                 cur.execute("DELETE FROM codigos_verificacao WHERE codigo = %s", (codigo_recebido, ))
                 conn.commit()
-                return True, msg
+                return True, 'Código verificado com sucesso!'
             else:
-                msg = "O código não coincide!"
-                return False, msg
+                return False, 'O código não coincide'
                 
-        except Exception as e:
-            return False, f"Erro ao confirmar código: {e}"
-            conn.rollback()
+        except Exception as error:
+            return False, f"Erro ao confirmar código: {error}"
             
         finally:
                 cur.close()
@@ -339,37 +331,37 @@ class Sistema:
                 conn = self.estabelecer_conexao()
                 cur = conn.cursor()
                 
-                codigo_confirmado = self.confirmar_codigo(email, codigo_confirmacao)
+                codigo_confirmado = self.confirmar_codigo(email, codigo_confirmacao)[0]
                 
                 if codigo_confirmado:    
                     # Verifica se o email está cadastrado
                     cur.execute("SELECT senha FROM usuarios WHERE email = %s", (email, ))
                     usuario = cur.fetchone()
                     if usuario:
-                        if nova_senha == nova_senha2 and self.validar_senha(nova_senha):
-                            # Senhas correspondem, parte pra alteração
-                            hashed_senha = self.encriptar_senha(nova_senha)
-                            cur.execute("UPDATE usuarios SET senha = %s WHERE email = %s", (hashed_senha, email))
-                            conn.commit()
-                            return "Senha alterada com sucesso!"
+                        # Verifica se as senhas são iguais
+                        if nova_senha == nova_senha2:
+                            # Verificas se a senha é válida
+                            senha_valida = self.validar_senha(nova_senha)
+                            if senha_valida:
+                                hashed_senha = self.encriptar_senha(nova_senha)
+                                cur.execute("UPDATE usuarios SET senha = %s WHERE email = %s", (hashed_senha, email))
+                                conn.commit()
+                                return "Senha alterada com sucesso!"
+                            else:
+                                return 'Senha inválida! A senha deve conter letras minúsculas, maiúsculas, números, símbolos e ter no minimo 6 caracteres.'
                         else:
-                            return "Senha inválida! A senha deve conter letras minúsculas, maiúsculas, números e símbolos e ter no minimo 8 caracteres."
-                                
+                            return "As senhas informadas não coincidem!"       
                     else: 
                         return "E-mail e/ou senha incorreta. Tente novamente!"
                 else:
                     return "Código inválido!"
                 
             except Exception as error:
-                if conn:
-                    conn.rollback()
                 return f'Ocorreu um erro ao redefinir a senha: {error}'
                 
             finally:
-                if cur:
-                    cur.close()
-                if conn:
-                    conn.close()
+                cur.close()
+                conn.close()
         else:
             return "Preencha todos os campos obrigatórios!"
         
