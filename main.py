@@ -85,12 +85,7 @@ class Login(QWidget, Ui_Form):
             return usuario_verificado
         else:
             if self.tentativas < 3:
-                mw.pop_up_warning("Acesso inválido!" f'Verifique se o email e/ou senha estão corretos. \n \n Tentativa: {self.tentativas +1} de 3.')
-                msg = QMessageBox()
-                msg.setIcon(QMessageBox.Warning)
-                msg.setWindowTitle('Acesso inválido!')
-                msg.setText(f'Verifique se o email e/ou senha estão corretos. \n \n Tentativa: {self.tentativas +1} de 3.')
-                msg.exec()
+                mw.pop_up_warning("Acesso inválido!", f'Verifique se o email e/ou senha estão corretos. \n \n Tentativa: {self.tentativas +1} de 3.')
                 self.tentativas += 1
             if self.tentativas == 3:
                 sys.exit(0)
@@ -135,8 +130,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.btn_exportar.clicked.connect(self.exportar_excel)
             self.btn_listar_vistos_2.clicked.connect(self.listar_usuarios)
             self.btn_exportar_2.clicked.connect(self.exportar_excel_usuarios)
-            # self.search_btn.clicked.connect(self.buscar_pax)
-            # self.search_btn_2.clicked.connect(self.buscar_user)
+            self.search_btn.clicked.connect(self.buscar_pax)
+            self.alterar_pax_btn.clicked.connect(self.editar_pax)
+            self.search_btn_2.clicked.connect(self.buscar_user)
+            self.alterar_user_btn.clicked.connect(self.editar_user)
+            self.excluir_user_btn.clicked.connect(self.excluir_user)
             
             if perfil == "user":
                 self.btn_inserir_user.setVisible(False)
@@ -292,7 +290,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             for row, text in enumerate(result):
                 for column, data in enumerate(text):
-                    self.tbl_vistos_2.setItem(row, column, QTableWidgetItem(str(data)))
+                    self.tbl_vistos.setItem(row, column, QTableWidgetItem(str(data)))
                     
                     
         def gerar_tabela_users(self, result):
@@ -415,9 +413,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             try:
                 resultados = sistema.listar_usuarios_default()
                 # Converter os resultados para um DataFrame pandas
-                df = pd.DataFrame(resultados, columns=['Nome', 'Passaporte', 'Status'])
+                df = pd.DataFrame(resultados, columns=['Matrícula','Nome', 'Email', 'CPF', 'Cargo'])
                 # Exportar para Excel
-                df.to_excel('Lista_de_Vistos.xlsx', sheet_name='Vistos', index=False)
+                df.to_excel('Lista_de_Colaboradores.xlsx', sheet_name='Colaboradores', index=False)
 
                 self.pop_up_success('Download','Download efetuado com sucesso!')
                 
@@ -426,42 +424,113 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 result = sistema.listar_usuarios_default()
             
             
-        # def buscar_pax(self):
-        #     self.passaporte = self.search_ln.text()
-        #     self.dados_pax = "array da funcao"
-        #     # Preenche os QLineEdit com os dados obtidos do OCR
-        #     self.nome_line_2.setText(self.dados_pax[0])
-        #     self.date_nasc_line_2.setText(self.dados_pax[1])
-        #     self.nacionalidade_line_2.setText(self.dados_pax[2])
-        #     self.tipo_visto_line_3.setText(self.dados_pax[3])
-        #     self.num_visto_line_2.setText(self.dados_pax[4])
-        #     self.validade_line_2.setText(self.dados_pax[5])
-        #     self.city_line_2.setText(self.dados_pax[6])
-        #     self.status_embarque_line.setText(self.dados_pax[7])
+        def buscar_pax(self):
+            self.passaporte = self.search_ln.text()
+            if self.passaporte:
+                self.dados_pax = list(func.buscar_por_passaporte(self.passaporte))
+                
+                self.nome_line_2.setText(self.dados_pax[0])
+                self.date_nasc_line_2.setText(self.dados_pax[1])
+                self.nacionalidade_line_2.setText(self.dados_pax[2])
+                self.tipo_visto_line_3.setText(self.dados_pax[3])
+                self.num_visto_line_2.setText(self.dados_pax[4])
+                self.validade_line_2.setText(self.dados_pax[5])
+                self.city_line_2.setText(self.dados_pax[6])
             
-        # def editar_pax(self):
-        #     #Tranforma o conteúdo das linhas editáveis em um array de retorno:
-        #     self.dados_pax[1] = self.nome_line_2.text()
-        #     self.dados_pax[1] = self.date_nasc_line_2.text()
-        #     self.dados_pax[1] = self.nacionalidade_line_2.text()
-        #     self.dados_pax[1] = self.tipo_visto_line_3.text()
-        #     self.dados_pax[1] = self.num_visto_line_2.text()
-        #     self.dados_pax[1] = self.validade_line_2.text()                
-        #     self.dados_pax[1] = self.city_line_2.text()
-        #     self.dados_pax[1] = self.status_embarque_line.text()
+            else:
+                self.pop_up_error("Campo inválido", "Digite um número de passaporte válido.")
+                                
+        def editar_pax(self):
+            #Tranforma o conteúdo das linhas editáveis em um array de retorno:
+            self.dados_pax[0] = self.nome_line_2.text()
+            self.dados_pax[1] = self.date_nasc_line_2.text()
+            self.dados_pax[2] = self.nacionalidade_line_2.text()
+            self.dados_pax[3] = self.tipo_visto_line_3.text()
+            self.dados_pax[4] = self.num_visto_line_2.text()
+            self.dados_pax[5] = self.validade_line_2.text()                
+            self.dados_pax[6] = self.city_line_2.text()
+            self.dados_pax[7] = self.cb_perfil_3.currentText()
 
-        #     self.alterar_user_btn.clicked.connect(func.editar_dados( self.passaporte, self.nome_line_2.text(), nacionalidade = None, data_nascimento = None, numero_visto = None, tipo_visto = None, local_emissor = None, data_validade = None, status = None))
+            self.alterar_user_btn.clicked.connect(lambda: func.editar_dados(self.passaporte, self.dados_pax))
+            retorno = func.editar_dados(self.passaporte, self.dados_pax)
+            if retorno == 'Dados alterados com sucesso!':
+                self.pop_up_success("Dados alterados", "Passageiro alterado com sucesso.")
+            else:
+                self.pop_up_warning("Dados não alterados", retorno)
+                self.nome_line_2.clear()
+                self.date_nasc_line_2.clear()
+                self.nacionalidade_line_2.clear()
+                self.tipo_visto_line_3.clear()
+                self.num_visto_line_2.clear()
+                self.validade_line_2.clear()
+                self.city_line_2.clear()
+
         
-        # def buscar_user(self):
-        #     self.dados_user = "array da funcao"
-        #     # Preenche os QLineEdit com os dados obtidos do OCR
-        #     self.nome_user_line_2.setText(self.dados_user[0])
-        #     self.cpf_line_2.setText(self.dados_user[1])
-        #     self.email_user_line_2.setText(self.dados_user[2])
-        #     self.senha_add_user_ln_2.setText(self.dados_user[3])
-        #     pass
+        def buscar_user(self):
+            self.matricula = self.search_ln_2.text()
+            if self.matricula:
+                self.dados_user = list(sistema.buscar_usuario(self.matricula))
+                
+                # Preenche os QLineEdit com os dados 
+                self.nome_user_line_2.setText(self.dados_user[0])
+                self.cpf_line_2.setText(self.dados_user[1])
+                self.email_user_line_2.setText(self.dados_user[2])
+            
+            else:
+                self.pop_up_error("Campo inválido", "Digite um número de matrícula válido.")
         
-        
+        def editar_user(self):
+            #Tranforma o conteúdo das linhas editáveis em um array de retorno:
+            self.dados_user[0] = self.nome_user_line_2.text()
+            self.dados_user[1] = self.cpf_line_2.text()
+            self.dados_user[2] = self.email_user_line_2.text()
+            self.dados_user[4] = self.cb_perfil_alterar.currentText()
+
+            self.alterar_user_btn.clicked.connect(lambda: sistema.alterar_usuario(self.matricula, self.dados_user))
+            retorno = sistema.alterar_usuario(self.matricula, self.dados_user)
+            if retorno == 'Usuário alterado com sucesso!':
+                self.pop_up_success("Dados alterados", "Colaborador alterado com sucesso.")
+            else:
+                self.pop_up_warning("Dados não alterados", retorno)
+                self.nome_user_line_2.clear()
+                self.cpf_line_2.clear()
+                self.email_user_line_2.clear()
+
+            
+        def excluir_user(self):
+            self.matricula = self.search_ln_2.text()
+            if self.matricula:
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Warning)
+                msg.setWindowTitle(f"Exclusão de Usuário")
+                msg.setInformativeText("Você está excluindo um usuário do sistema, deseja prosseguir?")
+                
+                # Define os botões e seus textos
+                ok_button = msg.addButton(QMessageBox.Ok)
+                ok_button.setText("\n Sim")
+                cancel_button = msg.addButton(QMessageBox.Cancel)
+                cancel_button.setText("\n Cancelar")
+                msg.setDefaultButton(QMessageBox.Cancel)
+                resp = msg.exec()
+                
+                if resp == QMessageBox.Ok:
+                    try:
+                        self.dados_user = list(sistema.excluir_usuario(self.matricula))
+                        self.pop_up_success("Usuário excluído", "Usuário excluído do Sistema.")
+                        self.nome_user_line_2.clear()
+                        self.cpf_line_2.clear()
+                        self.email_user_line_2.clear()
+
+                    except Exception as e:
+                        self.pop_up_error('Erro ao excluir usuário', f'Erro ao inserir dados na tabela de vistos: {str(e)}')
+                
+                elif resp == QMessageBox.Discard:
+                        self.nome_user_line_2.clear()
+                        self.cpf_line_2.clear()
+                        self.email_user_line_2.clear()
+                
+            else:
+                self.pop_up_error("Campo inválido", "Digite um número de matrícula válido.")
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

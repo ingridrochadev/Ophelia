@@ -525,7 +525,7 @@ class Sistema:
             cur = conn.cursor()
             
             cur.execute("SELECT nome, cpf, email, senha, tipo_usuario FROM usuarios WHERE matricula = %s", (matricula, ))
-            usuario = cur.fetchall()
+            usuario = cur.fetchone()
             return usuario
         
         except Exception as error:
@@ -535,7 +535,8 @@ class Sistema:
             conn.close()
             
             
-    def alterar_usuario(self, matricula, nome = None, cpf = None, email = None, senha = None, tipo = None):
+    def alterar_usuario(self, matricula, dados):
+        nome, cpf, email, tipo = dados
         try:
             conn = self.estabelecer_conexao()
             cur = conn.cursor()
@@ -557,14 +558,6 @@ class Sistema:
                     conn.commit()
                 else:
                     return "E-mail inválido! Tente novamente."
-            if senha:
-                senha_valida = self.validar_senha(senha)
-                if senha_valida:
-                    nova_senha = self.encriptar_senha(senha)
-                    cur.execute("UPDATE usuarios SET senha = %s WHERE matricula = %s", (nova_senha, matricula))
-                    conn.commit()
-                else:
-                    return "Senha inválida! Tente novamente."
             if tipo:
                 cur.execute("UPDATE usuarios SET tipo_usuario = %s WHERE matricula = %s", (tipo, matricula))
                 conn.commit()

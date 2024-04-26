@@ -78,7 +78,7 @@ class Funcoes:
             print(f"Erro ao inserir status na tabela de vistos: {e}")
             self.conn.rollback()
 
-    def editar_dados(self, passaporte, status):
+    def editar_dados(self, passaporte, dados):
         nome, nacionalidade, data_nascimento, numero_visto, tipo_visto, local_emissor, data_validade, status = dados
         try:
             if nome:
@@ -314,6 +314,21 @@ class Funcoes:
                     mensagem = "Sem regras adicionais"
                     return mensagem
             
+    def buscar_por_passaporte(self, passaporte):    
+        self.cur.execute("SELECT * FROM public.passageiros WHERE passaporte = %s", (passaporte,))
+        dados_passageiro = self.cur.fetchone()  # Retorna a primeira linha encontrada ou None
+    
+        if dados_passageiro is None:
+            return "Passaporte não encontrado no banco de dados"  
+    
+        self.cur.execute("SELECT * FROM public.vistos WHERE passaporte = %s", (passaporte,))
+        dados_vistos = self.cur.fetchall()  
+    
+        resultado = list(dados_passageiro)
+        for visto in dados_vistos:
+            resultado.extend(visto)
+    
+        return resultado 
 
 
 

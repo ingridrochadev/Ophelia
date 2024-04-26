@@ -180,7 +180,7 @@ font-weight: bold
 }</string>
             </property>
             <property name="currentIndex">
-             <number>1</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="Vistos">
              <property name="geometry">
@@ -1863,7 +1863,7 @@ border-radius:5px;
                  <widget class="QLineEdit" name="nacionalidade_line_2">
                   <property name="geometry">
                    <rect>
-                    <x>530</x>
+                    <x>500</x>
                     <y>120</y>
                     <width>340</width>
                     <height>40</height>
@@ -1891,7 +1891,7 @@ border-radius:5px;
                  <widget class="QLabel" name="lbl_nacionalidade_2">
                   <property name="geometry">
                    <rect>
-                    <x>530</x>
+                    <x>500</x>
                     <y>100</y>
                     <width>100</width>
                     <height>17</height>
@@ -1904,7 +1904,7 @@ border-radius:5px;
                  <widget class="QLineEdit" name="date_nasc_line_2">
                   <property name="geometry">
                    <rect>
-                    <x>70</x>
+                    <x>100</x>
                     <y>120</y>
                     <width>340</width>
                     <height>40</height>
@@ -1929,7 +1929,7 @@ border-radius:5px;
                  <widget class="QLabel" name="lbl_nome_2">
                   <property name="geometry">
                    <rect>
-                    <x>70</x>
+                    <x>100</x>
                     <y>30</y>
                     <width>42</width>
                     <height>17</height>
@@ -1942,7 +1942,7 @@ border-radius:5px;
                  <widget class="QLabel" name="lbl_city_2">
                   <property name="geometry">
                    <rect>
-                    <x>530</x>
+                    <x>500</x>
                     <y>240</y>
                     <width>117</width>
                     <height>17</height>
@@ -1955,7 +1955,7 @@ border-radius:5px;
                  <widget class="QLabel" name="lbl_tipo_visto_2">
                   <property name="geometry">
                    <rect>
-                    <x>70</x>
+                    <x>100</x>
                     <y>170</y>
                     <width>90</width>
                     <height>17</height>
@@ -1968,7 +1968,7 @@ border-radius:5px;
                  <widget class="QLineEdit" name="city_line_2">
                   <property name="geometry">
                    <rect>
-                    <x>530</x>
+                    <x>500</x>
                     <y>260</y>
                     <width>340</width>
                     <height>40</height>
@@ -1996,7 +1996,7 @@ border-radius:5px;
                  <widget class="QLineEdit" name="tipo_visto_line_3">
                   <property name="geometry">
                    <rect>
-                    <x>70</x>
+                    <x>100</x>
                     <y>190</y>
                     <width>340</width>
                     <height>40</height>
@@ -2024,7 +2024,7 @@ border-radius:5px;
                  <widget class="QLabel" name="lbl_exp_2">
                   <property name="geometry">
                    <rect>
-                    <x>70</x>
+                    <x>100</x>
                     <y>240</y>
                     <width>120</width>
                     <height>17</height>
@@ -2037,9 +2037,9 @@ border-radius:5px;
                  <widget class="QLineEdit" name="nome_line_2">
                   <property name="geometry">
                    <rect>
-                    <x>70</x>
+                    <x>100</x>
                     <y>50</y>
-                    <width>801</width>
+                    <width>741</width>
                     <height>40</height>
                    </rect>
                   </property>
@@ -2077,7 +2077,7 @@ border-radius:5px;
                  <widget class="QLabel" name="lbl_dob_2">
                   <property name="geometry">
                    <rect>
-                    <x>70</x>
+                    <x>100</x>
                     <y>100</y>
                     <width>151</width>
                     <height>17</height>
@@ -2090,7 +2090,7 @@ border-radius:5px;
                  <widget class="QLineEdit" name="validade_line_2">
                   <property name="geometry">
                    <rect>
-                    <x>70</x>
+                    <x>100</x>
                     <y>260</y>
                     <width>340</width>
                     <height>40</height>
@@ -2115,7 +2115,7 @@ border-radius:5px;
                  <widget class="QLineEdit" name="num_visto_line_2">
                   <property name="geometry">
                    <rect>
-                    <x>530</x>
+                    <x>500</x>
                     <y>190</y>
                     <width>340</width>
                     <height>40</height>
@@ -2140,7 +2140,7 @@ border-radius:5px;
                  <widget class="QLabel" name="lbl_num_visto_2">
                   <property name="geometry">
                    <rect>
-                    <x>530</x>
+                    <x>500</x>
                     <y>170</y>
                     <width>116</width>
                     <height>17</height>
@@ -2260,37 +2260,6 @@ QPushButton:hover {
                    <string>Excluir Passageiro</string>
                   </property>
                  </widget>
-                 <widget class="QLineEdit" name="status_embarque_line">
-                  <property name="geometry">
-                   <rect>
-                    <x>340</x>
-                    <y>340</y>
-                    <width>250</width>
-                    <height>40</height>
-                   </rect>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>250</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>250</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">background-color: rgb(231, 190, 244);</string>
-                  </property>
-                  <property name="placeholderText">
-                   <string/>
-                  </property>
-                  <property name="clearButtonEnabled">
-                   <bool>false</bool>
-                  </property>
-                 </widget>
                  <widget class="QLabel" name="lbl_city_3">
                   <property name="geometry">
                    <rect>
@@ -2314,6 +2283,59 @@ QPushButton:hover {
                   <property name="alignment">
                    <set>Qt::AlignCenter</set>
                   </property>
+                 </widget>
+                 <widget class="QComboBox" name="cb_perfil_3">
+                  <property name="geometry">
+                   <rect>
+                    <x>360</x>
+                    <y>340</y>
+                    <width>231</width>
+                    <height>40</height>
+                   </rect>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>11</pointsize>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">color:rgb(80,80,80);
+background-color:white;
+border: 2px solid purple;
+border-radius:5px;
+font: &quot;Lato Heavy&quot;</string>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>16</width>
+                    <height>16</height>
+                   </size>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>Negado</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Aprovado</string>
+                   </property>
+                  </item>
                  </widget>
                 </widget>
                </item>
@@ -3765,7 +3787,7 @@ QPushButton:hover {
                   <property name="geometry">
                    <rect>
                     <x>300</x>
-                    <y>310</y>
+                    <y>290</y>
                     <width>111</width>
                     <height>40</height>
                    </rect>
@@ -3790,7 +3812,7 @@ border:2px solid white;</string>
                   <property name="geometry">
                    <rect>
                     <x>410</x>
-                    <y>310</y>
+                    <y>290</y>
                     <width>241</width>
                     <height>30</height>
                    </rect>
@@ -3835,7 +3857,7 @@ height: 16px; /* Altura da seta */
                   <property name="geometry">
                    <rect>
                     <x>300</x>
-                    <y>30</y>
+                    <y>40</y>
                     <width>350</width>
                     <height>40</height>
                    </rect>
@@ -3879,7 +3901,7 @@ height: 16px; /* Altura da seta */
                   <property name="geometry">
                    <rect>
                     <x>300</x>
-                    <y>100</y>
+                    <y>120</y>
                     <width>350</width>
                     <height>40</height>
                    </rect>
@@ -3904,7 +3926,7 @@ height: 16px; /* Altura da seta */
                   <property name="geometry">
                    <rect>
                     <x>300</x>
-                    <y>170</y>
+                    <y>200</y>
                     <width>350</width>
                     <height>40</height>
                    </rect>
@@ -3923,37 +3945,6 @@ height: 16px; /* Altura da seta */
                   </property>
                   <property name="placeholderText">
                    <string> Email</string>
-                  </property>
-                 </widget>
-                 <widget class="QLineEdit" name="senha_add_user_ln_2">
-                  <property name="geometry">
-                   <rect>
-                    <x>300</x>
-                    <y>240</y>
-                    <width>350</width>
-                    <height>40</height>
-                   </rect>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>350</width>
-                    <height>40</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>350</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="echoMode">
-                   <enum>QLineEdit::Password</enum>
-                  </property>
-                  <property name="placeholderText">
-                   <string> Senha</string>
                   </property>
                  </widget>
                 </widget>
