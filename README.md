@@ -67,40 +67,32 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir issues relatando
 + Postgres
 + Qt Designer
 
-## Aprensentação do Projeto
-Link: Video?????
-
-## Documentação
-Como Rodar o Projeto: Link?????
-
 ## Telas:
 
 ### Login
-![Login](https://github.com/BlackthornY/Login_html_css/assets/88779496/4279dbe6-1356-4dcc-bc99-bcbc9853960e)
+![Login](https://github.com/ingridrochadev/Ophelia/assets/88779496/e812a14b-7cce-4575-ad9f-be4f077146db)
 
 ### Home
-![Home](https://github.com/BlackthornY/Login_html_css/assets/88779496/3b2b0831-7e9f-4518-b204-21d852408682)
+![Home](https://github.com/ingridrochadev/Ophelia/assets/88779496/c78750f0-687b-46ac-8323-ee7d6cbb1774)
 
 ### Vistos
-![Vistos](https://github.com/BlackthornY/Login_html_css/assets/88779496/d6888168-7604-4971-9d0a-6534f4b03323)
+![Vistos](https://github.com/ingridrochadev/Ophelia/assets/88779496/cc607cad-6412-4616-a0c7-0080cc047645)
 
 ### Passageiros
-![Passageiros](https://github.com/BlackthornY/Login_html_css/assets/88779496/b2a3590f-446f-4823-a725-84e91ae8e86a)
-
-### Alterar Passageiros
-![Alterar_Passageiros](https://github.com/BlackthornY/Login_html_css/assets/88779496/7e5c916b-886b-403a-b7b7-12a8b89b49a6)
+![Passageiros](https://github.com/ingridrochadev/Ophelia/assets/88779496/cba5272a-215d-4eee-a567-d4c8a5460552)
 
 ### Sobre
-![Sobre](https://github.com/BlackthornY/Login_html_css/assets/88779496/a4756ee4-d19d-4dab-b1c5-f9a4fcf0ee18)
+![Sobre](https://github.com/ingridrochadev/Ophelia/assets/88779496/9bc5a5ee-5fa2-4e46-b473-9ba3e1b21773)
 
 ### Cadastro de Usuários
-![cadastro_usuario](https://github.com/BlackthornY/Login_html_css/assets/88779496/0ab8ab7d-c492-459d-9589-b1259831d641)
-
-### Listagem dos Colaboradores
-![listar_colaboradores](https://github.com/BlackthornY/Login_html_css/assets/88779496/cdb51ab8-3f1c-4f42-9046-dd87b01ede66)
+![Inserir_Usuario](https://github.com/ingridrochadev/Ophelia/assets/88779496/cace4474-f1af-483b-b011-75d832c86504)
 
 ### Alteração de Usuários
-![alterar_usuarios](https://github.com/BlackthornY/Login_html_css/assets/88779496/eeb81e05-3dd5-4149-8573-ceec801f6506)
+![alterar_usuario](https://github.com/ingridrochadev/Ophelia/assets/88779496/bd98ea56-ae0c-4f52-95de-3f426a5299c1)
 
 ### Alteração de Senha
-![alteracao_senha](https://github.com/BlackthornY/Login_html_css/assets/88779496/142f5594-3dd4-4aad-9fa8-509db1bf790b)
+![alterar_senha](https://github.com/ingridrochadev/Ophelia/assets/88779496/a74a63c4-5919-4172-a14f-e76fcfd5a1ee)
+
+### Esqueceu a Senha
+![esquecer_senha](https://github.com/ingridrochadev/Ophelia/assets/88779496/135cd737-8667-4ae1-85d6-c90416e72a59)
+
