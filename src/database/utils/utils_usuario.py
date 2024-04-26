@@ -519,6 +519,63 @@ class Sistema:
             conn.close()    
         
         
+    def buscar_usuario(self, matricula):
+        try:
+            conn = self.estabelecer_conexao()
+            cur = conn.cursor()
+            
+            cur.execute("SELECT nome, cpf, email, senha, tipo_usuario FROM usuarios WHERE matricula = %s", (matricula, ))
+            usuario = cur.fetchall()
+            return usuario
+        
+        except Exception as error:
+            return f"Ocorreu um erro ao buscar usuário: {error}"
+        finally:
+            cur.close()
+            conn.close()
+            
+            
+    def alterar_usuario(self, matricula, nome = None, cpf = None, email = None, senha = None, tipo = None):
+        try:
+            conn = self.estabelecer_conexao()
+            cur = conn.cursor()
+            
+            if nome:
+                cur.execute("UPDATE usuarios SET nome = %s WHERE matricula = %s", (nome, matricula))
+                conn.commit()
+            if cpf:
+                cpf_valido = self.validar_cpf(cpf)
+                if cpf_valido:
+                    cur.execute("UPDATE usuarios SET cpf = %s WHERE matricula = %s", (cpf, matricula))
+                    conn.commit()
+                else:
+                    return "CPF inválido! Tente novamente."
+            if email:
+                email_valido = self.validar_email(email)
+                if email_valido:
+                    cur.execute("UPDATE usuarios SET email = %s WHERE matricula = %s", (email, matricula))
+                    conn.commit()
+                else:
+                    return "E-mail inválido! Tente novamente."
+            if senha:
+                senha_valida = self.validar_senha(senha)
+                if senha_valida:
+                    nova_senha = self.encriptar_senha(senha)
+                    cur.execute("UPDATE usuarios SET senha = %s WHERE matricula = %s", (nova_senha, matricula))
+                    conn.commit()
+                else:
+                    return "Senha inválida! Tente novamente."
+            if tipo:
+                cur.execute("UPDATE usuarios SET tipo_usuario = %s WHERE matricula = %s", (tipo, matricula))
+                conn.commit()
+                
+            return 'Usuário alterado com sucesso!'
+        
+        except Exception as error:
+            return f'Ocorreu um erro ao alterar o usuário: {error}'
+        finally:
+            cur.close()
+            conn.close()    
 
 
 class Funcionario:
