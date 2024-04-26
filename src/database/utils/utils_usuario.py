@@ -135,7 +135,7 @@ class Sistema:
                 conn = self.estabelecer_conexao()
                 cur = conn.cursor()
                 
-                cur.execute("DELETE FROM usuarios WHERE matricula = %s", [matricula])
+                cur.execute("DELETE FROM usuarios WHERE matricula = %s", (matricula,))
                 conn.commit()
                 
                 # Indicando sucesso

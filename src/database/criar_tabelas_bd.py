@@ -267,7 +267,7 @@ VALUES
         # self.inserir_tipos_vistos()
         # self.inserir_voos()
         # self.inserir_usuarios()
-        # self.conn.commit()
+        self.conn.commit()
 
 # Restante do código...
 
