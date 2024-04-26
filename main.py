@@ -63,8 +63,8 @@ class Login(QWidget, Ui_Form):
         mw = MainWindow(self.perfil, self.nome)
         
         if confirmacao_codigo == "Senha alterada com sucesso!":
+            self.btn_redefinir_senha.connect(self.page_login)
             mw.pop_up_success("Código Verificado", confirmacao_codigo)
-            self.btn_redefinir_senha.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.page_login))
         else:
             mw.pop_up_error("Código incorreto", confirmacao_codigo)
             self.ln_codigo.clear()
@@ -295,7 +295,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             for row, text in enumerate(result):
                 for column, data in enumerate(text):
-                    self.tbl_vistos.setItem(row, column, QTableWidgetItem(str(data)))
+                    self.tbl_vistos_2.setItem(row, column, QTableWidgetItem(str(data)))
 
         
         def listar_vistos(self):
